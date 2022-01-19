@@ -1,7 +1,7 @@
 import React from 'react';
 import {TailwindProvider} from 'tailwind-rn';
-import utilities from './tailwind.json';
-import Test from './src/components/Test';
+import utilities from '../tailwind.json';
+import Test from './components/Test';
 
 const App = () => {
   return (
