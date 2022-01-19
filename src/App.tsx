@@ -5,9 +5,9 @@ import Test from './components/Test';
 
 const App = () => {
   return (
-      <TailwindProvider utilities={utilities}>
-        <Test />
-      </TailwindProvider>
+    <TailwindProvider utilities={utilities}>
+      <Test />
+    </TailwindProvider>
   );
 };
 
