@@ -5,7 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
-const HomeStackScreen = () => {
+const HomeStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -20,4 +20,4 @@ const HomeStackScreen = () => {
   );
 };
 
-export default HomeStackScreen;
+export default HomeStackNavigator;

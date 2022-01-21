@@ -2,25 +2,24 @@ import React from 'react';
 import Competition from '../screens/CompeititionScreen';
 import People from '../screens/PeopleScreen';
 import Settings from '../screens/SettingsScreen';
-import HomeStackScreen from './HomeStackScreen';
+import HomeStackNavigator from './HomeStackNavigator';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigator = () => {
+const RootTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={() => ({
         tabBarActiveTintColor: '#637081',
         tabBarInactiveTintColor: '#A7A7A7',
         tabBarShowLabel: false,
-      })}
-    >
+      })}>
       <Tab.Screen
         name="Home"
-        component={HomeStackScreen}
+        component={HomeStackNavigator}
         options={() => ({
           tabBarIcon: ({focused, color, size}) => (
             <MaterialCommunityIcons name="home" size={size} color={color} />
@@ -63,4 +62,4 @@ const TabNavigator = () => {
   );
 };
 
-export default TabNavigator;
+export default RootTabNavigator;
