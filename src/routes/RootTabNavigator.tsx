@@ -19,7 +19,8 @@ const RootTabNavigator = () => {
         tabBarInactiveTintColor: '#A7A7A7',
         tabBarShowLabel: false,
         headerShown: false,
-      })}>
+      })}
+    >
       <Tab.Screen
         name="Home"
         component={HomeStackNavigator}

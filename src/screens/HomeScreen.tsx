@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
-import { HomeScreenProp } from '../utils/types';
+import {HomeScreenProp} from '../utils/types';
 
 const HomeScreen = ({route, navigation}: HomeScreenProp) => {
   const tailwind = useTailwind();
