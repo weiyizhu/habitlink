@@ -6,7 +6,7 @@ const DetailsScreen = () => {
   const tailwind = useTailwind();
   return (
     <View style={tailwind('flex-1 items-center justify-center')}>
-      <Text>DetailsScreen Screen</Text>
+      <Text>Details Screen</Text>
     </View>
   );
 };

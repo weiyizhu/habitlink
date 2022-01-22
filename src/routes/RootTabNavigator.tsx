@@ -6,16 +6,19 @@ import HomeStackNavigator from './HomeStackNavigator';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {RootTabParamList} from '../utils/types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const RootTabNavigator = () => {
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={() => ({
         tabBarActiveTintColor: '#637081',
         tabBarInactiveTintColor: '#A7A7A7',
         tabBarShowLabel: false,
+        headerShown: false,
       })}>
       <Tab.Screen
         name="Home"
@@ -25,6 +28,7 @@ const RootTabNavigator = () => {
             <MaterialCommunityIcons name="home" size={size} color={color} />
           ),
         })}
+        // example: initialParams={{ userId: user.id }}
       />
       <Tab.Screen
         name="Competition"
