@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "183454886902",
+    "project_id": "habitlink-3cbcc",
+    "storage_bucket": "habitlink-3cbcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183454886902:android:f9bdccd501c4b8729535d7",
+        "android_client_info": {
+          "package_name": "com.habitlink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183454886902-m38a8mecngi0s297l0rkfrmkqvf42jbe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.habitlink",
+            "certificate_hash": "c6e2db69b37f5d18794354ae501698ad2289e7f0"
+          }
+        },
+        {
+          "client_id": "183454886902-nh4d1g51ovptq1sn28d5q7ncihe9mlsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfSFG9KsxlZYyF-wjf5sB8A0XG-6fsDKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183454886902-nh4d1g51ovptq1sn28d5q7ncihe9mlsc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "183454886902-q6t62c6n2sf6r6vemm31hu3fus70q6pq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.habitlink"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
