@@ -2,13 +2,13 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 
-const PeopleScreen = () => {
+const FriendsScreen = () => {
   const tailwind = useTailwind();
   return (
     <View style={tailwind('flex-1 items-center justify-center')}>
-      <Text>People Screen</Text>
+      <Text>Friends Screen</Text>
     </View>
   );
 };
 
-export default PeopleScreen;
+export default FriendsScreen;

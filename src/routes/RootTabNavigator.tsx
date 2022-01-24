@@ -1,6 +1,6 @@
 import React from 'react';
 import Competition from '../screens/CompeititionScreen';
-import People from '../screens/PeopleScreen';
+import FriendsScreen from '../screens/FriendsScreen';
 import Settings from '../screens/SettingsScreen';
 import HomeStackNavigator from './HomeStackNavigator';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,9 +18,18 @@ const RootTabNavigator = () => {
         tabBarActiveTintColor: '#637081',
         tabBarInactiveTintColor: '#A7A7A7',
         tabBarShowLabel: false,
-        headerShown: false,
-      })}
-    >
+        headerShadowVisible: false,
+        headerTitleStyle: {
+          fontSize: 48,
+          // display: "flex",
+          // justifyContent: "center",
+          // alignItems: "center",
+          fontFamily: "Yaldevi",
+        },
+        headerStyle: {
+          height: 150,
+        },
+      })}>
       <Tab.Screen
         name="Home"
         component={HomeStackNavigator}
@@ -28,6 +37,7 @@ const RootTabNavigator = () => {
           tabBarIcon: ({focused, color, size}) => (
             <MaterialCommunityIcons name="home" size={size} color={color} />
           ),
+          title: 'Habitlink',
         })}
         // example: initialParams={{ userId: user.id }}
       />
@@ -45,8 +55,8 @@ const RootTabNavigator = () => {
         })}
       />
       <Tab.Screen
-        name="People"
-        component={People}
+        name="Friends"
+        component={FriendsScreen}
         options={() => ({
           tabBarIcon: ({focused, color, size}) => (
             <Ionicons name="people" size={size} color={color} />

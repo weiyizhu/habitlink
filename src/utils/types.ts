@@ -15,7 +15,7 @@ export type RootTabParamList = {
   // example: Feed: { sort: 'latest' | 'top' } | undefined;
   Home: NavigatorScreenParams<HomeStackParamList>;
   Competition: undefined;
-  People: undefined;
+  Friends: undefined;
   Settings: undefined;
 };
 

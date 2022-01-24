@@ -6,7 +6,7 @@ import {HomeScreenProp} from '../utils/types';
 const HomeScreen = ({route, navigation}: HomeScreenProp) => {
   const tailwind = useTailwind();
   return (
-    <View style={tailwind('flex-1 items-center justify-center')}>
+    <View style={tailwind('flex-1 items-center justify-center bg-white')}>
       <Text>Home screen</Text>
       <Button
         title="Go to Details"
