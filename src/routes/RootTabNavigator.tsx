@@ -21,11 +21,12 @@ const RootTabNavigator = () => {
         headerShadowVisible: false,
         headerTitleStyle: {
           fontSize: 48,
-          fontFamily: "YaldeviColombo-Regular",
+          fontFamily: 'YaldeviColombo-Regular',
         },
         headerStyle: {
-          height: 150,
+          height: 120,
         },
+        headerTitleAlign: 'center',
       })}>
       <Tab.Screen
         name="Home"
