@@ -6,19 +6,19 @@ import {HabitOverviewProps, HomeScreenProp, timePeriod} from '../utils/types';
 
 const mockData: HabitOverviewProps[] = [
   {
-    name: 'Haibt 1',
+    name: 'Habit 1',
     completed: 4,
     goal: 5,
     timePeriod: timePeriod.Week,
   },
   {
-    name: 'Haibt 2',
+    name: 'Habit 2',
     completed: 1,
     goal: 1,
     timePeriod: timePeriod.Month,
   },
   {
-    name: 'Haibt 3',
+    name: 'Habit 3',
     completed: 1,
     goal: 1,
     timePeriod: timePeriod.Day,
