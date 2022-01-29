@@ -27,7 +27,8 @@ const RootTabNavigator = () => {
           height: 120,
         },
         headerTitleAlign: 'center',
-      })}>
+      })}
+    >
       <Tab.Screen
         name="Home"
         component={HomeStackNavigator}

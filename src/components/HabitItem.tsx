@@ -20,13 +20,13 @@ const HabitItem = ({name, completed, goal, timePeriod}: HabitOverviewProps) => {
     <View
       style={tailwind(
         `px-3 py-2 ${bgColor} flex-row justify-between items-center mb-4`,
-      )}>
+      )}
+    >
       <View>
         <Text style={tailwind('text-2xl font-SemiBold')}>{name}</Text>
         <Text
-          style={tailwind(
-            'text-sm font-Light',
-          )}>{`${completed}/${goal} x ${timePeriod}`}</Text>
+          style={tailwind('text-sm font-Light')}
+        >{`${completed}/${goal} x ${timePeriod}`}</Text>
       </View>
       <MaterialCommunityIcons
         onPress={handleCheckBoxCheck}
