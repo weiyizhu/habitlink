@@ -1,3 +1,7 @@
+.mb-4 {
+  margin-bottom: 1rem
+}
+
 .h-full {
   height: 100%
 }
@@ -36,6 +40,11 @@
   background-color: rgb(191 219 254 / var(--tw-bg-opacity))
 }
 
+.bg-hl-blue {
+  --tw-bg-opacity: 1;
+  background-color: rgb(206 229 242 / var(--tw-bg-opacity))
+}
+
 .p-3 {
   padding: 0.75rem
 }
@@ -52,6 +61,11 @@
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem
 }
 
 .pt-12 {

@@ -28,3 +28,16 @@ export type DetailsScreenNavigationProp = CompositeScreenProps<
   NativeStackScreenProps<HomeStackParamList, 'Details'>,
   BottomTabScreenProps<RootTabParamList>
 >;
+
+export enum timePeriod {
+  Day = 'Day',
+  Week = 'Week',
+  Month = 'Month',
+}
+
+export type HabitOverviewProps = {
+  name: string;
+  completed: number;
+  goal: number;
+  timePeriod: timePeriod;
+};

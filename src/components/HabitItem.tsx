@@ -1,34 +1,36 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text} from 'react-native';
 import {useTailwind} from 'tailwind-rn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {HabitOverviewProps} from '../utils/types';
 
-
-const HabitItem = () => {
+const HabitItem = ({name, completed, goal, timePeriod}: HabitOverviewProps) => {
   const tailwind = useTailwind();
   const [checked, setChecked] = useState(false);
-  const CheckBoxIconName = checked
+  const checkBoxIconName = checked
     ? 'checkbox-marked'
     : 'checkbox-blank-outline';
+  const bgColor = completed >= goal ? 'bg-hl-blue' : 'bg-neutral-200';
 
   const handleCheckBoxCheck = () => {
-    setChecked(!checked)
-  }
-  
+    setChecked(!checked);
+  };
+
   return (
     <View
       style={tailwind(
-        'p-3 bg-neutral-200 flex-row justify-between items-center',
+        `px-3 py-2 ${bgColor} flex-row justify-between items-center mb-4`,
       )}>
       <View>
-        <Text style={tailwind('text-2xl font-SemiBold')}>
-          Habit Name
-        </Text>
-        <Text style={tailwind('text-sm font-Light')}>4/5 x Week</Text>
+        <Text style={tailwind('text-2xl font-SemiBold')}>{name}</Text>
+        <Text
+          style={tailwind(
+            'text-sm font-Light',
+          )}>{`${completed}/${goal} x ${timePeriod}`}</Text>
       </View>
       <MaterialCommunityIcons
         onPress={handleCheckBoxCheck}
-        name={CheckBoxIconName}
+        name={checkBoxIconName}
         size={25}
       />
     </View>
