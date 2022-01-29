@@ -84,6 +84,16 @@
 			"paddingTop": 48
 		}
 	},
+	"font-SemiBold": {
+		"style": {
+			"fontFamily": "YaldeviColombo-SemiBold"
+		}
+	},
+	"font-Light": {
+		"style": {
+			"fontFamily": "YaldeviColombo-Light"
+		}
+	},
 	"text-2xl": {
 		"style": {
 			"fontSize": 24,

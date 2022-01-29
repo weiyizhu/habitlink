@@ -58,6 +58,14 @@
   padding-top: 3rem
 }
 
+.font-SemiBold {
+  font-family: YaldeviColombo-SemiBold
+}
+
+.font-Light {
+  font-family: YaldeviColombo-Light
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem

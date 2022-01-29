@@ -8,14 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* HabitLinkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HabitLinkTests.m */; };
+		0AE42D13495D4CF68C3CABAD /* YaldeviColombo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C868855DE2224DA5B7262A54 /* YaldeviColombo-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		5E3DEE7FD3334C06AD284CB5 /* YaldeviColombo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC20B58738C448E1B1A6C16B /* YaldeviColombo-Light.ttf */; };
 		6172F2D35A4C3AA820D92908 /* libPods-HabitLink.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-HabitLink.a */; };
 		7EF68E3733C33B6898317E18 /* libPods-HabitLink-HabitLinkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-HabitLink-HabitLinkTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		83FF419EEF85437395097051 /* YaldeviColombo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9B0E17EEC084D1AAFAC24D9 /* YaldeviColombo-SemiBold.ttf */; };
+		93BE838F44844295B838BE4B /* YaldeviColombo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C5E93BF732B4DAC9E2ECB13 /* YaldeviColombo-Medium.ttf */; };
 		AADE6879279CDDEF001871D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AADE6878279CDDEF001871D8 /* GoogleService-Info.plist */; };
-		0AE42D13495D4CF68C3CABAD /* YaldeviColombo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C868855DE2224DA5B7262A54 /* YaldeviColombo-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,13 +44,16 @@
 		1D0AE47A65C8663E3B452821 /* Pods-HabitLink-HabitLinkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitLink-HabitLinkTests.release.xcconfig"; path = "Target Support Files/Pods-HabitLink-HabitLinkTests/Pods-HabitLink-HabitLinkTests.release.xcconfig"; sourceTree = "<group>"; };
 		6423831EA8574132BED9D8CC /* libPods-HabitLink.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HabitLink.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-HabitLink-HabitLinkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitLink-HabitLinkTests.debug.xcconfig"; path = "Target Support Files/Pods-HabitLink-HabitLinkTests/Pods-HabitLink-HabitLinkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7C5E93BF732B4DAC9E2ECB13 /* YaldeviColombo-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-Medium.ttf"; path = "../src/assets/fonts/YaldeviColombo-Medium.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HabitLink/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AADE6878279CDDEF001871D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ABFE59519B596E51CEFDCCC0 /* libPods-HabitLink-HabitLinkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HabitLink-HabitLinkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A881CF5CF3F2B244570E2A /* Pods-HabitLink.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitLink.debug.xcconfig"; path = "Target Support Files/Pods-HabitLink/Pods-HabitLink.debug.xcconfig"; sourceTree = "<group>"; };
+		C868855DE2224DA5B7262A54 /* YaldeviColombo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-Regular.ttf"; path = "../src/assets/fonts/YaldeviColombo-Regular.ttf"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-HabitLink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitLink.release.xcconfig"; path = "Target Support Files/Pods-HabitLink/Pods-HabitLink.release.xcconfig"; sourceTree = "<group>"; };
+		E9B0E17EEC084D1AAFAC24D9 /* YaldeviColombo-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-SemiBold.ttf"; path = "../src/assets/fonts/YaldeviColombo-SemiBold.ttf"; sourceTree = "<group>"; };
+		EC20B58738C448E1B1A6C16B /* YaldeviColombo-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-Light.ttf"; path = "../src/assets/fonts/YaldeviColombo-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		C868855DE2224DA5B7262A54 /* YaldeviColombo-Regular.ttf */ = {isa = PBXFileReference; name = "YaldeviColombo-Regular.ttf"; path = "../src/assets/fonts/YaldeviColombo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,18 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = HabitLink;
+			sourceTree = "<group>";
+		};
+		20FF230F22E14998B58F6F75 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C868855DE2224DA5B7262A54 /* YaldeviColombo-Regular.ttf */,
+				EC20B58738C448E1B1A6C16B /* YaldeviColombo-Light.ttf */,
+				7C5E93BF732B4DAC9E2ECB13 /* YaldeviColombo-Medium.ttf */,
+				E9B0E17EEC084D1AAFAC24D9 /* YaldeviColombo-SemiBold.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -153,15 +171,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		20FF230F22E14998B58F6F75 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				C868855DE2224DA5B7262A54 /* YaldeviColombo-Regular.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -262,6 +271,9 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				AADE6879279CDDEF001871D8 /* GoogleService-Info.plist in Resources */,
 				0AE42D13495D4CF68C3CABAD /* YaldeviColombo-Regular.ttf in Resources */,
+				5E3DEE7FD3334C06AD284CB5 /* YaldeviColombo-Light.ttf in Resources */,
+				93BE838F44844295B838BE4B /* YaldeviColombo-Medium.ttf in Resources */,
+				83FF419EEF85437395097051 /* YaldeviColombo-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

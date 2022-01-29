@@ -21,10 +21,16 @@ const HabitItem = () => {
         'p-3 bg-neutral-200 flex-row justify-between items-center',
       )}>
       <View>
-        <Text style={tailwind('text-2xl')}>Habit Name</Text>
-        <Text style={tailwind('text-sm')}>4/5 x Week</Text>
+        <Text style={tailwind('text-2xl font-SemiBold')}>
+          Habit Name
+        </Text>
+        <Text style={tailwind('text-sm font-Light')}>4/5 x Week</Text>
       </View>
-      <MaterialCommunityIcons onPress={handleCheckBoxCheck} name={CheckBoxIconName} size={25} />
+      <MaterialCommunityIcons
+        onPress={handleCheckBoxCheck}
+        name={CheckBoxIconName}
+        size={25}
+      />
     </View>
   );
 };

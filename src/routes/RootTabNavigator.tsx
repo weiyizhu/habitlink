@@ -21,7 +21,7 @@ const RootTabNavigator = () => {
         headerShadowVisible: false,
         headerTitleStyle: {
           fontSize: 48,
-          fontFamily: 'YaldeviColombo-Regular',
+          fontFamily: 'YaldeviColombo-SemiBold',
         },
         headerStyle: {
           height: 120,

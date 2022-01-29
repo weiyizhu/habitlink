@@ -69,6 +69,9 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>YaldeviColombo-Regular.ttf</string>
+		<string>YaldeviColombo-Light.ttf</string>
+		<string>YaldeviColombo-Medium.ttf</string>
+		<string>YaldeviColombo-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>
