@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import {useTailwind} from 'tailwind-rn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {HabitOverviewProps} from '../utils/types';
+import { useEffectUpdate } from '../utils/fn';
 
 const HabitItem = ({name, completed, goal, timePeriod}: HabitOverviewProps) => {
   const tailwind = useTailwind();
@@ -17,10 +18,10 @@ const HabitItem = ({name, completed, goal, timePeriod}: HabitOverviewProps) => {
     setChecked(!checked);
   };
 
-  useEffect(() => {
+  useEffectUpdate(() => {
     if (checked) setCompletedState(prev => prev + 1);
     else setCompletedState(prev => prev - 1);
-  }, [checked]);
+  }, [checked])
 
   return (
     <View
