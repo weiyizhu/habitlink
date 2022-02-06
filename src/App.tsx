@@ -3,6 +3,7 @@ import {TailwindProvider} from 'tailwind-rn';
 import utilities from '../tailwind.json';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import RootTabNavigator from './routes/RootTabNavigator';
+import LoginScreen from './screens/LoginScreen';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -16,7 +17,7 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <TailwindProvider utilities={utilities}>
-        <RootTabNavigator />
+        <LoginScreen />
       </TailwindProvider>
     </NavigationContainer>
   );
