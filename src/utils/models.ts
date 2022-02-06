@@ -1,9 +1,9 @@
-import {timePeriod} from './types.ts'
-
 // USER
 
+import { timePeriod } from "./types";
+
 export type User = {
-  uid: string;
+  email: string;
   name: string;
   competition: Competition;
   wld: WLD;
@@ -35,7 +35,7 @@ export type Habit = {
   details: Details;
   longestStreak: number;
   currentStreak: number;
-  dates: date[];
+  dates: Date[];
 }
 
 export type Details = {

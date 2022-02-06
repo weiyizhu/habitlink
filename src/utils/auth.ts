@@ -6,7 +6,7 @@ const createAccount = (email: string, password: string) => {
 		.catch((error) => console.log(error));
 };
 
-const sendPasswordReset(email: string) => {
+const sendPasswordReset = (email: string) => {
 	return auth()
 		.sendPasswordResetEmail(email)
 		.catch((error) => console.log(error));
