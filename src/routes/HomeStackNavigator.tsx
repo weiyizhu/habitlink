@@ -15,15 +15,10 @@ const HomeStackNavigator = () => {
           fontSize: 48,
           fontFamily: 'YaldeviColombo-SemiBold',
         },
-        // header: ({navigation, route, options, back}) => {
-        //   const title = getHeaderTitle(options, route.name);
-        //   return (
-        //     <CustomHeader title={title}/>
-        //   )
-        // },
-        // header: ({navigation, route, options, layout, back}) => (
-        //   <CustomHeader title={''} />
-        // ),
+        headerBackTitleVisible: false,
+        headerLeftContainerStyle: {
+          left: 20,
+        },
         headerBackTitleStyle: {
           fontFamily: 'YaldeviColombo-SemiBold',
         },
