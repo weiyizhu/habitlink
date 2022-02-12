@@ -24,11 +24,10 @@ const RootTabNavigator = () => {
           fontFamily: 'YaldeviColombo-SemiBold',
         },
         headerStyle: {
-          height: 120,
+          height: 150,
         },
         headerTitleAlign: 'center',
-      })}
-    >
+      })}>
       <Tab.Screen
         name="Home"
         component={HomeStackNavigator}
@@ -36,7 +35,7 @@ const RootTabNavigator = () => {
           tabBarIcon: ({focused, color, size}) => (
             <MaterialCommunityIcons name="home" size={size} color={color} />
           ),
-          title: 'Habitlink',
+          headerShown: false,
         })}
         // example: initialParams={{ userId: user.id }}
       />

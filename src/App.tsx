@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import {TailwindProvider} from 'tailwind-rn';
 import utilities from '../tailwind.json';
@@ -17,7 +18,8 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <TailwindProvider utilities={utilities}>
-        <LoginScreen />
+        {/* <LoginScreen /> */}
+        <RootTabNavigator />
       </TailwindProvider>
     </NavigationContainer>
   );

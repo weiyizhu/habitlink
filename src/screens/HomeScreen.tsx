@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, FlatList, ListRenderItem, Text, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
+import FloatingBtn from '../components/FloatingBtn';
 import HabitItem from '../components/HabitItem';
 import {HabitOverviewProps, HomeScreenProp, timePeriod} from '../utils/types';
 
@@ -32,16 +33,16 @@ const HomeScreen = ({route, navigation}: HomeScreenProp) => {
     item,
     index,
     separators,
-  }) => <HabitItem {...item} />;
+  }) => <HabitItem {...item} navigation={navigation} />;
 
   return (
-    <View style={tailwind('flex-1 p-7')}>
-      {/* <Text>Home screen</Text>
-      <Button
+    <View style={tailwind('flex-1 px-7')}>
+      {/* <Button
         title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
+        onPress={() => navigation.navigate('Details', {name: "haha"})}
       /> */}
       <FlatList data={mockData} renderItem={renderItem} />
+      <FloatingBtn />
     </View>
   );
 };
