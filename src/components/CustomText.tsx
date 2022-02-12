@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, TextProps} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
-import { CustomTextProp } from '../utils/types';
+import {CustomTextProp} from '../utils/types';
 
 export default function CustomText({
   font,
@@ -10,5 +10,14 @@ export default function CustomText({
   children,
 }: CustomTextProp) {
   const tailwind = useTailwind();
-  return <Text style={[{fontSize: size},tailwind(`font-${font} ${additionStyle ?? ""}`)]}>{children}</Text>;
+  return (
+    <Text
+      style={[
+        {fontSize: size},
+        tailwind(`font-${font} ${additionStyle ?? ''}`),
+      ]}
+    >
+      {children}
+    </Text>
+  );
 }

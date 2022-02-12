@@ -39,13 +39,13 @@ const HabitItem = ({
         navigation.navigate('Details', {
           name,
         });
-      }}>
+      }}
+    >
       <View>
         <Text style={tailwind('text-2xl font-SemiBold')}>{name}</Text>
         <Text
-          style={tailwind(
-            'text-sm font-Light',
-          )}>{`${completedState}/${goal} x ${timePeriod}`}</Text>
+          style={tailwind('text-sm font-Light')}
+        >{`${completedState}/${goal} x ${timePeriod}`}</Text>
       </View>
       <MaterialCommunityIcons
         onPress={handleCheckBoxCheck}

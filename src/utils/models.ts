@@ -1,6 +1,6 @@
 // USER
 
-import { timePeriod } from "./types";
+import {timePeriod} from './types';
 
 export type User = {
   email: string;
@@ -25,8 +25,7 @@ export type WLD = {
 export type Friend = {
   uid: string;
   sharedHabits: string[];
-}
-
+};
 
 // HABIT
 
@@ -36,11 +35,11 @@ export type Habit = {
   longestStreak: number;
   currentStreak: number;
   dates: Date[];
-}
+};
 
 export type Details = {
   name: string;
   description: string;
   timePeriod: timePeriod;
   goalPerTP: number;
-}
+};

@@ -11,7 +11,7 @@ const DetailsInfo = ({title, num}: {title: string; num: number}) => {
       <CustomText font={fontType.Medium} size={18}>
         {title}
       </CustomText>
-      <View style={tailwind('items-center justify-center ml-3')}>
+      <View style={tailwind('items-center justify-center ml-2')}>
         <CustomText font={fontType.Medium} size={18}>
           {num}
         </CustomText>
