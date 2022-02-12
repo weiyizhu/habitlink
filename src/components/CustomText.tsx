@@ -10,5 +10,5 @@ export default function CustomText({
   children,
 }: CustomTextProp) {
   const tailwind = useTailwind();
-  return <Text style={[{fontSize: size},tailwind(` font-${font} ${additionStyle}`)]}>{children}</Text>;
+  return <Text style={[{fontSize: size},tailwind(`font-${font} ${additionStyle ?? ""}`)]}>{children}</Text>;
 }
