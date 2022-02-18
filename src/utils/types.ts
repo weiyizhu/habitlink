@@ -8,6 +8,7 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
+import {Habit} from './models';
 
 export type HomeStackParamList = {
   HomeStack: undefined;
@@ -40,15 +41,7 @@ export enum timePeriod {
   Month = 'Month',
 }
 
-export type HabitOverviewProps = {
-  name: string;
-  completed: number;
-  goal: number;
-  timePeriod: timePeriod;
-  // navigation: NativeStackNavigationProp<HomeStackParamList, 'HomeStack'>;
-};
-
-export type HabitItemProps = HabitOverviewProps & {
+export type HabitItemProps = Habit & {
   navigation: NativeStackNavigationProp<HomeStackParamList, 'HomeStack'>;
 };
 

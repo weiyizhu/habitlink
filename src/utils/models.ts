@@ -1,5 +1,6 @@
 // USER
 
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import {timePeriod} from './types';
 
 export type User = {
@@ -30,11 +31,10 @@ export type Friend = {
 // HABIT
 
 export type Habit = {
-  uid: string;
   details: Details;
   longestStreak: number;
   currentStreak: number;
-  dates: Date[];
+  dates: FirebaseFirestoreTypes.Timestamp[];
 };
 
 export type Details = {
@@ -42,4 +42,5 @@ export type Details = {
   description: string;
   timePeriod: timePeriod;
   goalPerTP: number;
+  completed: number;
 };
