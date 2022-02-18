@@ -13,8 +13,9 @@
     "fix:style": "npx prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@react-native-firebase/app": "^14.2.3",
+    "@react-native-firebase/app": "^14.5.0",
     "@react-native-firebase/auth": "^14.2.3",
+    "@react-native-firebase/firestore": "^14.5.0",
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
