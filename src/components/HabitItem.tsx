@@ -4,22 +4,22 @@ import {useTailwind} from 'tailwind-rn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {HabitItemProps} from '../utils/types';
 import {useEffectUpdate} from '../utils/fn';
-import useFloatingBottomTabBarHeight from '@react-navigation/bottom-tabs/lib/typescript/src/utils/useBottomTabBarHeight';
 
 const HabitItem = ({
-  name,
-  completed,
-  goal,
-  timePeriod,
   navigation,
+  currentStreak,
+  dates,
+  details,
+  longestStreak,
 }: HabitItemProps) => {
   const tailwind = useTailwind();
+  const {description, goalPerTP, name, timePeriod, completed} = details;
   const [checked, setChecked] = useState(false);
   const [completedState, setCompletedState] = useState(completed);
   const checkBoxIconName = checked
     ? 'checkbox-marked'
     : 'checkbox-blank-outline';
-  const bgColor = completedState >= goal ? 'bg-hl-blue' : 'bg-neutral-200';
+  const bgColor = completedState >= goalPerTP ? 'bg-hl-blue' : 'bg-neutral-200';
 
   const handleCheckBoxCheck = () => {
     setChecked(!checked);
@@ -39,13 +39,13 @@ const HabitItem = ({
         navigation.navigate('Details', {
           name,
         });
-      }}
-    >
+      }}>
       <View>
         <Text style={tailwind('text-2xl font-SemiBold')}>{name}</Text>
         <Text
-          style={tailwind('text-sm font-Light')}
-        >{`${completedState}/${goal} x ${timePeriod}`}</Text>
+          style={tailwind(
+            'text-sm font-Light',
+          )}>{`${completedState}/${goalPerTP} x ${timePeriod}`}</Text>
       </View>
       <MaterialCommunityIcons
         onPress={handleCheckBoxCheck}
