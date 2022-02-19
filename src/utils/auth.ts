@@ -1,27 +1,33 @@
-import auth from '@react-native-firebase/auth';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+
+let user: FirebaseAuthTypes.UserCredential | null = null;
 
 const createAccount = (email: string, password: string) => {
   return auth()
     .createUserWithEmailAndPassword(email, password)
-    .catch(error => console.log(error));
 };
 
 const sendPasswordReset = (email: string) => {
   return auth()
     .sendPasswordResetEmail(email)
-    .catch(error => console.log(error));
 };
 
 const signIn = (email: string, password: string) => {
   return auth()
     .signInWithEmailAndPassword(email, password)
-    .catch(error => console.log(error));
 };
 
 const signOut = () => {
   return auth()
     .signOut()
-    .catch(error => console.log(error));
 };
 
-export {createAccount, signIn, signOut};
+const setUser = (newUser: FirebaseAuthTypes.UserCredential) => {
+  user = newUser;
+}
+
+const getUser = () => {
+  return user;
+}
+
+export {createAccount, signIn, signOut, setUser, getUser};

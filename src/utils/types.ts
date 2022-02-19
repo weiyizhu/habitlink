@@ -8,6 +8,7 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
+import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
 import {Habit} from './models';
 
 export type HomeStackParamList = {
@@ -16,6 +17,12 @@ export type HomeStackParamList = {
     name: string;
   };
 };
+
+export type AuthStackParamList = {
+  RootHomeStack: undefined,
+  RootLoginStack: undefined
+};
+
 
 export type RootTabParamList = {
   // example: Feed: { sort: 'latest' | 'top' } | undefined;
@@ -57,3 +64,6 @@ export type CustomTextProp = {
   additionStyle?: string;
   children: React.ReactNode;
 };
+
+
+export type AuthScreenProp = StackNavigationProp<AuthStackParamList, 'RootLoginStack'>;
