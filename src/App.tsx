@@ -21,9 +21,11 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <TailwindProvider utilities={utilities}>
-        <Stack.Navigator initialRouteName="RootLoginStack">
-        <Stack.Screen name="RootLoginStack" component={LoginScreen} /> 
-        <Stack.Screen name="RootHomeStack" component={RootTabNavigator} />
+        <Stack.Navigator screenOptions={{
+    headerShown: false
+  }} initialRouteName="RootLoginStack">
+          <Stack.Screen name="RootLoginStack" component={LoginScreen} /> 
+          <Stack.Screen name="RootHomeStack" component={RootTabNavigator} />
         </Stack.Navigator>
       </TailwindProvider>
     </NavigationContainer>
