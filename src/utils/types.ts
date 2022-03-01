@@ -1,6 +1,6 @@
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import {createContext, useContext} from 'react'
 import {
-  CompositeNavigationProp,
   CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
@@ -9,7 +9,7 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
-import {Habit} from './models';
+import {Habit, User} from './models';
 
 export type HomeStackParamList = {
   HomeStack: undefined;
@@ -65,5 +65,16 @@ export type CustomTextProp = {
   children: React.ReactNode;
 };
 
+export type UserContext = {
+    user: User | null;
+    setUser: (u: User) => void
+}
+
+export const DefUserContext = createContext<UserContext>({
+  user: null,
+  setUser: () => {}
+})
+
+export const useUserContext = () => useContext(DefUserContext)
 
 export type AuthScreenProp = StackNavigationProp<AuthStackParamList, 'RootLoginStack'>;

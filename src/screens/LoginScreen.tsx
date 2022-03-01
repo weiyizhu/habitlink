@@ -1,14 +1,18 @@
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import {TextInput, HelperText, Snackbar} from 'react-native-paper';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import {Text, TouchableOpacity, View, TextInputChangeEventData, NativeSyntheticEvent} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
-import { setUser, signIn} from '../utils/auth';
 import { useNavigation } from '@react-navigation/native';
-import { AuthScreenProp } from '../utils/types';
+import { AuthScreenProp, useUserContext } from '../utils/types';
+import { UserContext } from '../utils/types';
+import { signIn } from '../utils/auth';
+import firestore from '@react-native-firebase/firestore';
+import { User } from '../utils/models';
 
 const LoginScreen = () => {
   const navigation = useNavigation<AuthScreenProp>()
+  const {user, setUser} = useUserContext()
   const [username, setUsername] = useState('')
   const [usernameE, setUsernameE] = useState('')
   const [password, setPassword] = useState('')
@@ -72,7 +76,14 @@ const LoginScreen = () => {
         setPasswordE('')
         setPassword('')
         signIn(username, password).then((user: FirebaseAuthTypes.UserCredential) => {
-          setUser(user);
+           const userRef = firestore().collection('users').doc(user.user.uid);
+           userRef.onSnapshot(documentSnapshot => {
+            const currentUser = documentSnapshot.data() as User | null;
+            console.log("User state changed V")
+            console.log(currentUser)
+            setUser(currentUser);
+          });
+
           navigation.navigate('RootHomeStack')
         }).catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
           if (error.code === 'auth/email-already-in-use') {

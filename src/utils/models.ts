@@ -10,7 +10,7 @@ export type User = {
   wld: WLD;
   habits: string[];
   friends: Friend[];
-};
+} | null;
 
 export type Competition = {
   score: number;

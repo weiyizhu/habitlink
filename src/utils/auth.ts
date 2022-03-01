@@ -1,6 +1,5 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
-
-let user: FirebaseAuthTypes.UserCredential | null = null;
+import {Context, createContext, useState} from 'react';
 
 const createAccount = (email: string, password: string) => {
   return auth()
@@ -22,12 +21,4 @@ const signOut = () => {
     .signOut()
 };
 
-const setUser = (newUser: FirebaseAuthTypes.UserCredential) => {
-  user = newUser;
-}
-
-const getUser = () => {
-  return user;
-}
-
-export {createAccount, signIn, signOut, setUser, getUser};
+export {createAccount, signIn, signOut}
