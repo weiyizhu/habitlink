@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { useTailwind } from 'tailwind-rn';
+import React, {useEffect, useState} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import {useTailwind} from 'tailwind-rn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { HabitItemProps } from '../utils/types';
-import { useEffectUpdate } from '../utils/fn';
+import {HabitItemProps} from '../utils/types';
+import {useEffectUpdate} from '../utils/fn';
 
 const HabitItem = ({
   navigation,
   currentStreak,
   dates,
-  description, 
-  goalPerTP,name, timePeriod, completed,
+  description,
+  goalPerTP,
+  name,
+  timePeriod,
+  completed,
   longestStreak,
 }: HabitItemProps) => {
   const tailwind = useTailwind();

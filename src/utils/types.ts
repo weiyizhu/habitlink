@@ -1,5 +1,5 @@
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {createContext, useContext} from 'react'
+import {createContext, useContext} from 'react';
 import {
   CompositeScreenProps,
   NavigatorScreenParams,
@@ -8,7 +8,7 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
+import {StackNavigationProp, StackScreenProps} from '@react-navigation/stack';
 import {Habit, User} from './models';
 
 export type HomeStackParamList = {
@@ -19,10 +19,9 @@ export type HomeStackParamList = {
 };
 
 export type AuthStackParamList = {
-  RootHomeStack: undefined,
-  RootLoginStack: undefined
+  RootHomeStack: undefined;
+  RootLoginStack: undefined;
 };
-
 
 export type RootTabParamList = {
   // example: Feed: { sort: 'latest' | 'top' } | undefined;
@@ -66,15 +65,18 @@ export type CustomTextProp = {
 };
 
 export type UserContext = {
-    user: User | null;
-    setUser: (u: User) => void
-}
+  user: User | null;
+  setUser: (u: User) => void;
+};
 
 export const DefUserContext = createContext<UserContext>({
   user: null,
-  setUser: () => {}
-})
+  setUser: () => {},
+});
 
-export const useUserContext = () => useContext(DefUserContext)
+export const useUserContext = () => useContext(DefUserContext);
 
-export type AuthScreenProp = StackNavigationProp<AuthStackParamList, 'RootLoginStack'>;
+export type AuthScreenProp = StackNavigationProp<
+  AuthStackParamList,
+  'RootLoginStack'
+>;

@@ -1,7 +1,7 @@
 // USER
 
-import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
-import { timePeriod } from './types';
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
+import {timePeriod} from './types';
 
 export type User = {
   email: string;
