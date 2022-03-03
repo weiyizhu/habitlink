@@ -10,15 +10,16 @@ import {
 } from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import {useNavigation} from '@react-navigation/native';
-import {AuthScreenProp, useUserContext} from '../utils/types';
+import {AuthScreenProp} from '../utils/types';
 import {UserContext} from '../utils/types';
 import {signIn} from '../utils/auth';
 import firestore from '@react-native-firebase/firestore';
 import {User} from '../utils/models';
+import {useUserContext} from '../utils/fn';
 
 const LoginScreen = () => {
   const navigation = useNavigation<AuthScreenProp>();
-  const {user, setUser} = useUserContext();
+  const {user, setUser, setUid} = useUserContext();
   const [username, setUsername] = useState('');
   const [usernameE, setUsernameE] = useState('');
   const [password, setPassword] = useState('');
@@ -88,9 +89,10 @@ const LoginScreen = () => {
               const userRef = firestore()
                 .collection('users')
                 .doc(authUser.user.uid);
+              setUid(authUser.user.uid);
               userRef.onSnapshot(documentSnapshot => {
                 const currentUser = documentSnapshot.data() as User | null;
-                setUser(currentUser);
+                if (currentUser) setUser(currentUser);
               });
 
               navigation.navigate('RootHomeStack');

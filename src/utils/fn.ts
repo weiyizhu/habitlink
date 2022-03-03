@@ -1,4 +1,5 @@
-import {useEffect, useRef} from 'react';
+import {createContext, useContext, useEffect, useRef} from 'react';
+import {UserContext} from './types';
 
 export const useEffectUpdate = (
   fn: Function,
@@ -12,3 +13,12 @@ export const useEffectUpdate = (
     didMountRef.current = true;
   }, dependencies);
 };
+
+export const DefUserContext = createContext<UserContext>({
+  user: null,
+  setUser: () => {},
+  uid: null,
+  setUid: () => {},
+});
+
+export const useUserContext = () => useContext(DefUserContext);

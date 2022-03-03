@@ -15,23 +15,24 @@ const HabitItem = ({
   timePeriod,
   completed,
   longestStreak,
+  user
 }: HabitItemProps) => {
+  console.log("habitItem", goalPerTP, name, timePeriod, completed)
   const tailwind = useTailwind();
   const [checked, setChecked] = useState(false);
-  const [completedState, setCompletedState] = useState(completed);
   const checkBoxIconName = checked
     ? 'checkbox-marked'
     : 'checkbox-blank-outline';
-  const bgColor = completedState >= goalPerTP ? 'bg-hl-blue' : 'bg-neutral-200';
+  const bgColor = completed >= goalPerTP ? 'bg-hl-blue' : 'bg-neutral-200';
 
   const handleCheckBoxCheck = () => {
     setChecked(!checked);
   };
 
-  useEffectUpdate(() => {
-    if (checked) setCompletedState(prev => prev + 1);
-    else setCompletedState(prev => prev - 1);
-  }, [checked]);
+  // useEffectUpdate(() => {
+  //   if (checked) setCompletedState(prev => prev + 1);
+  //   else setCompletedState(prev => prev - 1);
+  // }, [checked]);
 
   return (
     <TouchableOpacity
@@ -48,7 +49,7 @@ const HabitItem = ({
         <Text
           style={tailwind(
             'text-sm font-Light',
-          )}>{`${completedState}/${goalPerTP} x ${timePeriod}`}</Text>
+          )}>{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
       </View>
       <MaterialCommunityIcons
         onPress={handleCheckBoxCheck}

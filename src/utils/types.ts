@@ -67,14 +67,11 @@ export type CustomTextProp = {
 export type UserContext = {
   user: User | null;
   setUser: (u: User) => void;
+  uid: string | null;
+  setUid: (uid: string) => void;
 };
 
-export const DefUserContext = createContext<UserContext>({
-  user: null,
-  setUser: () => {},
-});
 
-export const useUserContext = () => useContext(DefUserContext);
 
 export type AuthScreenProp = StackNavigationProp<
   AuthStackParamList,

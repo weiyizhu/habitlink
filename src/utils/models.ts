@@ -9,8 +9,8 @@ export type User = {
   competition: Competition;
   wld: WLD;
   habits: string[];
-  friends: Friend[];
-} | null;
+  friends: string[];
+};
 
 export type Competition = {
   score: number;
@@ -23,14 +23,10 @@ export type WLD = {
   draws: number;
 };
 
-export type Friend = {
-  uid: string;
-  sharedHabits: string[];
-};
-
 // HABIT
 
 export type Habit = {
+  user: string;
   name: string;
   description: string;
   timePeriod: timePeriod;
