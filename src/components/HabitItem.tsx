@@ -15,9 +15,9 @@ const HabitItem = ({
   timePeriod,
   completed,
   longestStreak,
-  user
+  user,
 }: HabitItemProps) => {
-  console.log("habitItem", goalPerTP, name, timePeriod, completed)
+  console.log('habitItem', goalPerTP, name, timePeriod, completed);
   const tailwind = useTailwind();
   const [checked, setChecked] = useState(false);
   const checkBoxIconName = checked

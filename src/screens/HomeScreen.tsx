@@ -7,7 +7,7 @@ import {HomeScreenProp, timePeriod} from '../utils/types';
 import firestore from '@react-native-firebase/firestore';
 import {Habit, User} from '../utils/models';
 import {getActionFromState} from '@react-navigation/native';
-import { useUserContext } from '../utils/fn';
+import {useUserContext} from '../utils/fn';
 
 const bobby = '4eY9hdKiwODlOKeOcnEW';
 const bobby2 = 'yDSrrUp2DQSkifDwvjov';
@@ -25,7 +25,7 @@ const mockData: Habit[] = [
     name: 'habit 1',
     timePeriod: timePeriod.Week,
     longestStreak: 4,
-    friends: []
+    friends: [],
   },
 ];
 
@@ -34,7 +34,6 @@ const HomeScreen = ({route, navigation}: HomeScreenProp) => {
   const [habits, setHabits] = useState<Habit[]>([]);
   const {uid} = useUserContext();
 
- 
   useEffect(() => {
     const habitRef = firestore().collection('habits').where('user', '==', uid);
     return habitRef.onSnapshot(querySnapshot => {
@@ -46,14 +45,7 @@ const HomeScreen = ({route, navigation}: HomeScreenProp) => {
       setHabits(habitList);
       console.log('habitList', habitList);
     });
-  }, []);
-
-  // const [flag, setFlag] = useState(true)
-  // useEffect(() => {
-  //   console.log(habits)
-  //   setFlag(prev => !prev)
-  // }, [habits])
-
+  }, [uid]);
 
   const renderItem: ListRenderItem<Habit> = ({item, index, separators}) => (
     <HabitItem {...item} navigation={navigation} />

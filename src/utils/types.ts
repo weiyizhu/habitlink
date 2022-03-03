@@ -1,5 +1,5 @@
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import {createContext, useContext} from 'react';
+import React, {createContext, useContext} from 'react';
 import {
   CompositeScreenProps,
   NavigatorScreenParams,
@@ -70,8 +70,6 @@ export type UserContext = {
   uid: string | null;
   setUid: (uid: string) => void;
 };
-
-
 
 export type AuthScreenProp = StackNavigationProp<
   AuthStackParamList,

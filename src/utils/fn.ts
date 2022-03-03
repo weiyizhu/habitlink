@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useRef} from 'react';
+import React, {createContext, useContext, useEffect, useRef} from 'react';
 import {UserContext} from './types';
 
 export const useEffectUpdate = (
@@ -6,12 +6,13 @@ export const useEffectUpdate = (
   dependencies?: React.DependencyList | undefined,
 ) => {
   const didMountRef = useRef(false);
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (didMountRef.current) {
       return fn();
     }
     didMountRef.current = true;
-  }, dependencies);
+  }, dependencies ?? []);
 };
 
 export const DefUserContext = createContext<UserContext>({

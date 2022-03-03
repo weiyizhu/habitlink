@@ -16,7 +16,7 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
     navigation.setOptions({
       title: name,
     });
-  }, []);
+  }, [name, navigation]);
 
   return (
     <View style={tailwind('flex-1 items-center px-7')}>

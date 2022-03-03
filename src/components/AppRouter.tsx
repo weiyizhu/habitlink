@@ -4,11 +4,11 @@ import RootTabNavigator from '../routes/RootTabNavigator';
 import LoginScreen from '../screens/LoginScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {User} from '../utils/models';
-import { DefUserContext } from '../utils/fn';
+import {DefUserContext} from '../utils/fn';
 
 const AppRouter = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [uid, setUid] = useState<string | null>(null)
+  const [uid, setUid] = useState<string | null>(null);
   const Stack = createNativeStackNavigator();
 
   return (
@@ -17,8 +17,7 @@ const AppRouter = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="RootLoginStack"
-      >
+        initialRouteName="RootLoginStack">
         <Stack.Screen name="RootLoginStack" component={LoginScreen} />
         <Stack.Screen name="RootHomeStack" component={RootTabNavigator} />
       </Stack.Navigator>

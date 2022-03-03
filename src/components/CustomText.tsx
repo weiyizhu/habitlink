@@ -15,8 +15,7 @@ export default function CustomText({
       style={[
         {fontSize: size},
         tailwind(`font-${font} ${additionStyle ?? ''}`),
-      ]}
-    >
+      ]}>
       {children}
     </Text>
   );
