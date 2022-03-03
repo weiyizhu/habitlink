@@ -22,6 +22,7 @@ const mockData: Habit[] = [
     name: 'habit 1',
     timePeriod: timePeriod.Week,
     longestStreak: 4,
+    friends: []
   },
 ];
 

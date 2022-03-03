@@ -39,4 +39,5 @@ export type Habit = {
   longestStreak: number;
   currentStreak: number;
   dates: FirebaseFirestoreTypes.Timestamp[];
+  friends: string[];
 };

@@ -34,8 +34,7 @@ const LoginScreen = () => {
           fontFamily: 'YaldeviColombo-SemiBold',
           height: 120,
           textAlign: 'center',
-        }}
-      >
+        }}>
         Habitlink
       </Text>
       <TextInput
@@ -53,8 +52,7 @@ const LoginScreen = () => {
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={usernameE !== ''}
-        >
+          visible={usernameE !== ''}>
           {usernameE}
         </HelperText>
       </View>
@@ -86,14 +84,12 @@ const LoginScreen = () => {
           setPasswordE('');
           setPassword('');
           signIn(username, password)
-            .then((user: FirebaseAuthTypes.UserCredential) => {
+            .then((authUser: FirebaseAuthTypes.UserCredential) => {
               const userRef = firestore()
                 .collection('users')
-                .doc(user.user.uid);
+                .doc(authUser.user.uid);
               userRef.onSnapshot(documentSnapshot => {
                 const currentUser = documentSnapshot.data() as User | null;
-                console.log('User state changed V');
-                console.log(currentUser);
                 setUser(currentUser);
               });
 
@@ -114,8 +110,7 @@ const LoginScreen = () => {
                 setSnackE(error.message);
               }
             });
-        }}
-      >
+        }}>
         <Text style={tailwind('text-white text-center')}> Log In</Text>
       </TouchableOpacity>
       <View style={tailwind('absolute bottom-0 w-full')}>
@@ -138,8 +133,7 @@ const LoginScreen = () => {
         visible={snackE !== ''}
         onDismiss={() => {
           setSnackE('');
-        }}
-      >
+        }}>
         {snackE}
       </Snackbar>
     </View>

@@ -6,6 +6,7 @@ import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import RootTabNavigator from './routes/RootTabNavigator';
 import LoginScreen from './screens/LoginScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import AppRouter from './components/AppRouter';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -21,14 +22,7 @@ const App = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <TailwindProvider utilities={utilities}>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-          initialRouteName="RootLoginStack">
-          <Stack.Screen name="RootLoginStack" component={LoginScreen} />
-          <Stack.Screen name="RootHomeStack" component={RootTabNavigator} />
-        </Stack.Navigator>
+        <AppRouter />
       </TailwindProvider>
     </NavigationContainer>
   );
