@@ -10,11 +10,18 @@ import {
 } from '@react-navigation/native-stack';
 import {StackNavigationProp, StackScreenProps} from '@react-navigation/stack';
 import {Habit, User} from './models';
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 
 export type HomeStackParamList = {
   HomeStack: undefined;
   Details: {
     name: string;
+    description: string;
+    dates: FirebaseFirestoreTypes.Timestamp[];
+    timePeriod: timePeriod;
+    goalPerTP: number;
+    currentStreak: number;
+    longestStreak: number;
   };
 };
 
@@ -47,14 +54,18 @@ export enum timePeriod {
   Month = 'Month',
 }
 
-export type HabitItemProps = Habit & {
+export type HabitWithUid = Habit & {
+  uid: string;
+};
+
+export type HabitItemProps = HabitWithUid & {
   navigation: NativeStackNavigationProp<HomeStackParamList, 'HomeStack'>;
 };
 
 export enum fontType {
-  Light = 'Light',
-  Medium = 'Medium',
-  SemiBold = 'SemiBold',
+  Light = 'light',
+  Medium = 'medium',
+  SemiBold = 'semiBold',
 }
 
 export type CustomTextProp = {

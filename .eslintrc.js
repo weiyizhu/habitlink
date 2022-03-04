@@ -7,5 +7,6 @@ module.exports = {
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
     '@typescript-eslint/no-unused-vars': 0,
+    'prettier/prettier': 0,
   },
 };

@@ -3,7 +3,7 @@ import {Button, FlatList, ListRenderItem, Text, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import FloatingBtn from '../components/FloatingBtn';
 import HabitItem from '../components/HabitItem';
-import {HomeScreenProp, timePeriod} from '../utils/types';
+import {HabitWithUid, HomeScreenProp, timePeriod} from '../utils/types';
 import firestore from '@react-native-firebase/firestore';
 import {Habit, User} from '../utils/models';
 import {getActionFromState} from '@react-navigation/native';
@@ -31,25 +31,28 @@ const mockData: Habit[] = [
 
 const HomeScreen = ({route, navigation}: HomeScreenProp) => {
   const tailwind = useTailwind();
-  const [habits, setHabits] = useState<Habit[]>([]);
+  const [habits, setHabits] = useState<HabitWithUid[]>([]);
   const {uid} = useUserContext();
 
   useEffect(() => {
     const habitRef = firestore().collection('habits').where('user', '==', uid);
     return habitRef.onSnapshot(querySnapshot => {
-      const habitList: Habit[] = [];
+      const habitList: HabitWithUid[] = [];
       querySnapshot.forEach(doc => {
         console.log(doc.data());
-        habitList.push(doc.data() as Habit);
+        const habitInfo = doc.data() as Habit;
+        habitList.push({...habitInfo, uid: doc.id});
       });
       setHabits(habitList);
       console.log('habitList', habitList);
     });
   }, [uid]);
 
-  const renderItem: ListRenderItem<Habit> = ({item, index, separators}) => (
-    <HabitItem {...item} navigation={navigation} />
-  );
+  const renderItem: ListRenderItem<HabitWithUid> = ({
+    item,
+    index,
+    separators,
+  }) => <HabitItem {...item} navigation={navigation} />;
 
   return (
     <View style={tailwind('flex-1 px-7')}>

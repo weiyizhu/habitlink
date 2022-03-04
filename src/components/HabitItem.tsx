@@ -4,6 +4,7 @@ import {useTailwind} from 'tailwind-rn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {HabitItemProps} from '../utils/types';
 import {useEffectUpdate} from '../utils/fn';
+import firestore from '@react-native-firebase/firestore';
 
 const HabitItem = ({
   navigation,
@@ -16,8 +17,9 @@ const HabitItem = ({
   completed,
   longestStreak,
   user,
+  uid,
 }: HabitItemProps) => {
-  console.log('habitItem', goalPerTP, name, timePeriod, completed);
+  console.log('habitItem', goalPerTP, name, timePeriod, completed, currentStreak);
   const tailwind = useTailwind();
   const [checked, setChecked] = useState(false);
   const checkBoxIconName = checked
@@ -27,12 +29,17 @@ const HabitItem = ({
 
   const handleCheckBoxCheck = () => {
     setChecked(!checked);
+    const habitRef = firestore().collection('habits').doc(uid);
+    if (!checked) {
+      habitRef.update({
+        completed: completed + 1,
+      });
+    } else {
+      habitRef.update({
+        completed: completed - 1,
+      });
+    }
   };
-
-  // useEffectUpdate(() => {
-  //   if (checked) setCompletedState(prev => prev + 1);
-  //   else setCompletedState(prev => prev - 1);
-  // }, [checked]);
 
   return (
     <TouchableOpacity
@@ -42,6 +49,12 @@ const HabitItem = ({
       onPress={() => {
         navigation.navigate('Details', {
           name,
+          description,
+          dates,
+          timePeriod,
+          goalPerTP,
+          currentStreak,
+          longestStreak,
         });
       }}>
       <View>

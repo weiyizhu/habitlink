@@ -22,10 +22,6 @@
   margin: 0.5rem
 }
 
-.m-3 {
-  margin: 0.75rem
-}
-
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem
@@ -47,36 +43,8 @@
   margin-top: 1.25rem
 }
 
-.mt-1 {
-  margin-top: 0.25rem
-}
-
-.mt-2 {
-  margin-top: 0.5rem
-}
-
-.inline-block {
-  display: inline-block
-}
-
-.h-3 {
-  height: 0.75rem
-}
-
 .h-5 {
   height: 1.25rem
-}
-
-.h-9 {
-  height: 2.25rem
-}
-
-.h-6 {
-  height: 1.5rem
-}
-
-.h-8 {
-  height: 2rem
 }
 
 .w-full {
@@ -150,10 +118,6 @@
 
 .p-2 {
   padding: 0.5rem
-}
-
-.p-1 {
-  padding: 0.25rem
 }
 
 .px-3 {
