@@ -10,7 +10,7 @@ import {RootTabParamList} from '../utils/types';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
-const RootTabNavigator = () => {
+const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -75,4 +75,4 @@ const RootTabNavigator = () => {
   );
 };
 
-export default RootTabNavigator;
+export default BottomTabNavigator;

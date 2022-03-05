@@ -1,12 +1,15 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useState} from 'react';
 import {TailwindProvider} from 'tailwind-rn';
 import utilities from '../tailwind.json';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import RootTabNavigator from './routes/RootTabNavigator';
+import BottomTabNavigator from './routes/BottomTabNavigator';
 import LoginScreen from './screens/LoginScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import AppRouter from './components/AppRouter';
+import {DefUserContext} from './utils/fn';
+import {User} from './utils/models';
+import {HabitWithUid, UserContext} from './utils/types';
+import RootStackNavigator from './routes/RootStackNavigator';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -17,12 +20,24 @@ const MyTheme = {
 };
 
 const App = () => {
-  const Stack = createNativeStackNavigator();
+  const [user, setUser] = useState<User | null>(null);
+  const [uid, setUid] = useState<string | null>(null);
+  const [habits, setHabits] = useState<HabitWithUid[]>([]);
+  const userContextInitVal: UserContext = {
+    user,
+    setUser,
+    uid,
+    setUid,
+    habits,
+    setHabits,
+  };
 
   return (
     <NavigationContainer theme={MyTheme}>
       <TailwindProvider utilities={utilities}>
-        <AppRouter />
+        <DefUserContext.Provider value={userContextInitVal}>
+          <RootStackNavigator />
+        </DefUserContext.Provider>
       </TailwindProvider>
     </NavigationContainer>
   );
