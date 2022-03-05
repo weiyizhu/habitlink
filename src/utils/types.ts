@@ -15,13 +15,7 @@ import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 export type HomeStackParamList = {
   HomeStack: undefined;
   Details: {
-    name: string;
-    description: string;
-    dates: FirebaseFirestoreTypes.Timestamp[];
-    timePeriod: timePeriod;
-    goalPerTP: number;
-    currentStreak: number;
-    longestStreak: number;
+    uid: string;
   };
 };
 
@@ -80,6 +74,8 @@ export type UserContext = {
   setUser: (u: User) => void;
   uid: string | null;
   setUid: (uid: string) => void;
+  habits: HabitWithUid[];
+  setHabits: (habits: HabitWithUid[]) => void;
 };
 
 export type AuthScreenProp = StackNavigationProp<

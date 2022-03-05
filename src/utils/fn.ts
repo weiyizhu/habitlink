@@ -20,6 +20,8 @@ export const DefUserContext = createContext<UserContext>({
   setUser: () => {},
   uid: null,
   setUid: () => {},
+  habits: [],
+  setHabits: () => {},
 });
 
 export const useUserContext = () => useContext(DefUserContext);

@@ -19,7 +19,14 @@ const HabitItem = ({
   user,
   uid,
 }: HabitItemProps) => {
-  console.log('habitItem', goalPerTP, name, timePeriod, completed, currentStreak);
+  console.log(
+    'habitItem',
+    goalPerTP,
+    name,
+    timePeriod,
+    completed,
+    currentStreak,
+  );
   const tailwind = useTailwind();
   const [checked, setChecked] = useState(false);
   const checkBoxIconName = checked
@@ -48,13 +55,7 @@ const HabitItem = ({
       )}
       onPress={() => {
         navigation.navigate('Details', {
-          name,
-          description,
-          dates,
-          timePeriod,
-          goalPerTP,
-          currentStreak,
-          longestStreak,
+          uid,
         });
       }}>
       <View>

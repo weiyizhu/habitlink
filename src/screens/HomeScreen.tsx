@@ -31,8 +31,7 @@ const mockData: Habit[] = [
 
 const HomeScreen = ({route, navigation}: HomeScreenProp) => {
   const tailwind = useTailwind();
-  const [habits, setHabits] = useState<HabitWithUid[]>([]);
-  const {uid} = useUserContext();
+  const {uid, habits, setHabits} = useUserContext();
 
   useEffect(() => {
     const habitRef = firestore().collection('habits').where('user', '==', uid);
@@ -46,7 +45,7 @@ const HomeScreen = ({route, navigation}: HomeScreenProp) => {
       setHabits(habitList);
       console.log('habitList', habitList);
     });
-  }, [uid]);
+  }, [uid, setHabits]);
 
   const renderItem: ListRenderItem<HabitWithUid> = ({
     item,

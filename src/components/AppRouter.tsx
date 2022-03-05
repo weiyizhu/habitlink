@@ -5,14 +5,16 @@ import LoginScreen from '../screens/LoginScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {User} from '../utils/models';
 import {DefUserContext} from '../utils/fn';
+import { HabitWithUid } from '../utils/types';
 
 const AppRouter = () => {
   const [user, setUser] = useState<User | null>(null);
   const [uid, setUid] = useState<string | null>(null);
+  const [habits, setHabits] = useState<HabitWithUid[]>([]);
   const Stack = createNativeStackNavigator();
 
   return (
-    <DefUserContext.Provider value={{user, setUser, uid, setUid}}>
+    <DefUserContext.Provider value={{user, setUser, uid, setUid, habits, setHabits}}>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
