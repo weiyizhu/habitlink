@@ -47,12 +47,12 @@
   height: 1.25rem
 }
 
-.w-full {
-  width: 100%
-}
-
 .w-10\/12 {
   width: 83.333333%
+}
+
+.w-full {
+  width: 100%
 }
 
 .flex-1 {
@@ -116,6 +116,16 @@
   background-color: rgb(147 197 253 / var(--tw-bg-opacity))
 }
 
+.bg-blue-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--tw-bg-opacity))
+}
+
+.bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity))
+}
+
 .p-2 {
   padding: 0.5rem
 }
@@ -130,14 +140,14 @@
   padding-bottom: 0.5rem
 }
 
-.px-7 {
-  padding-left: 1.75rem;
-  padding-right: 1.75rem
-}
-
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem
+}
+
+.px-7 {
+  padding-left: 1.75rem;
+  padding-right: 1.75rem
 }
 
 .pb-4 {
@@ -178,11 +188,6 @@
   font-weight: 500
 }
 
-.text-blue-500 {
-  --tw-text-opacity: 1;
-  color: rgb(59 130 246 / var(--tw-text-opacity))
-}
-
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity))
@@ -191,4 +196,9 @@
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity))
+}
+
+.text-blue-500 {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity))
 }

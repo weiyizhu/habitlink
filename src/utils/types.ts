@@ -22,6 +22,7 @@ export type HomeStackParamList = {
 export type AuthStackParamList = {
   RootHomeStack: undefined;
   RootLoginStack: undefined;
+  RootCreateStack: undefined;
 };
 
 export type RootTabParamList = {
@@ -81,4 +82,9 @@ export type UserContext = {
 export type AuthScreenProp = StackNavigationProp<
   AuthStackParamList,
   'RootLoginStack'
+>;
+
+export type CreateAccountScreenProp = StackNavigationProp<
+AuthStackParamList,
+'RootCreateStack'
 >;

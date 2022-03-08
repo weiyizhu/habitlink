@@ -10,20 +10,22 @@ import {
 } from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import {useNavigation} from '@react-navigation/native';
-import {AuthScreenProp} from '../utils/types';
+import {AuthScreenProp, CreateAccountScreenProp} from '../utils/types';
 import {UserContext} from '../utils/types';
-import {signIn} from '../utils/auth';
-import firestore from '@react-native-firebase/firestore';
-import {User} from '../utils/models';
+import {createAccount, signIn} from '../utils/auth';
+import firestore, { firebase } from '@react-native-firebase/firestore';
+import {Competition, User, WLD} from '../utils/models';
 import {useUserContext} from '../utils/fn';
 
-const LoginScreen = () => {
-  const navigation = useNavigation<AuthScreenProp>();
+const CreateAccountScreen = () => {
+  const navigation = useNavigation<CreateAccountScreenProp>();
   const {user, setUser, setUid} = useUserContext();
   const [username, setUsername] = useState('');
   const [usernameE, setUsernameE] = useState('');
   const [password, setPassword] = useState('');
   const [passwordE, setPasswordE] = useState('');
+  const [name, setName] = useState('');
+  const [nameE, setNameE] = useState('');
   const [snackE, setSnackE] = useState('');
 
   useEffect(()=>{
@@ -50,7 +52,7 @@ const LoginScreen = () => {
         )}
         underlineColor="transparent"
         activeUnderlineColor="transparent"
-        placeholder="Username"
+        placeholder="Email / Username"
         value={username}
         error={usernameE !== ''}
         onChangeText={val => setUsername(val)}
@@ -61,6 +63,25 @@ const LoginScreen = () => {
           type="error"
           visible={usernameE !== ''}>
           {usernameE}
+        </HelperText>
+      </View>
+      <TextInput
+        style={tailwind(
+          'border border-gray-200 bg-gray-50 p-2 m-2 h-5 w-10/12 rounded-md',
+        )}
+        underlineColor="transparent"
+        activeUnderlineColor="transparent"
+        placeholder="Name"
+        value={name}
+        error={nameE !== ''}
+        onChangeText={val => setName(val)}
+      />
+      <View style={tailwind('w-10/12')}>
+        <HelperText
+          style={tailwind('text-left')}
+          type="error"
+          visible={nameE !== ''}>
+          {nameE}
         </HelperText>
       </View>
       <TextInput
@@ -80,20 +101,27 @@ const LoginScreen = () => {
           {passwordE}
         </HelperText>
       </View>
-      <Text style={tailwind('text-right w-10/12 pb-4 text-blue-500')}>
-        {' '}
-        Forgot password?
-      </Text>
       <TouchableOpacity
         style={tailwind('bg-blue-500 rounded py-2 my-3 w-10/12')}
         onPress={() => {
           setUsernameE('');
           setPasswordE('');
+          setNameE('');
           const pwd = password;
           setPassword('');
-          signIn(username, pwd)
+          ``
+          if (name === "") {
+            setNameE("Please enter a name");
+            return;
+          }
+
+          createAccount(username, pwd)
             .then((authUser: FirebaseAuthTypes.UserCredential) => {
-              const userRef = firestore()
+              const wld: WLD = {wins : 0, losses: 0, draws: 0};
+              const user: User = {email: username, name: name, competition: null, wld: wld, habits: new Array<string>(), friends: new Array<string>()};
+              
+              firestore().collection('users').doc(authUser.user.uid).set(user).then(() => {
+                const userRef = firestore()
                 .collection('users')
                 .doc(authUser.user.uid);
               setUid(authUser.user.uid);
@@ -103,22 +131,25 @@ const LoginScreen = () => {
               });
 
               navigation.navigate('RootHomeStack');
+              });
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
-              if (error.code === 'auth/invalid-email') {
+              if (error.code === 'auth/email-already-in-use') {
+                setUsernameE('That email address is already in use');
+              } else if (error.code === 'auth/invalid-email') {
                 setUsernameE('Invalid email');
               } else if (error.code === 'auth/user-not-found') {
                 setUsernameE('A user with this email was not found');
               } else if (error.code === 'auth/invalid-password') {
                 setPasswordE('Invalid password');
-              } else if (error.code === 'auth/wrong-password') {
-                setPasswordE('Wrong password');
+              } else if (error.code === 'auth/weak-password') {
+                setPasswordE('Weak password, try making it longer');
               } else {
                 setSnackE(error.message);
               }
             });
         }}>
-        <Text style={tailwind('text-white text-center')}> Log In</Text>
+        <Text style={tailwind('text-white text-center')}> Create Account </Text>
       </TouchableOpacity>
       <View style={tailwind('absolute bottom-0 w-full')}>
         <View
@@ -130,8 +161,8 @@ const LoginScreen = () => {
         <View style={tailwind('py-10')}>
           <Text style={tailwind('text-center font-medium text-gray-400')}>
             {' '}
-            Don't have an account?{' '}
-            <Text onPress={() => navigation.navigate('RootCreateStack')} style={tailwind('text-blue-500')}>Sign Up</Text>
+            Already have an account?{' '}
+            <Text onPress={() => navigation.navigate('RootLoginStack')}style={tailwind('text-blue-500')}>Log In</Text>
           </Text>
         </View>
       </View>
@@ -147,4 +178,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default CreateAccountScreen;

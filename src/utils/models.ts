@@ -6,7 +6,7 @@ import {timePeriod} from './types';
 export type User = {
   email: string;
   name: string;
-  competition: Competition;
+  competition: Competition | null;
   wld: WLD;
   habits: string[];
   friends: string[];
