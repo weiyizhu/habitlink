@@ -1,6 +1,8 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
+import CreateHabitScreen from '../screens/CreateHabitScreen';
 import DetailsScreen from '../screens/DetailsScreen';
+import EditHabitScreen from '../screens/EditHabitScreen';
 import HomeScreen from '../screens/HomeScreen';
 import {HomeStackParamList} from '../utils/types';
 
@@ -35,6 +37,14 @@ const HomeStackNavigator = () => {
         })}
       />
       <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen
+        name="EditHabit"
+        component={EditHabitScreen}
+        options={() => ({
+          title: 'Edit Habit',
+        })}
+      />
+      <Stack.Screen name="CreateHabit" component={CreateHabitScreen} />
     </Stack.Navigator>
   );
 };

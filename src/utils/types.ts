@@ -1,5 +1,5 @@
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import React, {createContext, useContext} from 'react';
+import React from 'react';
 import {
   CompositeScreenProps,
   NavigatorScreenParams,
@@ -8,15 +8,24 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import {StackNavigationProp, StackScreenProps} from '@react-navigation/stack';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {Habit, User} from './models';
-import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 
 export type HomeStackParamList = {
   HomeStack: undefined;
   Details: {
     uid: string;
   };
+  EditHabit: {
+    uid: string;
+    name: string;
+    description: string;
+    timePeriod: TimePeriod;
+    goalPerTP: number;
+    friends: string[];
+    user: string;
+  };
+  CreateHabit: undefined;
 };
 
 export type AuthStackParamList = {
@@ -43,7 +52,17 @@ export type DetailsScreenNavigationProp = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList>
 >;
 
-export enum timePeriod {
+export type EditHabitScreenNavigationProp = CompositeScreenProps<
+  NativeStackScreenProps<HomeStackParamList, 'EditHabit'>,
+  BottomTabScreenProps<RootTabParamList>
+>;
+
+export type CreateHabitScreenNavigationProp = CompositeScreenProps<
+  NativeStackScreenProps<HomeStackParamList, 'CreateHabit'>,
+  BottomTabScreenProps<RootTabParamList>
+>;
+
+export enum TimePeriod {
   Day = 'Day',
   Week = 'Week',
   Month = 'Month',
@@ -60,7 +79,7 @@ export type HabitItemProps = HabitWithUid & {
 export enum fontType {
   Light = 'light',
   Medium = 'medium',
-  SemiBold = 'semiBold',
+  SemiBold = 'semibold',
 }
 
 export type CustomTextProp = {
@@ -85,6 +104,40 @@ export type AuthScreenProp = StackNavigationProp<
 >;
 
 export type CreateAccountScreenProp = StackNavigationProp<
-AuthStackParamList,
-'RootCreateStack'
+  AuthStackParamList,
+  'RootCreateStack'
 >;
+export interface FrequencyModalProps {
+  isFreqModalVisible: boolean;
+  setIsFreqModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  TPRadioBtn: string;
+  setTPRadioBtn: React.Dispatch<React.SetStateAction<string>>;
+  newWeeklyGoal: string;
+  setNewWeeklyGoal: React.Dispatch<React.SetStateAction<string>>;
+  newMonthlyGoal: string;
+  setNewMonthlyGoal: React.Dispatch<React.SetStateAction<string>>;
+  setNewFrequency: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface FrequencyRadioBtnProps {
+  goal: string;
+  setGoal: React.Dispatch<React.SetStateAction<string>>;
+  setTPRadioBtn: React.Dispatch<React.SetStateAction<string>>;
+  maxLength: number;
+  timePeriod: TimePeriod;
+}
+
+export interface SharedWithModalProps {
+  isSharedModalVisible: boolean;
+  setIsSharedModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  newSharedWith: string[];
+  setNewSharedWith: React.Dispatch<React.SetStateAction<string[]>>;
+  userUid: string;
+  sharedFriends: string[];
+}
+
+export type FriendCheckbox = {
+  uid: string;
+  name: string;
+  checked: boolean;
+};

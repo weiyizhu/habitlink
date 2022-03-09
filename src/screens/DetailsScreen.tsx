@@ -1,16 +1,14 @@
-import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
+import React, {useEffect, useLayoutEffect} from 'react';
+import {Keyboard, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import CustomText from '../components/CustomText';
-import {
-  DetailsScreenNavigationProp,
-  fontType,
-  HabitWithUid,
-} from '../utils/types';
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import {DetailsScreenNavigationProp, fontType} from '../utils/types';
+import {Calendar} from 'react-native-calendars';
 import DetailsInfo from '../components/DetailsInfo';
-import {timePeriod as timePeriodEnum} from '../utils/types';
+import {TimePeriod} from '../utils/types';
 import {useUserContext} from '../utils/fn';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
   const tailwind = useTailwind();
@@ -23,6 +21,32 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
       title: habit ? habit.name : 'Error',
     });
   }, [habit, navigation]);
+
+  useLayoutEffect(() => {
+    if (habit) {
+      const {name, description, goalPerTP, timePeriod, friends, user} = habit;
+      navigation.setOptions({
+        headerRight: () => (
+          <MaterialIcons
+            onPress={() => {
+              navigation.navigate('EditHabit', {
+                uid,
+                name,
+                description,
+                goalPerTP,
+                timePeriod,
+                friends,
+                user,
+              });
+            }}
+            name={'edit'}
+            size={25}
+            style={{right: 35}}
+          />
+        ),
+      });
+    }
+  }, [uid, habit, navigation]);
 
   if (habit === undefined) {
     return (
@@ -47,21 +71,23 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
   } = habit;
 
   const timePeriodGoal =
-    timePeriod === timePeriodEnum.Day ? 'Daily' : timePeriod + 'ly';
+    timePeriod === TimePeriod.Day ? 'Daily' : timePeriod + 'ly';
 
   console.log('Details', currentStreak);
 
   return (
-    <View style={tailwind('flex-1 items-center px-7')}>
+    <View style={tailwind('flex-1 px-7')}>
       <CustomText font={fontType.Medium} size={18} additionStyle={'mb-5'}>
         {description}
       </CustomText>
-      <Calendar />
-      <View style={tailwind('flex-row justify-evenly w-full mt-5')}>
-        <DetailsInfo title={`${timePeriodGoal} \nGoal:`} num={goalPerTP} />
-        <DetailsInfo title={'Current \nStreak:'} num={currentStreak} />
-        <DetailsInfo title={'Longest \nStreak:'} num={longestStreak} />
-      </View>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <Calendar />
+        <View style={tailwind('flex-row justify-evenly w-full mt-5')}>
+          <DetailsInfo title={`${timePeriodGoal} \nGoal:`} num={goalPerTP} />
+          <DetailsInfo title={'Current \nStreak:'} num={currentStreak} />
+          <DetailsInfo title={'Longest \nStreak:'} num={longestStreak} />
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };

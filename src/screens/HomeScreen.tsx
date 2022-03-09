@@ -1,12 +1,11 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {Button, FlatList, ListRenderItem, Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {FlatList, ListRenderItem, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import FloatingBtn from '../components/FloatingBtn';
 import HabitItem from '../components/HabitItem';
-import {HabitWithUid, HomeScreenProp, timePeriod} from '../utils/types';
+import {HabitWithUid, HomeScreenProp, TimePeriod} from '../utils/types';
 import firestore from '@react-native-firebase/firestore';
-import {Habit, User} from '../utils/models';
-import {getActionFromState} from '@react-navigation/native';
+import {Habit} from '../utils/models';
 import {useUserContext} from '../utils/fn';
 
 const bobby = '4eY9hdKiwODlOKeOcnEW';
@@ -23,7 +22,7 @@ const mockData: Habit[] = [
     description: 'habit description',
     goalPerTP: 4,
     name: 'habit 1',
-    timePeriod: timePeriod.Week,
+    timePeriod: TimePeriod.Week,
     longestStreak: 4,
     friends: [],
   },
