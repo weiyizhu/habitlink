@@ -6,12 +6,28 @@
   position: absolute
 }
 
+.top-2\.5 {
+  top: 0.625rem
+}
+
+.top-2 {
+  top: 0.5rem
+}
+
 .bottom-7 {
   bottom: 1.75rem
 }
 
 .right-7 {
   right: 1.75rem
+}
+
+.top-0\.5 {
+  top: 0.125rem
+}
+
+.top-0 {
+  top: 0px
 }
 
 .bottom-0 {
@@ -22,24 +38,8 @@
   right: 2.25rem
 }
 
-.top-2\.5 {
-  top: 0.625rem
-}
-
-.top-2 {
-  top: 0.5rem
-}
-
-.top-1 {
-  top: 0.25rem
-}
-
-.top-0\.5 {
-  top: 0.125rem
-}
-
-.top-0 {
-  top: 0px
+.right-8 {
+  right: 2rem
 }
 
 .m-2 {
@@ -51,12 +51,20 @@
   margin-bottom: 0.75rem
 }
 
+.mb-5 {
+  margin-bottom: 1.25rem
+}
+
 .ml-2 {
   margin-left: 0.5rem
 }
 
 .mb-3 {
   margin-bottom: 0.75rem
+}
+
+.mr-2 {
+  margin-right: 0.5rem
 }
 
 .mb-1 {
@@ -67,32 +75,20 @@
   margin-bottom: 1rem
 }
 
-.mb-5 {
-  margin-bottom: 1.25rem
+.ml-9 {
+  margin-left: 2.25rem
 }
 
 .mt-5 {
   margin-top: 1.25rem
 }
 
-.mr-3 {
-  margin-right: 0.75rem
-}
-
-.mr-2 {
-  margin-right: 0.5rem
+.h-8 {
+  height: 2rem
 }
 
 .h-5 {
   height: 1.25rem
-}
-
-.h-7 {
-  height: 1.75rem
-}
-
-.h-8 {
-  height: 2rem
 }
 
 .w-12 {
@@ -185,6 +181,11 @@
   padding: 0.5rem
 }
 
+.px-7 {
+  padding-left: 1.75rem;
+  padding-right: 1.75rem
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem
@@ -200,9 +201,12 @@
   padding-bottom: 2.5rem
 }
 
-.px-7 {
-  padding-left: 1.75rem;
-  padding-right: 1.75rem
+.pl-3 {
+  padding-left: 0.75rem
+}
+
+.pl-0 {
+  padding-left: 0px
 }
 
 .pb-4 {
@@ -211,26 +215,6 @@
 
 .pl-9 {
   padding-left: 2.25rem
-}
-
-.pl-8 {
-  padding-left: 2rem
-}
-
-.pl-5 {
-  padding-left: 1.25rem
-}
-
-.pl-3 {
-  padding-left: 0.75rem
-}
-
-.pl-2 {
-  padding-left: 0.5rem
-}
-
-.pl-0 {
-  padding-left: 0px
 }
 
 .text-left {
@@ -245,14 +229,6 @@
   text-align: right
 }
 
-.font-SemiBold {
-  font-family: YaldeviColombo-SemiBold
-}
-
-.font-Light {
-  font-family: YaldeviColombo-Light
-}
-
 .font-Regular {
   font-family: YaldeviColombo-Regular
 }
@@ -261,14 +237,12 @@
   font-family: YaldeviColombo-Medium
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem
+.font-SemiBold {
+  font-family: YaldeviColombo-SemiBold
 }
 
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem
+.font-Light {
+  font-family: YaldeviColombo-Light
 }
 
 .text-xl {
@@ -279,6 +253,16 @@
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem
 }
 
 .font-medium {

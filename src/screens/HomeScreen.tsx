@@ -32,6 +32,12 @@ const HomeScreen = ({route, navigation}: HomeScreenProp) => {
   const tailwind = useTailwind();
   const {uid, habits, setHabits} = useUserContext();
 
+  const handlePlusCirclePress = () => {
+    navigation.navigate('CreateHabit', {
+      user: uid as string,
+    });
+  };
+
   useEffect(() => {
     const habitRef = firestore().collection('habits').where('user', '==', uid);
     return habitRef.onSnapshot(querySnapshot => {
@@ -55,7 +61,7 @@ const HomeScreen = ({route, navigation}: HomeScreenProp) => {
   return (
     <View style={tailwind('flex-1 px-7')}>
       <FlatList data={habits} renderItem={renderItem} extraData={habits} />
-      <FloatingBtn />
+      <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
     </View>
   );
 };

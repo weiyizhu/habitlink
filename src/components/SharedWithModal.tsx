@@ -58,9 +58,10 @@ const SharedWithModal = ({
         animationOut="fadeOut">
         <View style={tailwind('bg-white p-7')}>
           {friendsList.map(value => (
-            <View style={tailwind('flex-row mb-3 items-center')}>
+            <View
+              key={value.uid}
+              style={tailwind('flex-row mb-3 items-center')}>
               <MaterialCommunityIcons
-                key={value.uid}
                 onPress={() => {
                   setFriendsList(prev => {
                     // copy original array of obj
@@ -80,8 +81,7 @@ const SharedWithModal = ({
                 }
                 size={25}
               />
-              <Text
-                style={tailwind('text-xl font-Regular pl-3')}>
+              <Text style={tailwind('text-xl font-Regular pl-3')}>
                 {value.name}
               </Text>
             </View>

@@ -27,6 +27,9 @@ const HomeStackNavigator = () => {
         headerStyle: {
           height: 150,
         },
+        headerRightContainerStyle: {
+          paddingLeft: 15,
+        },
         headerTitleAlign: 'center',
       }}>
       <Stack.Screen
@@ -44,7 +47,13 @@ const HomeStackNavigator = () => {
           title: 'Edit Habit',
         })}
       />
-      <Stack.Screen name="CreateHabit" component={CreateHabitScreen} />
+      <Stack.Screen
+        name="CreateHabit"
+        component={CreateHabitScreen}
+        options={() => ({
+          title: 'Create Habit',
+        })}
+      />
     </Stack.Navigator>
   );
 };

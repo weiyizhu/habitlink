@@ -1,38 +1,30 @@
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {TextInput, HelperText, Snackbar} from 'react-native-paper';
-import React, {ChangeEvent, useContext, useEffect, useState} from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  TextInputChangeEventData,
-  NativeSyntheticEvent,
-} from 'react-native';
+import {TextInput, HelperText} from 'react-native-paper';
+import React, {useEffect, useState} from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import {useNavigation} from '@react-navigation/native';
-import {AuthScreenProp, CreateAccountScreenProp} from '../utils/types';
-import {UserContext} from '../utils/types';
-import {createAccount, signIn} from '../utils/auth';
-import firestore, { firebase } from '@react-native-firebase/firestore';
-import {Competition, User, WLD} from '../utils/models';
+import {CreateAccountScreenProp} from '../utils/types';
+import {createAccount} from '../utils/auth';
+import firestore from '@react-native-firebase/firestore';
+import {User, WLD} from '../utils/models';
 import {useUserContext} from '../utils/fn';
 
 const CreateAccountScreen = () => {
   const navigation = useNavigation<CreateAccountScreenProp>();
-  const {user, setUser, setUid} = useUserContext();
+  const {user, setUser, setUid, setSnackE} = useUserContext();
   const [username, setUsername] = useState('');
   const [usernameE, setUsernameE] = useState('');
   const [password, setPassword] = useState('');
   const [passwordE, setPasswordE] = useState('');
   const [name, setName] = useState('');
   const [nameE, setNameE] = useState('');
-  const [snackE, setSnackE] = useState('');
 
-  useEffect(()=>{
+  useEffect(() => {
     if (user != null) {
       navigation.navigate('RootHomeStack');
     }
-  },[])
+  }, [navigation, user]);
 
   const tailwind = useTailwind();
   return (
@@ -97,7 +89,10 @@ const CreateAccountScreen = () => {
         onChangeText={val => setPassword(val)}
       />
       <View style={tailwind('w-10/12')}>
-        <HelperText style={tailwind('text-left')}type="error" visible={passwordE !== ''}>
+        <HelperText
+          style={tailwind('text-left')}
+          type="error"
+          visible={passwordE !== ''}>
           {passwordE}
         </HelperText>
       </View>
@@ -109,29 +104,39 @@ const CreateAccountScreen = () => {
           setNameE('');
           const pwd = password;
           setPassword('');
-          ``
-          if (name === "") {
-            setNameE("Please enter a name");
+          if (name === '') {
+            setNameE('Please enter a name');
             return;
           }
 
           createAccount(username, pwd)
             .then((authUser: FirebaseAuthTypes.UserCredential) => {
-              const wld: WLD = {wins : 0, losses: 0, draws: 0};
-              const user: User = {email: username, name: name, competition: null, wld: wld, habits: new Array<string>(), friends: new Array<string>()};
-              
-              firestore().collection('users').doc(authUser.user.uid).set(user).then(() => {
-                const userRef = firestore()
-                .collection('users')
-                .doc(authUser.user.uid);
-              setUid(authUser.user.uid);
-              userRef.onSnapshot(documentSnapshot => {
-                const currentUser = documentSnapshot.data() as User | null;
-                if (currentUser) setUser(currentUser);
-              });
+              const wld: WLD = {wins: 0, losses: 0, draws: 0};
+              const newUser: User = {
+                email: username,
+                name: name,
+                competition: null,
+                wld: wld,
+                habits: new Array<string>(),
+                friends: new Array<string>(),
+              };
 
-              navigation.navigate('RootHomeStack');
-              });
+              firestore()
+                .collection('users')
+                .doc(authUser.user.uid)
+                .set(newUser)
+                .then(() => {
+                  const userRef = firestore()
+                    .collection('users')
+                    .doc(authUser.user.uid);
+                  setUid(authUser.user.uid);
+                  userRef.onSnapshot(documentSnapshot => {
+                    const currentUser = documentSnapshot.data() as User | null;
+                    if (currentUser) setUser(currentUser);
+                  });
+
+                  navigation.navigate('RootHomeStack');
+                });
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
               if (error.code === 'auth/email-already-in-use') {
@@ -162,18 +167,14 @@ const CreateAccountScreen = () => {
           <Text style={tailwind('text-center font-medium text-gray-400')}>
             {' '}
             Already have an account?{' '}
-            <Text onPress={() => navigation.navigate('RootLoginStack')}style={tailwind('text-blue-500')}>Log In</Text>
+            <Text
+              onPress={() => navigation.navigate('RootLoginStack')}
+              style={tailwind('text-blue-500')}>
+              Log In
+            </Text>
           </Text>
         </View>
       </View>
-
-      <Snackbar
-        visible={snackE !== ''}
-        onDismiss={() => {
-          setSnackE('');
-        }}>
-        {snackE}
-      </Snackbar>
     </View>
   );
 };

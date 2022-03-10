@@ -1,17 +1,10 @@
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {TextInput, HelperText, Snackbar} from 'react-native-paper';
-import React, {ChangeEvent, useContext, useEffect, useState} from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  TextInputChangeEventData,
-  NativeSyntheticEvent,
-} from 'react-native';
+import {TextInput, HelperText} from 'react-native-paper';
+import React, {useEffect, useState} from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import {useNavigation} from '@react-navigation/native';
 import {AuthScreenProp} from '../utils/types';
-import {UserContext} from '../utils/types';
 import {signIn} from '../utils/auth';
 import firestore from '@react-native-firebase/firestore';
 import {User} from '../utils/models';
@@ -19,18 +12,17 @@ import {useUserContext} from '../utils/fn';
 
 const LoginScreen = () => {
   const navigation = useNavigation<AuthScreenProp>();
-  const {user, setUser, setUid} = useUserContext();
+  const {user, setUser, setUid, setSnackE} = useUserContext();
   const [username, setUsername] = useState('');
   const [usernameE, setUsernameE] = useState('');
   const [password, setPassword] = useState('');
   const [passwordE, setPasswordE] = useState('');
-  const [snackE, setSnackE] = useState('');
 
-  useEffect(()=>{
+  useEffect(() => {
     if (user != null) {
       navigation.navigate('RootHomeStack');
     }
-  },[])
+  }, [navigation, user]);
 
   const tailwind = useTailwind();
   return (
@@ -76,7 +68,10 @@ const LoginScreen = () => {
         onChangeText={val => setPassword(val)}
       />
       <View style={tailwind('w-10/12')}>
-        <HelperText style={tailwind('text-left')}type="error" visible={passwordE !== ''}>
+        <HelperText
+          style={tailwind('text-left')}
+          type="error"
+          visible={passwordE !== ''}>
           {passwordE}
         </HelperText>
       </View>
@@ -91,7 +86,7 @@ const LoginScreen = () => {
           setPasswordE('');
           const pwd = password;
           setPassword('');
-          signIn(username, pwd)
+          signIn('oop_123@yopmail.com', 'oop_123')
             .then((authUser: FirebaseAuthTypes.UserCredential) => {
               const userRef = firestore()
                 .collection('users')
@@ -105,6 +100,7 @@ const LoginScreen = () => {
               navigation.navigate('RootHomeStack');
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
+              setSnackE(error.message);
               if (error.code === 'auth/invalid-email') {
                 setUsernameE('Invalid email');
               } else if (error.code === 'auth/user-not-found') {
@@ -131,18 +127,14 @@ const LoginScreen = () => {
           <Text style={tailwind('text-center font-medium text-gray-400')}>
             {' '}
             Don't have an account?{' '}
-            <Text onPress={() => navigation.navigate('RootCreateStack')} style={tailwind('text-blue-500')}>Sign Up</Text>
+            <Text
+              onPress={() => navigation.navigate('RootCreateStack')}
+              style={tailwind('text-blue-500')}>
+              Sign Up
+            </Text>
           </Text>
         </View>
       </View>
-
-      <Snackbar
-        visible={snackE !== ''}
-        onDismiss={() => {
-          setSnackE('');
-        }}>
-        {snackE}
-      </Snackbar>
     </View>
   );
 };

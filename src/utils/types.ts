@@ -25,7 +25,9 @@ export type HomeStackParamList = {
     friends: string[];
     user: string;
   };
-  CreateHabit: undefined;
+  CreateHabit: {
+    user: string;
+  };
 };
 
 export type AuthStackParamList = {
@@ -96,6 +98,8 @@ export type UserContext = {
   setUid: (uid: string) => void;
   habits: HabitWithUid[];
   setHabits: (habits: HabitWithUid[]) => void;
+  snackE: string;
+  setSnackE: (msg: string) => void;
 };
 
 export type AuthScreenProp = StackNavigationProp<
@@ -111,7 +115,7 @@ export interface FrequencyModalProps {
   isFreqModalVisible: boolean;
   setIsFreqModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   TPRadioBtn: string;
-  setTPRadioBtn: React.Dispatch<React.SetStateAction<string>>;
+  setTPRadioBtn: React.Dispatch<React.SetStateAction<TimePeriod>>;
   newWeeklyGoal: string;
   setNewWeeklyGoal: React.Dispatch<React.SetStateAction<string>>;
   newMonthlyGoal: string;
@@ -122,7 +126,7 @@ export interface FrequencyModalProps {
 export interface FrequencyRadioBtnProps {
   goal: string;
   setGoal: React.Dispatch<React.SetStateAction<string>>;
-  setTPRadioBtn: React.Dispatch<React.SetStateAction<string>>;
+  setTPRadioBtn: React.Dispatch<React.SetStateAction<TimePeriod>>;
   maxLength: number;
   timePeriod: TimePeriod;
 }
@@ -133,7 +137,6 @@ export interface SharedWithModalProps {
   newSharedWith: string[];
   setNewSharedWith: React.Dispatch<React.SetStateAction<string[]>>;
   userUid: string;
-  sharedFriends: string[];
 }
 
 export type FriendCheckbox = {
@@ -141,3 +144,25 @@ export type FriendCheckbox = {
   name: string;
   checked: boolean;
 };
+
+export interface CreateEditHabitProps {
+  newName: string;
+  newDescription: string;
+  newSharedWith: string[];
+  newWeeklyGoal: string;
+  newMonthlyGoal: string;
+  TPRadioBtn: string;
+  goalPerTP: number;
+  timePeriod: TimePeriod;
+  user: string;
+  setNewWeeklyGoal: React.Dispatch<React.SetStateAction<string>>;
+  setNewMonthlyGoal: React.Dispatch<React.SetStateAction<string>>;
+  setNewName: React.Dispatch<React.SetStateAction<string>>;
+  setNewDescription: React.Dispatch<React.SetStateAction<string>>;
+  setNewSharedWith: React.Dispatch<React.SetStateAction<string[]>>;
+  setTPRadioBtn: React.Dispatch<React.SetStateAction<TimePeriod>>;
+}
+
+export interface FloatingBtnProps {
+  handlePlusCirclePress: () => void;
+}

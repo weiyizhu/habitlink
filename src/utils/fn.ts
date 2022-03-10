@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useRef} from 'react';
-import {UserContext} from './types';
+import {TimePeriod, UserContext} from './types';
 
 export const useEffectUpdate = (
   fn: Function,
@@ -22,6 +22,22 @@ export const DefUserContext = createContext<UserContext>({
   setUid: () => {},
   habits: [],
   setHabits: () => {},
+  snackE: '',
+  setSnackE: () => {},
 });
 
 export const useUserContext = () => useContext(DefUserContext);
+
+export const calcGoalPerTP = (
+  TPRadioBtn: string,
+  newWeeklyGoal: string,
+  newMonthlyGoal: string,
+) => {
+  const goalPerTP =
+    TPRadioBtn === TimePeriod.Day
+      ? 1
+      : TPRadioBtn === TimePeriod.Week
+      ? parseInt(newWeeklyGoal, 10)
+      : parseInt(newMonthlyGoal, 10);
+  return goalPerTP;
+};

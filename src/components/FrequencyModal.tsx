@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
-import {RadioButton, Snackbar, TextInput} from 'react-native-paper';
+import {RadioButton} from 'react-native-paper';
 import {useTailwind} from 'tailwind-rn/dist';
 import {FrequencyModalProps, TimePeriod} from '../utils/types';
 import Modal from 'react-native-modal/dist/modal';
 import FrequencyRadioBtn from './FrequencyRadioBtn';
+import {useUserContext} from '../utils/fn';
 
 const FrequencyModal = ({
   isFreqModalVisible,
@@ -18,7 +19,7 @@ const FrequencyModal = ({
   setNewFrequency,
 }: FrequencyModalProps) => {
   const tailwind = useTailwind();
-  const [snackE, setSnackE] = useState('');
+  const {setSnackE} = useUserContext();
 
   const handleModalSave = () => {
     if (TPRadioBtn === TimePeriod.Day) {
@@ -57,7 +58,8 @@ const FrequencyModal = ({
         <View style={tailwind('bg-white p-7')}>
           <RadioButton.Group
             onValueChange={val => {
-              setTPRadioBtn(val);
+              const timePeriod = val as TimePeriod;
+              setTPRadioBtn(timePeriod);
               Keyboard.dismiss();
             }}
             value={TPRadioBtn}>
@@ -88,13 +90,6 @@ const FrequencyModal = ({
             Save
           </Text>
         </View>
-        <Snackbar
-          visible={snackE !== ''}
-          onDismiss={() => {
-            setSnackE('');
-          }}>
-          {snackE}
-        </Snackbar>
       </Modal>
     </TouchableWithoutFeedback>
   );
