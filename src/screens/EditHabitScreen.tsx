@@ -9,6 +9,7 @@ import {
 import firestore from '@react-native-firebase/firestore';
 import {StackActions} from '@react-navigation/native';
 import CreateEditHabit from '../components/CreateEditHabit';
+import { calcGoalPerTP } from '../utils/fn';
 
 const EditHabitScreen = ({
   navigation,
@@ -55,12 +56,7 @@ const EditHabitScreen = ({
         name: newName,
         description: newDescription,
         timePeriod: TPRadioBtn,
-        goalPerTP:
-          TPRadioBtn === TimePeriod.Day
-            ? 1
-            : TPRadioBtn === TimePeriod.Week
-            ? newWeeklyGoal
-            : newMonthlyGoal,
+        goalPerTP: calcGoalPerTP(TPRadioBtn, newWeeklyGoal, newMonthlyGoal),
         friends: newSharedWith,
       });
       const popAction = StackActions.pop(1);
