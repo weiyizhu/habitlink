@@ -10,6 +10,7 @@ import {
 } from '@react-navigation/native-stack';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Habit, User} from './models';
+import { MarkingProps } from 'react-native-calendars/src/calendar/day/marking';
 
 export type HomeStackParamList = {
   HomeStack: undefined;
@@ -166,3 +167,7 @@ export interface CreateEditHabitProps {
 export interface FloatingBtnProps {
   handlePlusCirclePress: () => void;
 }
+
+export type MarkedDatesType = {
+  [key: string]: MarkingProps;
+};

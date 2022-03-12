@@ -1,25 +1,39 @@
-import React, {useEffect, useLayoutEffect} from 'react';
-import {Keyboard, View} from 'react-native';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
+import {View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import CustomText from '../components/CustomText';
-import {DetailsScreenNavigationProp, fontType} from '../utils/types';
+import {
+  DetailsScreenNavigationProp,
+  fontType,
+  MarkedDatesType,
+} from '../utils/types';
 import {Calendar} from 'react-native-calendars';
 import DetailsInfo from '../components/DetailsInfo';
 import {TimePeriod} from '../utils/types';
-import {useUserContext} from '../utils/fn';
-import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
+import {calcHabitDetailsInfo, useUserContext} from '../utils/fn';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import moment from 'moment';
 
 const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
   const tailwind = useTailwind();
   const {habits} = useUserContext();
   const {uid} = route.params;
   const habit = habits.find(habitObj => habitObj.uid === uid);
+  const [markedDates, setMarkedDates] = useState<MarkedDatesType>({});
+  const [currentStreak, setCurrentStreak] = useState(0);
+  const [longestStreak, setLongestStreak] = useState(0);
 
   useEffect(() => {
     navigation.setOptions({
       title: habit ? habit.name : 'Error',
     });
+    if (habit) {
+      const [newMarkedDates, currStreak, maxStreak] =
+        calcHabitDetailsInfo(habit);
+      setMarkedDates(newMarkedDates);
+      setCurrentStreak(currStreak);
+      setLongestStreak(maxStreak);
+    }
   }, [habit, navigation]);
 
   useLayoutEffect(() => {
@@ -58,17 +72,8 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
     );
   }
 
-  const {
-    completed,
-    currentStreak,
-    dates,
-    description,
-    goalPerTP,
-    longestStreak,
-    name,
-    timePeriod,
-    user,
-  } = habit;
+  const {completed, dates, description, goalPerTP, name, timePeriod, user} =
+    habit;
 
   const timePeriodGoal =
     timePeriod === TimePeriod.Day ? 'Daily' : timePeriod + 'ly';
@@ -80,14 +85,18 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
       <CustomText font={fontType.Medium} size={18} additionStyle={'mb-5'}>
         {description}
       </CustomText>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <Calendar />
-        <View style={tailwind('flex-row justify-evenly w-full mt-5')}>
-          <DetailsInfo title={`${timePeriodGoal} \nGoal:`} num={goalPerTP} />
-          <DetailsInfo title={'Current \nStreak:'} num={currentStreak} />
-          <DetailsInfo title={'Longest \nStreak:'} num={longestStreak} />
-        </View>
-      </TouchableWithoutFeedback>
+      <Calendar
+        markingType="period"
+        markedDates={markedDates}
+        maxDate={moment().format('YYYY-MM-DD')}
+        hideExtraDays
+        enableSwipeMonths
+      />
+      <View style={tailwind('flex-row justify-evenly w-full mt-5')}>
+        <DetailsInfo title={`${timePeriodGoal} \nGoal:`} num={goalPerTP} />
+        <DetailsInfo title={'Current \nStreak:'} num={currentStreak} />
+        <DetailsInfo title={'Longest \nStreak:'} num={longestStreak} />
+      </View>
     </View>
   );
 };
