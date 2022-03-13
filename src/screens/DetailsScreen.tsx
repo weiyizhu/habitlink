@@ -7,12 +7,13 @@ import {
   fontType,
   MarkedDatesType,
 } from '../utils/types';
-import {Calendar} from 'react-native-calendars';
+import {Calendar, DateData} from 'react-native-calendars';
 import DetailsInfo from '../components/DetailsInfo';
 import {TimePeriod} from '../utils/types';
 import {calcHabitDetailsInfo, useUserContext} from '../utils/fn';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import moment from 'moment';
+import {firebase} from '@react-native-firebase/firestore';
 
 const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
   const tailwind = useTailwind();
@@ -72,6 +73,29 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
     );
   }
 
+  const toggleDayCompleted = (day: DateData) => {
+    const newDates = [...habit.dates];
+    const pressedDay = firebase.firestore.Timestamp.fromDate(
+      new Date(moment(day.dateString).format('LL')),
+    );
+    let index = -1;
+    for (let i = 0; i < newDates.length; i++) {
+      if (JSON.stringify(newDates[i]) === JSON.stringify(pressedDay)) {
+        index = i;
+        break;
+      }
+    }
+    console.log(index);
+    if (index > -1) {
+      newDates.splice(index, 1);
+    } else {
+      newDates.push(pressedDay);
+    }
+    firebase.firestore().collection('habits').doc(uid).update({
+      dates: newDates,
+    });
+  };
+
   const {completed, dates, description, goalPerTP, name, timePeriod, user} =
     habit;
 
@@ -89,6 +113,7 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
         markingType="period"
         markedDates={markedDates}
         maxDate={moment().format('YYYY-MM-DD')}
+        onDayPress={toggleDayCompleted}
         hideExtraDays
         enableSwipeMonths
       />

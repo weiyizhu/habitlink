@@ -72,9 +72,8 @@ export const calcHabitDetailsInfo = (
       currentStreak = 1;
     }
     newMarkedDates[currDate] = {
-      marked: true,
       startingDay: startingDay,
-      color: 'deepskyblue',
+      color: '#cee5f2',
     };
     longestStreak = Math.max(currentStreak, longestStreak);
     prevDate = currDate;
