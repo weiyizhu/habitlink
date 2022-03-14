@@ -35,7 +35,8 @@ const CreateAccountScreen = () => {
           fontFamily: 'YaldeviColombo-SemiBold',
           height: 120,
           textAlign: 'center',
-        }}>
+        }}
+      >
         Habitlink
       </Text>
       <TextInput
@@ -53,7 +54,8 @@ const CreateAccountScreen = () => {
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={usernameE !== ''}>
+          visible={usernameE !== ''}
+        >
           {usernameE}
         </HelperText>
       </View>
@@ -72,7 +74,8 @@ const CreateAccountScreen = () => {
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={nameE !== ''}>
+          visible={nameE !== ''}
+        >
           {nameE}
         </HelperText>
       </View>
@@ -92,7 +95,8 @@ const CreateAccountScreen = () => {
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={passwordE !== ''}>
+          visible={passwordE !== ''}
+        >
           {passwordE}
         </HelperText>
       </View>
@@ -153,7 +157,8 @@ const CreateAccountScreen = () => {
                 setSnackE(error.message);
               }
             });
-        }}>
+        }}
+      >
         <Text style={tailwind('text-white text-center')}> Create Account </Text>
       </TouchableOpacity>
       <View style={tailwind('absolute bottom-0 w-full')}>
@@ -169,7 +174,8 @@ const CreateAccountScreen = () => {
             Already have an account?{' '}
             <Text
               onPress={() => navigation.navigate('RootLoginStack')}
-              style={tailwind('text-blue-500')}>
+              style={tailwind('text-blue-500')}
+            >
               Log In
             </Text>
           </Text>

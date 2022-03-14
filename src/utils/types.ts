@@ -10,7 +10,7 @@ import {
 } from '@react-navigation/native-stack';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Habit, User} from './models';
-import { MarkingProps } from 'react-native-calendars/src/calendar/day/marking';
+import {MarkingProps} from 'react-native-calendars/src/calendar/day/marking';
 
 export type HomeStackParamList = {
   HomeStack: undefined;
@@ -35,6 +35,7 @@ export type AuthStackParamList = {
   RootHomeStack: undefined;
   RootLoginStack: undefined;
   RootCreateStack: undefined;
+  RootForgotStack: undefined;
 };
 
 export type RootTabParamList = {
@@ -112,6 +113,12 @@ export type CreateAccountScreenProp = StackNavigationProp<
   AuthStackParamList,
   'RootCreateStack'
 >;
+
+export type ForgotPasswordScreenProp = StackNavigationProp<
+  AuthStackParamList,
+  'RootForgotStack'
+>;
+
 export interface FrequencyModalProps {
   isFreqModalVisible: boolean;
   setIsFreqModalVisible: React.Dispatch<React.SetStateAction<boolean>>;

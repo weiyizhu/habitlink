@@ -17,4 +17,4 @@ const signOut = () => {
   return auth().signOut();
 };
 
-export {createAccount, signIn, signOut};
+export {createAccount, signIn, signOut, sendPasswordReset};

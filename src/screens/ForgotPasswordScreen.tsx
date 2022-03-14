@@ -5,18 +5,16 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import {useNavigation} from '@react-navigation/native';
 import {AuthScreenProp} from '../utils/types';
-import {signIn} from '../utils/auth';
+import {sendPasswordReset} from '../utils/auth';
 import firestore from '@react-native-firebase/firestore';
 import {User} from '../utils/models';
 import {useUserContext} from '../utils/fn';
 
-const LoginScreen = () => {
+const ForgotPasswordScreen = () => {
   const navigation = useNavigation<AuthScreenProp>();
-  const {user, setUser, setUid, setSnackE} = useUserContext();
+  const {user, setSnackE} = useUserContext();
   const [username, setUsername] = useState('');
   const [usernameE, setUsernameE] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordE, setPasswordE] = useState('');
 
   useEffect(() => {
     if (user != null) {
@@ -57,71 +55,31 @@ const LoginScreen = () => {
           {usernameE}
         </HelperText>
       </View>
-      <TextInput
-        style={tailwind(
-          'border border-gray-200 bg-gray-50 p-2 m-2 h-5 w-10/12 rounded-md',
-        )}
-        secureTextEntry={true}
-        underlineColor="transparent"
-        activeUnderlineColor="transparent"
-        placeholder="Password"
-        value={password}
-        error={passwordE !== ''}
-        onChangeText={val => setPassword(val)}
-      />
-      <View style={tailwind('w-10/12')}>
-        <HelperText
-          style={tailwind('text-left')}
-          type="error"
-          visible={passwordE !== ''}
-        >
-          {passwordE}
-        </HelperText>
-      </View>
-      <Text
-        onPress={() => navigation.navigate('RootForgotStack')}
-        style={tailwind('text-right w-10/12 pb-4 text-blue-500')}
-      >
-        {' '}
-        Forgot password?
-      </Text>
       <TouchableOpacity
         style={tailwind('bg-blue-500 rounded py-2 my-3 w-10/12')}
         onPress={() => {
           setUsernameE('');
-          setPasswordE('');
-          const pwd = password;
-          setPassword('');
-          signIn(username, pwd)
-            .then((authUser: FirebaseAuthTypes.UserCredential) => {
-              const userRef = firestore()
-                .collection('users')
-                .doc(authUser.user.uid);
-              setUid(authUser.user.uid);
-              userRef.onSnapshot(documentSnapshot => {
-                const currentUser = documentSnapshot.data() as User | null;
-                if (currentUser) setUser(currentUser);
-              });
-
-              navigation.navigate('RootHomeStack');
+          sendPasswordReset(username)
+            .then(() => {
+              setSnackE('If this user exits, a reset password email was sent');
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
-              setSnackE(error.message);
               if (error.code === 'auth/invalid-email') {
                 setUsernameE('Invalid email');
               } else if (error.code === 'auth/user-not-found') {
-                setUsernameE('A user with this email was not found');
-              } else if (error.code === 'auth/invalid-password') {
-                setPasswordE('Invalid password');
-              } else if (error.code === 'auth/wrong-password') {
-                setPasswordE('Wrong password');
+                setSnackE(
+                  'If this user exits, a reset password email was sent',
+                );
               } else {
                 setSnackE(error.message);
               }
             });
         }}
       >
-        <Text style={tailwind('text-white text-center')}> Log In</Text>
+        <Text style={tailwind('text-white text-center')}>
+          {' '}
+          Send Reset Email
+        </Text>
       </TouchableOpacity>
       <View style={tailwind('absolute bottom-0 w-full')}>
         <View
@@ -133,12 +91,12 @@ const LoginScreen = () => {
         <View style={tailwind('py-10')}>
           <Text style={tailwind('text-center font-medium text-gray-400')}>
             {' '}
-            Don't have an account?{' '}
+            Ready to sign in?{' '}
             <Text
-              onPress={() => navigation.navigate('RootCreateStack')}
+              onPress={() => navigation.navigate('RootLoginStack')}
               style={tailwind('text-blue-500')}
             >
-              Sign Up
+              Log In
             </Text>
           </Text>
         </View>
@@ -147,4 +105,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default ForgotPasswordScreen;
