@@ -31,7 +31,8 @@ const HomeStackNavigator = () => {
           paddingLeft: 15,
         },
         headerTitleAlign: 'center',
-      }}>
+      }}
+    >
       <Stack.Screen
         name="HomeStack"
         component={HomeScreen}

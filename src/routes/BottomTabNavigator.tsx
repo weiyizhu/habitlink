@@ -1,7 +1,7 @@
 import React from 'react';
 import Competition from '../screens/CompeititionScreen';
 import FriendsScreen from '../screens/FriendsScreen';
-import Settings from '../screens/SettingsScreen';
+import Settings from '../routes/SettingsStackNavigator';
 import HomeStackNavigator from './HomeStackNavigator';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -27,7 +27,8 @@ const BottomTabNavigator = () => {
           height: 150,
         },
         headerTitleAlign: 'center',
-      })}>
+      })}
+    >
       <Tab.Screen
         name="Home"
         component={HomeStackNavigator}
@@ -69,6 +70,7 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({focused, color, size}) => (
             <Ionicons name="settings-sharp" size={size} color={color} />
           ),
+          headerShown: false,
         })}
       />
     </Tab.Navigator>

@@ -38,6 +38,12 @@ export type AuthStackParamList = {
   RootForgotStack: undefined;
 };
 
+export type SettingsParamList = {
+  SettingsStack: undefined;
+  ResetStack: undefined;
+  RootLoginStack: undefined;
+};
+
 export type RootTabParamList = {
   // example: Feed: { sort: 'latest' | 'top' } | undefined;
   Home: NavigatorScreenParams<HomeStackParamList>;
@@ -53,6 +59,11 @@ export type HomeScreenProp = NativeStackScreenProps<
 
 export type DetailsScreenNavigationProp = CompositeScreenProps<
   NativeStackScreenProps<HomeStackParamList, 'Details'>,
+  BottomTabScreenProps<RootTabParamList>
+>;
+
+export type ResetScreenNavigationProp = CompositeScreenProps<
+  NativeStackScreenProps<SettingsParamList, 'ResetStack'>,
   BottomTabScreenProps<RootTabParamList>
 >;
 
@@ -95,7 +106,7 @@ export type CustomTextProp = {
 
 export type UserContext = {
   user: User | null;
-  setUser: (u: User) => void;
+  setUser: (u: User | null) => void;
   uid: string | null;
   setUid: (uid: string) => void;
   habits: HabitWithUid[];
@@ -117,6 +128,16 @@ export type CreateAccountScreenProp = StackNavigationProp<
 export type ForgotPasswordScreenProp = StackNavigationProp<
   AuthStackParamList,
   'RootForgotStack'
+>;
+
+export type SettingsScreenProp = StackNavigationProp<
+  SettingsParamList,
+  'SettingsStack'
+>;
+
+export type ResetScreenProp = StackNavigationProp<
+  SettingsParamList,
+  'ResetStack'
 >;
 
 export interface FrequencyModalProps {

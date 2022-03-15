@@ -106,7 +106,6 @@ const LoginScreen = () => {
               navigation.navigate('RootHomeStack');
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
-              setSnackE(error.message);
               if (error.code === 'auth/invalid-email') {
                 setUsernameE('Invalid email');
               } else if (error.code === 'auth/user-not-found') {

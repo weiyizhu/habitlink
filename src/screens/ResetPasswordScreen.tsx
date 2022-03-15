@@ -1,40 +1,23 @@
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {TextInput, HelperText} from 'react-native-paper';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import {useNavigation} from '@react-navigation/native';
-import {AuthScreenProp} from '../utils/types';
+import {ResetScreenProp, SettingsScreenProp} from '../utils/types';
 import {sendPasswordReset} from '../utils/auth';
-import firestore from '@react-native-firebase/firestore';
-import {User} from '../utils/models';
 import {useUserContext} from '../utils/fn';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {ResetScreenNavigationProp} from '../utils/types';
 
-const ForgotPasswordScreen = () => {
-  const navigation = useNavigation<AuthScreenProp>();
+const ResetPasswordScreen = ({navigation}: ResetScreenNavigationProp) => {
   const {user, setSnackE} = useUserContext();
   const [username, setUsername] = useState('');
   const [usernameE, setUsernameE] = useState('');
 
-  useEffect(() => {
-    if (user != null) {
-      navigation.navigate('RootHomeStack');
-    }
-  }, [navigation, user]);
-
   const tailwind = useTailwind();
   return (
     <View style={tailwind('flex-1 items-center justify-center')}>
-      <Text
-        style={{
-          fontSize: 48,
-          fontFamily: 'YaldeviColombo-SemiBold',
-          height: 120,
-          textAlign: 'center',
-        }}
-      >
-        Habitlink
-      </Text>
       <TextInput
         style={tailwind(
           'border border-gray-200 bg-gray-50 p-2 m-2 h-5 w-10/12 rounded-md',
@@ -83,28 +66,8 @@ const ForgotPasswordScreen = () => {
           Send Reset Email
         </Text>
       </TouchableOpacity>
-      <View style={tailwind('absolute bottom-0 w-full')}>
-        <View
-          style={{
-            borderBottomColor: '#D1D5DB',
-            borderBottomWidth: 0.5,
-          }}
-        />
-        <View style={tailwind('py-10')}>
-          <Text style={tailwind('text-center font-medium text-gray-400')}>
-            {' '}
-            Ready to sign in?{' '}
-            <Text
-              onPress={() => navigation.navigate('RootLoginStack')}
-              style={tailwind('text-blue-500')}
-            >
-              Log In
-            </Text>
-          </Text>
-        </View>
-      </View>
     </View>
   );
 };
 
-export default ForgotPasswordScreen;
+export default ResetPasswordScreen;
