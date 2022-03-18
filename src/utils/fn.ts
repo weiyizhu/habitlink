@@ -1,3 +1,4 @@
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import moment from 'moment';
 import React, {createContext, useContext, useEffect, useRef} from 'react';
 import {HabitWithUid, MarkedDatesType, TimePeriod, UserContext} from './types';
@@ -88,4 +89,18 @@ export const calcHabitDetailsInfo = (
     }
   }
   return [newMarkedDates, currentStreak, longestStreak];
+};
+
+export const findTimestampIndex = (
+  datesArr: FirebaseFirestoreTypes.Timestamp[],
+  date: FirebaseFirestoreTypes.Timestamp,
+) => {
+  let index = -1;
+  for (let i = 0; i < datesArr.length; i++) {
+    if (JSON.stringify(datesArr[i]) === JSON.stringify(date)) {
+      index = i;
+      break;
+    }
+  }
+  return index;
 };

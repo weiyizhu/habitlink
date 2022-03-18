@@ -10,7 +10,7 @@ import {
 import {Calendar, DateData} from 'react-native-calendars';
 import DetailsInfo from '../components/DetailsInfo';
 import {TimePeriod} from '../utils/types';
-import {calcHabitDetailsInfo, useUserContext} from '../utils/fn';
+import {calcHabitDetailsInfo, findTimestampIndex, useUserContext} from '../utils/fn';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import moment from 'moment';
 import {firebase} from '@react-native-firebase/firestore';
@@ -78,14 +78,7 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
     const pressedDay = firebase.firestore.Timestamp.fromDate(
       new Date(moment(day.dateString).format('LL')),
     );
-    let index = -1;
-    for (let i = 0; i < newDates.length; i++) {
-      if (JSON.stringify(newDates[i]) === JSON.stringify(pressedDay)) {
-        index = i;
-        break;
-      }
-    }
-    console.log(index);
+    const index = findTimestampIndex(newDates, pressedDay);
     if (index > -1) {
       newDates.splice(index, 1);
     } else {
@@ -101,8 +94,6 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
 
   const timePeriodGoal =
     timePeriod === TimePeriod.Day ? 'Daily' : timePeriod + 'ly';
-
-  console.log('Details', currentStreak);
 
   return (
     <View style={tailwind('flex-1 px-7')}>

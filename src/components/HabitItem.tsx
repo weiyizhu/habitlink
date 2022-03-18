@@ -3,8 +3,9 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {useTailwind} from 'tailwind-rn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {HabitItemProps} from '../utils/types';
-import {useEffectUpdate} from '../utils/fn';
-import firestore from '@react-native-firebase/firestore';
+import {findTimestampIndex, useEffectUpdate} from '../utils/fn';
+import firestore, {firebase} from '@react-native-firebase/firestore';
+import moment from 'moment';
 
 const HabitItem = ({
   navigation,
@@ -19,31 +20,35 @@ const HabitItem = ({
   user,
   uid,
 }: HabitItemProps) => {
-  console.log(
-    'habitItem',
-    goalPerTP,
-    name,
-    timePeriod,
-    completed,
-    currentStreak,
-  );
   const tailwind = useTailwind();
   const [checked, setChecked] = useState(false);
+  const todayTimestamp = firebase.firestore.Timestamp.fromDate(
+    new Date(moment().format('LL')),
+  );
+  useEffect(() => {
+    const index = findTimestampIndex(dates, todayTimestamp);
+    setChecked(index > -1);
+  }, [dates, todayTimestamp]);
+
   const checkBoxIconName = checked
     ? 'checkbox-marked'
     : 'checkbox-blank-outline';
   const bgColor = completed >= goalPerTP ? 'bg-hl-blue' : 'bg-neutral-200';
 
   const handleCheckBoxCheck = () => {
-    setChecked(!checked);
     const habitRef = firestore().collection('habits').doc(uid);
     if (!checked) {
       habitRef.update({
-        completed: completed + 1,
+        dates: [...dates, todayTimestamp],
       });
     } else {
+      const newDates = [...dates];
+      const index = findTimestampIndex(newDates, todayTimestamp);
+      if (index > -1) {
+        newDates.splice(index, 1);
+      }
       habitRef.update({
-        completed: completed - 1,
+        dates: newDates,
       });
     }
   };
@@ -57,13 +62,13 @@ const HabitItem = ({
         navigation.navigate('Details', {
           uid,
         });
-      }}
-    >
+      }}>
       <View>
         <Text style={tailwind('text-2xl font-SemiBold')}>{name}</Text>
         <Text
-          style={tailwind('text-sm font-Light')}
-        >{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
+          style={tailwind(
+            'text-sm font-Light',
+          )}>{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
       </View>
       <MaterialCommunityIcons
         onPress={handleCheckBoxCheck}
