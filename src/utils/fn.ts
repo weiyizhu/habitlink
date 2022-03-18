@@ -51,11 +51,7 @@ export const calcHabitDetailsInfo = (
   let prevDate: string | undefined;
   let longestStreak = 0;
   let currentStreak = 0;
-  const sortedDates = habit.dates.sort((a, b) => {
-    const date1 = moment(a.toDate());
-    const date2 = moment(b.toDate());
-    return date1.diff(date2);
-  });
+  const sortedDates = sortDates(habit.dates, true);
   sortedDates.forEach(date => {
     const currDate = moment(date.toDate()).format('YYYY-MM-DD');
     let startingDay = false;
@@ -92,15 +88,26 @@ export const calcHabitDetailsInfo = (
 };
 
 export const findTimestampIndex = (
-  datesArr: FirebaseFirestoreTypes.Timestamp[],
+  dates: FirebaseFirestoreTypes.Timestamp[],
   date: FirebaseFirestoreTypes.Timestamp,
 ) => {
   let index = -1;
-  for (let i = 0; i < datesArr.length; i++) {
-    if (JSON.stringify(datesArr[i]) === JSON.stringify(date)) {
+  for (let i = 0; i < dates.length; i++) {
+    if (JSON.stringify(dates[i]) === JSON.stringify(date)) {
       index = i;
       break;
     }
   }
   return index;
+};
+
+export const sortDates = (
+  dates: FirebaseFirestoreTypes.Timestamp[],
+  increasing: boolean,
+) => {
+  return dates.sort((a, b) => {
+    const date1 = moment(a.toDate());
+    const date2 = moment(b.toDate());
+    return increasing ? date1.diff(date2) : date2.diff(date1);
+  });
 };

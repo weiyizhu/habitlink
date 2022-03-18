@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useTailwind} from 'tailwind-rn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {HabitItemProps} from '../utils/types';
-import {findTimestampIndex, useEffectUpdate} from '../utils/fn';
+import {HabitItemProps, TimePeriod} from '../utils/types';
+import {findTimestampIndex, sortDates} from '../utils/fn';
 import firestore, {firebase} from '@react-native-firebase/firestore';
 import moment from 'moment';
 
@@ -15,20 +15,39 @@ const HabitItem = ({
   goalPerTP,
   name,
   timePeriod,
-  completed,
   longestStreak,
   user,
   uid,
 }: HabitItemProps) => {
   const tailwind = useTailwind();
-  const [checked, setChecked] = useState(false);
   const todayTimestamp = firebase.firestore.Timestamp.fromDate(
     new Date(moment().format('LL')),
   );
-  useEffect(() => {
-    const index = findTimestampIndex(dates, todayTimestamp);
-    setChecked(index > -1);
-  }, [dates, todayTimestamp]);
+  const checked = findTimestampIndex(dates, todayTimestamp) > -1;
+
+  let completed = 0;
+  const currWeek = moment().week();
+  const currMonth = moment().month();
+  const currYear = moment().year();
+  if (timePeriod === TimePeriod.Day) {
+    if (checked) completed = 1;
+  } else if (timePeriod === TimePeriod.Week) {
+    const sortedDates = sortDates(dates, false);
+    for (const date of sortedDates) {
+      const currDay = moment(date.toDate());
+      if (currDay.year() === currYear && currDay.week() === currWeek) {
+        completed++;
+      } else break;
+    }
+  } else {
+    const sortedDates = sortDates(dates, false);
+    for (const date of sortedDates) {
+      const currDay = moment(date.toDate());
+      if (currDay.year() === currYear && currDay.month() === currMonth) {
+        completed++;
+      } else break;
+    }
+  }
 
   const checkBoxIconName = checked
     ? 'checkbox-marked'

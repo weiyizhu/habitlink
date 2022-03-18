@@ -43,12 +43,10 @@ const HomeScreen = ({route, navigation}: HomeScreenProp) => {
     return habitRef.onSnapshot(querySnapshot => {
       const habitList: HabitWithUid[] = [];
       querySnapshot.forEach(doc => {
-        console.log(doc.data());
         const habitInfo = doc.data() as Habit;
         habitList.push({...habitInfo, uid: doc.id});
       });
       setHabits(habitList);
-      console.log('habitList', habitList);
     });
   }, [uid, setHabits]);
 
