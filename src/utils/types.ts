@@ -111,6 +111,8 @@ export type UserContext = {
   setUid: (uid: string) => void;
   habits: HabitWithUid[];
   setHabits: (habits: HabitWithUid[]) => void;
+  friends: FriendCardProps[];
+  setFriends: (friends: FriendCardProps[]) => void;
   snackE: string;
   setSnackE: (msg: string) => void;
 };
@@ -172,6 +174,11 @@ export type FriendCheckbox = {
   uid: string;
   name: string;
   checked: boolean;
+};
+
+export type FriendCardProps = {
+  name: string;
+  uid: string;
 };
 
 export interface CreateEditHabitProps {
