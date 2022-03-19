@@ -9,6 +9,7 @@ import {User} from './utils/models';
 import {HabitWithUid, UserContext} from './utils/types';
 import RootStackNavigator from './routes/RootStackNavigator';
 import SnackBar from './components/SnackBar';
+import {Provider} from 'react-native-paper';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -41,8 +42,10 @@ const App = () => {
     <NavigationContainer theme={MyTheme}>
       <TailwindProvider utilities={utilities}>
         <DefUserContext.Provider value={userContextInitVal}>
-          <RootStackNavigator />
-          <SnackBar />
+          <Provider>
+            <RootStackNavigator />
+            <SnackBar />
+          </Provider>
         </DefUserContext.Provider>
       </TailwindProvider>
     </NavigationContainer>

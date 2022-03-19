@@ -44,10 +44,15 @@ const CreateHabitScreen = ({
     setNewDescription,
     setNewSharedWith,
     setTPRadioBtn,
+    type: 'Create',
   };
 
   useLayoutEffect(() => {
     const handleSave = () => {
+      if (newName === '') {
+        setSnackE('Habit name cannot be blank');
+        return;
+      }
       const newHabit: Habit = {
         user,
         name: newName,

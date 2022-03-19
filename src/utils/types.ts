@@ -1,6 +1,10 @@
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import {
+  BottomTabNavigationProp,
+  BottomTabScreenProps,
+} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {
+  CompositeNavigationProp,
   CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
@@ -197,6 +201,12 @@ export interface CreateEditHabitProps {
   setNewDescription: React.Dispatch<React.SetStateAction<string>>;
   setNewSharedWith: React.Dispatch<React.SetStateAction<string[]>>;
   setTPRadioBtn: React.Dispatch<React.SetStateAction<TimePeriod>>;
+  uid?: string;
+  type: 'Edit' | 'Create';
+  navigation?: CompositeNavigationProp<
+    NativeStackNavigationProp<HomeStackParamList, 'EditHabit'>,
+    BottomTabNavigationProp<RootTabParamList, keyof RootTabParamList>
+  >;
 }
 
 export interface FloatingBtnProps {
@@ -206,3 +216,9 @@ export interface FloatingBtnProps {
 export type MarkedDatesType = {
   [key: string]: MarkingProps;
 };
+
+export interface DeleteHabitDialogProps {
+  isDeleteDialogVisible: boolean;
+  setIsDeleteDialogVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  handleDeleteHabit: () => void;
+}

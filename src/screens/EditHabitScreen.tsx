@@ -9,13 +9,14 @@ import {
 import firestore from '@react-native-firebase/firestore';
 import {StackActions} from '@react-navigation/native';
 import CreateEditHabit from '../components/CreateEditHabit';
-import { calcGoalPerTP } from '../utils/fn';
+import {calcGoalPerTP, useUserContext} from '../utils/fn';
 
 const EditHabitScreen = ({
   navigation,
   route,
 }: EditHabitScreenNavigationProp) => {
   const tailwind = useTailwind();
+  const {setSnackE} = useUserContext();
   const {uid, name, description, goalPerTP, timePeriod, friends, user} =
     route.params;
 
@@ -47,10 +48,17 @@ const EditHabitScreen = ({
     setNewDescription,
     setNewSharedWith,
     setTPRadioBtn,
+    uid,
+    type: 'Edit',
+    navigation,
   };
 
   useLayoutEffect(() => {
     const handleSave = () => {
+      if (newName === '') {
+        setSnackE('Habit name cannot be blank');
+        return;
+      }
       const habitRef = firestore().collection('habits').doc(uid);
       habitRef.update({
         name: newName,
@@ -81,6 +89,7 @@ const EditHabitScreen = ({
     uid,
     newSharedWith,
     tailwind,
+    setSnackE,
   ]);
 
   return <CreateEditHabit {...props} />;

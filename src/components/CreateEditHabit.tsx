@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Keyboard, TouchableWithoutFeedback, View} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import {Button, TextInput} from 'react-native-paper';
 import {useTailwind} from 'tailwind-rn/dist';
 import {CreateEditHabitProps, TimePeriod} from '../utils/types';
 import FrequencyModal from '../components/FrequencyModal';
 import SharedWithModal from '../components/SharedWithModal';
+import DeleteHabitDialog from './DeleteHabitDialog';
+import {firebase} from '@react-native-firebase/firestore';
+import {useUserContext} from '../utils/fn';
 
 const CreateEditHabit = ({
   newName,
@@ -22,11 +25,34 @@ const CreateEditHabit = ({
   setNewDescription,
   setNewSharedWith,
   setTPRadioBtn,
+  uid,
+  type,
+  navigation,
 }: CreateEditHabitProps) => {
   const tailwind = useTailwind();
+  const {setSnackE} = useUserContext();
   const [isFreqModalVisible, setIsFreqModalVisible] = useState(false);
   const [isSharedModalVisible, setIsSharedModalVisible] = useState(false);
   const [newFrequency, setNewFrequency] = useState('');
+  const [isDeleteDialogVisible, setDeleteDialogVisible] = useState(false);
+
+  const handleDeleteHabit = () => {
+    if (uid && navigation) {
+      firebase
+        .firestore()
+        .collection('habits')
+        .doc(uid)
+        .delete()
+        .then(_ => {
+          navigation.navigate('HomeStack');
+        })
+        .catch(reason => {
+          console.log(reason);
+          setSnackE('Fail to delete habit');
+          navigation.navigate('HomeStack');
+        });
+    }
+  };
 
   useEffect(() => {
     if (timePeriod === TimePeriod.Day) {
@@ -112,6 +138,24 @@ const CreateEditHabit = ({
           setNewSharedWith={setNewSharedWith}
           userUid={user}
         />
+        {type === 'Edit' && (
+          <>
+            <Button
+              icon="delete"
+              mode="contained"
+              color="red"
+              style={tailwind('mt-5')}
+              onPress={() => setDeleteDialogVisible(true)}>
+              Delete habit
+            </Button>
+
+            <DeleteHabitDialog
+              isDeleteDialogVisible={isDeleteDialogVisible}
+              setIsDeleteDialogVisible={setDeleteDialogVisible}
+              handleDeleteHabit={handleDeleteHabit}
+            />
+          </>
+        )}
       </View>
     </TouchableWithoutFeedback>
   );
