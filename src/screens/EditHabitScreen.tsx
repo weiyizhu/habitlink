@@ -55,13 +55,17 @@ const EditHabitScreen = ({
 
   useLayoutEffect(() => {
     const handleSave = () => {
-      if (newName === '') {
+      if (newName.trim() === '') {
         setSnackE('Habit name cannot be blank');
+        return;
+      }
+      if (newName.trim().length > 13) {
+        setSnackE('Habit name cannot be longer than 13 characters.');
         return;
       }
       const habitRef = firestore().collection('habits').doc(uid);
       habitRef.update({
-        name: newName,
+        name: newName.trim(),
         description: newDescription,
         timePeriod: TPRadioBtn,
         goalPerTP: calcGoalPerTP(TPRadioBtn, newWeeklyGoal, newMonthlyGoal),
