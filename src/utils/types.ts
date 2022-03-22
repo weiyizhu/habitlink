@@ -29,6 +29,7 @@ export type HomeStackParamList = {
     goalPerTP: number;
     friends: string[];
     user: string;
+    inCompetition: boolean;
   };
   CreateHabit: {
     user: string;
@@ -207,6 +208,7 @@ export interface CreateEditHabitProps {
     NativeStackNavigationProp<HomeStackParamList, 'EditHabit'>,
     BottomTabNavigationProp<RootTabParamList, keyof RootTabParamList>
   >;
+  inCompetition: boolean;
 }
 
 export interface FloatingBtnProps {

@@ -17,8 +17,16 @@ const EditHabitScreen = ({
 }: EditHabitScreenNavigationProp) => {
   const tailwind = useTailwind();
   const {setSnackE} = useUserContext();
-  const {uid, name, description, goalPerTP, timePeriod, friends, user} =
-    route.params;
+  const {
+    uid,
+    name,
+    description,
+    goalPerTP,
+    timePeriod,
+    friends,
+    user,
+    inCompetition,
+  } = route.params;
 
   const [TPRadioBtn, setTPRadioBtn] = useState(timePeriod);
   const [newName, setNewName] = useState(name);
@@ -51,6 +59,7 @@ const EditHabitScreen = ({
     uid,
     type: 'Edit',
     navigation,
+    inCompetition,
   };
 
   useLayoutEffect(() => {

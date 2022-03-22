@@ -45,6 +45,7 @@ const CreateHabitScreen = ({
     setNewSharedWith,
     setTPRadioBtn,
     type: 'Create',
+    inCompetition: false,
   };
 
   useLayoutEffect(() => {
@@ -65,7 +66,7 @@ const CreateHabitScreen = ({
         goalPerTP: calcGoalPerTP(TPRadioBtn, newWeeklyGoal, newMonthlyGoal),
         dates: [],
         friends: newSharedWith,
-        inCompetition: false
+        inCompetition: false,
       };
       firebase
         .firestore()

@@ -28,6 +28,7 @@ const CreateEditHabit = ({
   uid,
   type,
   navigation,
+  inCompetition,
 }: CreateEditHabitProps) => {
   const tailwind = useTailwind();
   const {setSnackE} = useUserContext();
@@ -93,12 +94,28 @@ const CreateEditHabit = ({
           activeUnderlineColor="#637081"
           style={tailwind('mb-5 bg-white')}
           editable={false}
-          onPressIn={() => setIsFreqModalVisible(true)}
+          onPressIn={() => {
+            if (inCompetition) {
+              setSnackE(
+                'Cannot edit frequency of a habit that is part of the competition',
+              );
+            } else {
+              setIsFreqModalVisible(true);
+            }
+          }}
           right={
             <TextInput.Icon
               name="menu-down"
               style={tailwind('top-2.5')}
-              onPress={() => setIsFreqModalVisible(true)}
+              onPress={() => {
+                if (inCompetition) {
+                  setSnackE(
+                    'Cannot edit frequency of a habit that is part of the competition',
+                  );
+                } else {
+                  setIsFreqModalVisible(true);
+                }
+              }}
             />
           }
         />
