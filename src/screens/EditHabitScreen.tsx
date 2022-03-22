@@ -86,7 +86,7 @@ const EditHabitScreen = ({
     navigation.setOptions({
       headerRight: () => (
         <Text
-          style={tailwind('text-xl font-SemiBold right-9')}
+          style={tailwind('text-xl font-YC_SemiBold right-9')}
           onPress={handleSave}>
           Save
         </Text>

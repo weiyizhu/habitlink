@@ -9,13 +9,11 @@ import moment from 'moment';
 
 const HabitItem = ({
   navigation,
-  currentStreak,
   dates,
   description,
   goalPerTP,
   name,
   timePeriod,
-  longestStreak,
   user,
   uid,
 }: HabitItemProps) => {
@@ -84,9 +82,9 @@ const HabitItem = ({
       }}
     >
       <View>
-        <Text style={tailwind('text-2xl font-SemiBold')}>{name}</Text>
+        <Text style={tailwind('text-2xl font-YC_SemiBold')}>{name}</Text>
         <Text
-          style={tailwind('text-sm font-Light')}
+          style={tailwind('text-sm font-YC_Light')}
         >{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
       </View>
       <MaterialCommunityIcons

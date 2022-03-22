@@ -168,7 +168,7 @@ const CreateAccountScreen = () => {
           }}
         />
         <View style={tailwind('py-10')}>
-          <Text style={tailwind('text-center font-medium text-gray-400')}>
+          <Text style={tailwind('text-center font-YC_Medium text-gray-400')}>
             {' '}
             Already have an account?{' '}
             <Text

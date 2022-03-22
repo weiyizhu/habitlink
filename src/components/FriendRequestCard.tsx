@@ -13,7 +13,7 @@ const FriendRequestCard = ({name, uid}: FriendCardProps) => {
         'px-3 py-2 bg-neutral-200 flex-row justify-between items-center mb-4',
       )}
     >
-      <Text style={tailwind('text-2xl font-SemiBold')}>{name}</Text>
+      <Text style={tailwind('text-2xl font-YC_SemiBold')}>{name}</Text>
       <View style={tailwind('flex-row')}>
         <MaterialCommunityIcons
           name={'check'}

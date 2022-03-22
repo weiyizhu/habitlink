@@ -31,8 +31,7 @@ const ForgotPasswordScreen = () => {
           fontFamily: 'YaldeviColombo-SemiBold',
           height: 120,
           textAlign: 'center',
-        }}
-      >
+        }}>
         Habitlink
       </Text>
       <TextInput
@@ -50,8 +49,7 @@ const ForgotPasswordScreen = () => {
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={usernameE !== ''}
-        >
+          visible={usernameE !== ''}>
           {usernameE}
         </HelperText>
       </View>
@@ -76,8 +74,7 @@ const ForgotPasswordScreen = () => {
                 setSnackE(error.message);
               }
             });
-        }}
-      >
+        }}>
         <Text style={tailwind('text-white text-center')}>
           {' '}
           Send Reset Email
@@ -91,13 +88,12 @@ const ForgotPasswordScreen = () => {
           }}
         />
         <View style={tailwind('py-10')}>
-          <Text style={tailwind('text-center font-medium text-gray-400')}>
+          <Text style={tailwind('text-center font-YC_Medium text-gray-400')}>
             {' '}
             Ready to sign in?{' '}
             <Text
               onPress={() => navigation.navigate('RootLoginStack')}
-              style={tailwind('text-blue-500')}
-            >
+              style={tailwind('text-blue-500')}>
               Log In
             </Text>
           </Text>

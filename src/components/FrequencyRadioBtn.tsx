@@ -26,12 +26,12 @@ const FrequencyRadioBtn = ({
         activeUnderlineColor="#637081"
         keyboardType="number-pad"
         style={tailwind(
-          'w-12 bg-white mb-1 pl-0 font-Regular text-lg ml-2 h-8 text-center',
+          'w-12 bg-white mb-1 pl-0 font-YC_Regular text-lg ml-2 h-8 text-center',
         )}
         onFocus={() => setTPRadioBtn(timePeriod)}
         maxLength={maxLength}
       />
-      <Text style={tailwind('text-xl font-Regular pl-3 top-0.5')}>
+      <Text style={tailwind('text-xl font-YC_Regular pl-3 top-0.5')}>
         times per {timePeriod === TimePeriod.Week ? 'week' : 'month'}
       </Text>
     </View>

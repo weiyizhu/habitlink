@@ -81,13 +81,13 @@ const SharedWithModal = ({
                 }
                 size={25}
               />
-              <Text style={tailwind('text-xl font-Regular pl-3')}>
+              <Text style={tailwind('text-xl font-YC_Regular pl-3')}>
                 {value.name}
               </Text>
             </View>
           ))}
           <Text
-            style={tailwind('text-xl font-Medium self-end mr-2')}
+            style={tailwind('text-xl font-YC_Medium self-end mr-2')}
             onPress={handleModalSave}>
             Save
           </Text>
