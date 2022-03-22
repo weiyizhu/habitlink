@@ -8,13 +8,13 @@ export type User = {
   name: string;
   competition: Competition | null;
   wld: WLD;
-  habits: string[];
   friends: string[];
 };
 
 export type Competition = {
-  score: number;
   competitor: string;
+  startDate: FirebaseFirestoreTypes.Timestamp;
+  endDate: FirebaseFirestoreTypes.Timestamp;
 };
 
 export type WLD = {
@@ -31,9 +31,7 @@ export type Habit = {
   description: string;
   timePeriod: TimePeriod;
   goalPerTP: number;
-  completed: number;
-  longestStreak: number;
-  currentStreak: number;
   dates: FirebaseFirestoreTypes.Timestamp[];
   friends: string[];
+  inCompetition: boolean;
 };

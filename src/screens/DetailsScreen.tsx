@@ -89,7 +89,7 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
     });
   };
 
-  const {completed, dates, description, goalPerTP, name, timePeriod, user} =
+  const {dates, description, goalPerTP, name, timePeriod, user} =
     habit;
 
   const timePeriodGoal =

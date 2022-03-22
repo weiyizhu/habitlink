@@ -63,11 +63,9 @@ const CreateHabitScreen = ({
         description: newDescription,
         timePeriod: TPRadioBtn,
         goalPerTP: calcGoalPerTP(TPRadioBtn, newWeeklyGoal, newMonthlyGoal),
-        completed: 0,
-        longestStreak: 0,
-        currentStreak: 0,
         dates: [],
         friends: newSharedWith,
+        inCompetition: false
       };
       firebase
         .firestore()
