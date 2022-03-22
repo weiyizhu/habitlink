@@ -14,7 +14,7 @@ const FriendCard = ({name, uid}: FriendCardProps) => {
       onPress={() => {}}
     >
       <View>
-        <Text style={tailwind('text-2xl font-SemiBold')}>{name}</Text>
+        <Text style={tailwind('text-2xl font-YC_SemiBold')}>{name}</Text>
       </View>
     </TouchableOpacity>
   );

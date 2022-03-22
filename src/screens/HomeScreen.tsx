@@ -8,25 +8,6 @@ import firestore from '@react-native-firebase/firestore';
 import {Habit} from '../utils/models';
 import {useUserContext} from '../utils/fn';
 
-const bobby = '4eY9hdKiwODlOKeOcnEW';
-const bobby2 = 'yDSrrUp2DQSkifDwvjov';
-const habit1 = '3gsLcMNx3icA6O7fnlpQ';
-const habit2 = 'EY7ppVzrMRKwPoNAY84R';
-
-const mockData: Habit[] = [
-  {
-    user: 'bobby',
-    currentStreak: 3,
-    dates: [],
-    completed: 1,
-    description: 'habit description',
-    goalPerTP: 4,
-    name: 'habit 1',
-    timePeriod: TimePeriod.Week,
-    longestStreak: 4,
-    friends: [],
-  },
-];
 
 const HomeScreen = ({route, navigation}: HomeScreenProp) => {
   const tailwind = useTailwind();
