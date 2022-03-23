@@ -96,9 +96,7 @@ const CreateEditHabit = ({
           editable={false}
           onPressIn={() => {
             if (inCompetition) {
-              setSnackE(
-                'Cannot edit frequency of a habit that is part of the competition',
-              );
+              setSnackE('Cannot edit frequency of habits in competition');
             } else {
               setIsFreqModalVisible(true);
             }
@@ -109,9 +107,7 @@ const CreateEditHabit = ({
               style={tailwind('top-2.5')}
               onPress={() => {
                 if (inCompetition) {
-                  setSnackE(
-                    'Cannot edit frequency of a habit that is part of the competition',
-                  );
+                  setSnackE('Cannot edit frequency of habits in competition');
                 } else {
                   setIsFreqModalVisible(true);
                 }
@@ -162,7 +158,11 @@ const CreateEditHabit = ({
               mode="contained"
               color="red"
               style={tailwind('mt-5')}
-              onPress={() => setDeleteDialogVisible(true)}>
+              onPress={() => {
+                if (inCompetition) {
+                  setSnackE('Cannot delete habits in competition');
+                } else setDeleteDialogVisible(true);
+              }}>
               Delete habit
             </Button>
 
