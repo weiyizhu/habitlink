@@ -13,8 +13,9 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {Habit, User} from './models';
+import {Habit, User, WLD} from './models';
 import {MarkingProps} from 'react-native-calendars/src/calendar/day/marking';
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 
 export type HomeStackParamList = {
   HomeStack: undefined;
@@ -223,4 +224,14 @@ export interface DeleteHabitDialogProps {
   isDeleteDialogVisible: boolean;
   setIsDeleteDialogVisible: React.Dispatch<React.SetStateAction<boolean>>;
   handleDeleteHabit: () => void;
+}
+
+export interface CompetitorInfoProps {
+  wld: WLD;
+  name: string;
+  habits: HabitWithUid[];
+  startDate: FirebaseFirestoreTypes.Timestamp;
+  total: number;
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
 }
