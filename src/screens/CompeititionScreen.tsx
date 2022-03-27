@@ -3,11 +3,13 @@ import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import CompetitorInfo from '../components/CompetitorInfo';
+import FloatingBtn from '../components/FloatingBtn';
+import FriendRequestCard from '../components/FriendRequestCard';
 import {useUserContext} from '../utils/fn';
 import {Habit, User, WLD} from '../utils/models';
-import {HabitWithUid} from '../utils/types';
+import {CompetitionScreenProp, HabitWithUid} from '../utils/types';
 
-const CompeititionScreen = () => {
+const CompeititionScreen = ({route, navigation}: CompetitionScreenProp) => {
   const tailwind = useTailwind();
   const {user, uid} = useUserContext();
   const [myHabits, setMyHabits] = useState<HabitWithUid[]>([]);
@@ -67,6 +69,12 @@ const CompeititionScreen = () => {
     }
   }, [user]);
 
+  const handlePlusCirclePress = () => {
+    navigation.navigate('CreateCompetition', {
+      user: user as User,
+    });
+  };
+
   return (
     <View style={tailwind('flex-1 flex-row px-5 justify-center')}>
       {user && user.competition && compUser && compUser.competition ? (
@@ -100,9 +108,17 @@ const CompeititionScreen = () => {
             score={compScore}
             setScore={setCompScore}
           />
+          <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
         </>
       ) : (
-        <Text>Compeitition Screen</Text>
+        <>
+          {/* <Text>Compeitition Screen</Text> */}
+          {user &&
+            user.competitionRequests.map(request => (
+              <FriendRequestCard name={request.name} uid={request.uid} />
+            ))}
+          <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
+        </>
       )}
     </View>
   );

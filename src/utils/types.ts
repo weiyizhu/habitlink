@@ -37,6 +37,13 @@ export type HomeStackParamList = {
   };
 };
 
+export type CompetitionStackParamList = {
+  CompetitionStack: undefined;
+  CreateCompetition: {
+    user: User;
+  };
+};
+
 export type AuthStackParamList = {
   RootHomeStack: undefined;
   RootLoginStack: undefined;
@@ -61,6 +68,16 @@ export type RootTabParamList = {
 export type HomeScreenProp = NativeStackScreenProps<
   HomeStackParamList,
   'HomeStack'
+>;
+
+export type CompetitionScreenProp = NativeStackScreenProps<
+  CompetitionStackParamList,
+  'CompetitionStack'
+>;
+
+export type CreateCompetitionScreenProp = CompositeScreenProps<
+  NativeStackScreenProps<CompetitionStackParamList, 'CreateCompetition'>,
+  BottomTabScreenProps<RootTabParamList>
 >;
 
 export type DetailsScreenNavigationProp = CompositeScreenProps<
@@ -234,4 +251,16 @@ export interface CompetitorInfoProps {
   total: number;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export type Challenger = {
+  uid: string;
+  name: string;
+};
+
+export interface ChallengerModalProps {
+  isModalVisible: boolean;
+  setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  challenger: Challenger | undefined;
+  setChallenger: React.Dispatch<React.SetStateAction<Challenger | undefined>>;
 }

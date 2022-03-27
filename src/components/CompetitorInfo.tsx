@@ -19,29 +19,6 @@ const CompetitorInfo = ({
   const currWeek = moment().week();
   const currYear = moment().year();
 
-  // let total = 0;
-  // const today = moment().day();
-  // habits.forEach(habit => {
-  //   const goalPerTP = habit.timePeriod === TimePeriod.Day ? 7 : habit.goalPerTP;
-  //   // total += today === 0 ? goalPerTP * 3 : goalPerTP * 4;
-
-  //   if (today === 0) {
-  //     total += goalPerTP * 3;
-  //   } else {
-  //     total += goalPerTP * 4;
-
-  //     let completed = 0;
-  //     const sortedDates = sortDates(habit.dates, false);
-  //     for (const date of sortedDates) {
-  //       const currDay = moment(date.toDate());
-  //       if (currDay.year() === currYear && currDay.week() === currWeek) {
-  //         if (currDay < moment(startDate.toDate())) completed++;
-  //       } else break;
-  //     }
-  //     total -= completed;
-  //   }
-  // });
-
   useEffect(() => {
     let completed = 0;
     habits.forEach(habit => {
@@ -79,6 +56,7 @@ const CompetitorInfo = ({
 
         return (
           <View
+            key={habit.uid}
             style={tailwind(
               `px-3 py-2 bg-neutral-200 mb-4 w-full items-center ${bgColor}`,
             )}>
