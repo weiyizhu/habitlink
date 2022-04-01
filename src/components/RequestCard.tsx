@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useTailwind} from 'tailwind-rn';
-import {FriendCardProps} from '../utils/types';
+import {RequestCardProps} from '../utils/types';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const FriendRequestCard = ({name, uid}: FriendCardProps) => {
+const RequestCard = ({name, handleCheck, handleCross}: RequestCardProps) => {
   const tailwind = useTailwind();
 
   return (
@@ -17,17 +17,15 @@ const FriendRequestCard = ({name, uid}: FriendCardProps) => {
       <View style={tailwind('flex-row')}>
         <MaterialCommunityIcons
           name={'check'}
-          onPress={() => {
-            console.log('check');
-          }}
+          onPress={handleCheck}
           size={25}
+          color="green"
           style={tailwind('px-3')}
         />
         <MaterialCommunityIcons
           name={'close'}
-          onPress={() => {
-            console.log('close');
-          }}
+          onPress={handleCross}
+          color="red"
           size={25}
         />
       </View>
@@ -35,4 +33,4 @@ const FriendRequestCard = ({name, uid}: FriendCardProps) => {
   );
 };
 
-export default FriendRequestCard;
+export default RequestCard;

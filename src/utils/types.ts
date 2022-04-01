@@ -204,6 +204,12 @@ export type FriendCardProps = {
   uid: string;
 };
 
+export type RequestCardProps = {
+  name: string;
+  handleCheck: () => void;
+  handleCross: () => void;
+};
+
 export interface CreateEditHabitProps {
   newName: string;
   newDescription: string;
