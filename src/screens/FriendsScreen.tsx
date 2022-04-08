@@ -6,7 +6,7 @@ import {useTailwind} from 'tailwind-rn/dist';
 import FriendCard from '../components/FriendCard';
 import {useUserContext} from '../utils/fn';
 import {User, UserWID} from '../utils/models';
-import FriendRequestCard from '../components/FriendRequestCard';
+import FriendRequestCard from '../components/RequestCard';
 import FloatingBtn from '../components/FloatingBtn';
 import { FriendScreenProp } from '../utils/types';
 
@@ -14,6 +14,40 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
   const tailwind = useTailwind();
   const {uid, friends, friendRequests}=
     useUserContext();
+
+  const check = (user: UserWID) => {
+    const friendsArr = [...user.friends];
+    friendsArr.push(uid as string);
+    const myArr = friends.map(item => item.uid);
+    myArr.unshift(user.uid);
+    firestore()
+      .collection('users')
+      .doc(user.uid)
+      .update({
+        sentFriendRequests: user.sentFriendRequests.filter(
+          (id: string) => id !== uid,
+        ),
+        friends: friendsArr,
+      });
+
+    firestore()
+      .collection('users')
+      .doc(uid as string)
+      .update({
+        friends: myArr,
+      });
+  }
+
+  const close = (user: UserWID) => {
+    firestore()
+      .collection('users')
+      .doc(user.uid)
+      .update({
+        sentFriendRequests: user.sentFriendRequests.filter(
+          (id: string) => id !== uid,
+        ),
+      });
+  }
 
   return (
     <View style={tailwind('flex-1 px-7')}>
@@ -23,7 +57,7 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
           return item.friends.includes(uid as string) ? (
             <FriendCard {...item} />
           ) : (
-            <FriendRequestCard {...item} />
+            <FriendRequestCard obj={item} name={item.name} check={check} close={close} />
           );
         }}
         extraData={friendRequests.concat(friends)}

@@ -4,7 +4,7 @@ import {Text, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import CompetitorInfo from '../components/CompetitorInfo';
 import FloatingBtn from '../components/FloatingBtn';
-import FriendRequestCard from '../components/FriendRequestCard';
+import FriendRequestCard from '../components/RequestCard';
 import {useUserContext} from '../utils/fn';
 import {Habit, User, WLD} from '../utils/models';
 import {CompetitionScreenProp, HabitWithUid} from '../utils/types';
@@ -115,7 +115,7 @@ const CompeititionScreen = ({route, navigation}: CompetitionScreenProp) => {
           {/* <Text>Compeitition Screen</Text> */}
           {user &&
             user.competitionRequests.map(request => (
-              <FriendRequestCard name={request.name} uid={request.uid} />
+              <FriendRequestCard obj={null} name={request.name} check={(v)=> console.log()} close={(v) => console.log()} />
             ))}
           <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
         </>
