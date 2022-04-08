@@ -9,7 +9,7 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {Habit, User} from './models';
+import {Habit, User, UserWID} from './models';
 import {MarkingProps} from 'react-native-calendars/src/calendar/day/marking';
 
 export type HomeStackParamList = {
@@ -28,6 +28,14 @@ export type HomeStackParamList = {
   };
   CreateHabit: {
     user: string;
+  };
+};
+
+export type FriendStackParamList = {
+  FriendStack: undefined;
+  AddFriend: undefined;
+  ShowHome: {
+    user: UserWID;
   };
 };
 
@@ -55,6 +63,21 @@ export type RootTabParamList = {
 export type HomeScreenProp = NativeStackScreenProps<
   HomeStackParamList,
   'HomeStack'
+>;
+
+export type AddFriendNavigationProp = CompositeScreenProps<
+  NativeStackScreenProps<FriendStackParamList, 'AddFriend'>,
+  BottomTabScreenProps<RootTabParamList>
+>;
+
+export type ShowHomeNavigationProp = CompositeScreenProps<
+  NativeStackScreenProps<FriendStackParamList, 'ShowHome'>,
+  BottomTabScreenProps<RootTabParamList>
+>;
+
+export type FriendScreenProp = NativeStackScreenProps<
+  FriendStackParamList,
+  'FriendStack'
 >;
 
 export type DetailsScreenNavigationProp = CompositeScreenProps<
@@ -111,8 +134,10 @@ export type UserContext = {
   setUid: (uid: string) => void;
   habits: HabitWithUid[];
   setHabits: (habits: HabitWithUid[]) => void;
-  friends: FriendCardProps[];
-  setFriends: (friends: FriendCardProps[]) => void;
+  friends: UserWID[];
+  setFriends: (friends: UserWID[]) => void;
+  friendRequests: UserWID[];
+  setFriendRequests: (friendRequests: UserWID[]) => void;
   snackE: string;
   setSnackE: (msg: string) => void;
 };
@@ -174,11 +199,6 @@ export type FriendCheckbox = {
   uid: string;
   name: string;
   checked: boolean;
-};
-
-export type FriendCardProps = {
-  name: string;
-  uid: string;
 };
 
 export interface CreateEditHabitProps {

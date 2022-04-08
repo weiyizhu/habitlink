@@ -26,6 +26,8 @@ export const DefUserContext = createContext<UserContext>({
   setHabits: () => {},
   friends: [],
   setFriends: () => {},
+  friendRequests: [],
+  setFriendRequests: () => {},
   snackE: '',
   setSnackE: () => {},
 });

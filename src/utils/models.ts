@@ -10,8 +10,12 @@ export type User = {
   wld: WLD;
   habits: string[];
   friends: string[];
+  sentFriendRequests: string[];
 };
 
+export type UserWID = User & {
+  uid: string;
+};
 export type Competition = {
   score: number;
   competitor: string;

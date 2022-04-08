@@ -4,8 +4,7 @@ import {TailwindProvider} from 'tailwind-rn';
 import utilities from '../tailwind.json';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {DefUserContext} from './utils/fn';
-import {FriendCardProps} from './utils/types';
-import {User} from './utils/models';
+import {User, UserWID} from './utils/models';
 import {HabitWithUid, UserContext} from './utils/types';
 import RootStackNavigator from './routes/RootStackNavigator';
 import SnackBar from './components/SnackBar';
@@ -22,7 +21,8 @@ const App = () => {
   const [user, setUser] = useState<User | null>(null);
   const [uid, setUid] = useState<string | null>(null);
   const [habits, setHabits] = useState<HabitWithUid[]>([]);
-  const [friends, setFriends] = useState<FriendCardProps[]>([]);
+  const [friends, setFriends] = useState<UserWID[]>([]);
+  const [friendRequests, setFriendRequests] = useState<UserWID[]>([]);
   const [snackE, setSnackE] = useState('');
   const userContextInitVal: UserContext = {
     user,
@@ -33,6 +33,8 @@ const App = () => {
     setHabits,
     friends,
     setFriends,
+    friendRequests,
+    setFriendRequests,
     snackE,
     setSnackE,
   };

@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useTailwind} from 'tailwind-rn';
-import {FriendCardProps} from '../utils/types';
+import {UserWID} from '../utils/models';
 
-const FriendCard = ({name, uid}: FriendCardProps) => {
+const FriendCard = (user: UserWID) => {
   const tailwind = useTailwind();
 
   return (
@@ -14,7 +14,7 @@ const FriendCard = ({name, uid}: FriendCardProps) => {
       onPress={() => {}}
     >
       <View>
-        <Text style={tailwind('text-2xl font-SemiBold')}>{name}</Text>
+        <Text style={tailwind('text-2xl font-SemiBold')}>{user.name}</Text>
       </View>
     </TouchableOpacity>
   );

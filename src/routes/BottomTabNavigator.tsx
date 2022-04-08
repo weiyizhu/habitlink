@@ -7,10 +7,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RootTabParamList} from '../utils/types';
+import FriendStackNavigator from './FriendStackNavigator';
+import { useUserContext } from '../utils/fn';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const BottomTabNavigator = () => {
+  const {friendRequests} = useUserContext();
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -55,12 +58,13 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Friends"
-        component={FriendsScreen}
+        component={FriendStackNavigator}
         options={() => ({
           tabBarIcon: ({focused, color, size}) => (
             <Ionicons name="people" size={size} color={color} />
           ),
-          tabBarBadge: 3,
+          headerShown: false,
+          tabBarBadge: (friendRequests.length == 0) ? undefined: friendRequests.length,
         })}
       />
       <Tab.Screen

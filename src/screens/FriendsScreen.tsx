@@ -5,37 +5,33 @@ import {View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import FriendCard from '../components/FriendCard';
 import {useUserContext} from '../utils/fn';
-import {User} from '../utils/models';
-import {FriendCardProps} from '../utils/types';
+import {User, UserWID} from '../utils/models';
+import FriendRequestCard from '../components/FriendRequestCard';
+import FloatingBtn from '../components/FloatingBtn';
+import { FriendScreenProp } from '../utils/types';
 
-const FriendsScreen = () => {
+const FriendsScreen = ({navigation}: FriendScreenProp) => {
   const tailwind = useTailwind();
-  const {user, friends, setFriends} = useUserContext();
-
-  useEffect(() => {
-    let temp: FriendCardProps[] = [];
-    user?.friends.forEach((friendid: string) => {
-      const toAdd: FriendCardProps | null = null;
-      firestore()
-        .collection('users')
-        .doc(friendid)
-        .get()
-        .then(f => {
-          const obj: User = f.data() as User;
-          temp = temp.concat({name: obj.name, uid: friendid});
-          setFriends(temp);
-        });
-    });
-  }, [user, setFriends]);
+  const {uid, friends, friendRequests}=
+    useUserContext();
 
   return (
     <View style={tailwind('flex-1 px-7')}>
       <FlatList
-        data={friends}
+        data={friendRequests.concat(friends)}
         renderItem={({item}) => {
-          return <FriendCard {...item} />;
+          return item.friends.includes(uid as string) ? (
+            <FriendCard {...item} />
+          ) : (
+            <FriendRequestCard {...item} />
+          );
         }}
-        extraData={friends}
+        extraData={friendRequests.concat(friends)}
+      />
+      <FloatingBtn
+        handlePlusCirclePress={() => {
+          navigation.navigate("AddFriend")
+        }}
       />
     </View>
   );

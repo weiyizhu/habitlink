@@ -1,14 +1,54 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
+import React, { useEffect } from 'react';
 import CreateHabitScreen from '../screens/CreateHabitScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 import EditHabitScreen from '../screens/EditHabitScreen';
 import HomeScreen from '../screens/HomeScreen';
+import { useUserContext } from '../utils/fn';
+import { User, UserWID } from '../utils/models';
 import {HomeStackParamList} from '../utils/types';
+import firestore from '@react-native-firebase/firestore';
 
 const Stack = createStackNavigator<HomeStackParamList>();
 
 const HomeStackNavigator = () => {
+  const {uid, friends, setFriends, friendRequests, setFriendRequests} = useUserContext();
+
+  useEffect(() => {
+    const socialRef = firestore()
+      .collection('users')
+      .where('friends', 'array-contains', uid);
+
+    return socialRef.onSnapshot(querySnapshot => {
+      console.log(querySnapshot);
+      const toAdd: UserWID[] = [];
+
+      querySnapshot.forEach(friend => {
+        const obj: User = friend.data() as User;
+        toAdd.push({...obj, uid: friend.id});
+      });
+
+      setFriends(toAdd);
+    });
+  }, [uid, setFriends]);
+
+  useEffect(() => {
+    const friendRequestRef = firestore()
+      .collection('users')
+      .where('sentFriendRequests', 'array-contains', uid);
+
+    friendRequestRef.onSnapshot(querySnapshot => {
+      const toAdd: UserWID[] = [];
+
+      querySnapshot.forEach(friend => {
+        const obj: User = friend.data() as User;
+        toAdd.push({...obj, uid: friend.id});
+      });
+
+      setFriendRequests(toAdd);
+    });
+  }, [uid, setFriendRequests]);
+
   return (
     <Stack.Navigator
       screenOptions={{

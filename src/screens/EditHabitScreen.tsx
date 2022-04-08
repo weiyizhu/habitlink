@@ -9,7 +9,7 @@ import {
 import firestore from '@react-native-firebase/firestore';
 import {StackActions} from '@react-navigation/native';
 import CreateEditHabit from '../components/CreateEditHabit';
-import { calcGoalPerTP } from '../utils/fn';
+import {calcGoalPerTP} from '../utils/fn';
 
 const EditHabitScreen = ({
   navigation,
@@ -66,7 +66,8 @@ const EditHabitScreen = ({
       headerRight: () => (
         <Text
           style={tailwind('text-xl font-SemiBold right-9')}
-          onPress={handleSave}>
+          onPress={handleSave}
+        >
           Save
         </Text>
       ),

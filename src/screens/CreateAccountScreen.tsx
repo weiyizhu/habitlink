@@ -121,8 +121,9 @@ const CreateAccountScreen = () => {
                 name: name,
                 competition: null,
                 wld: wld,
-                habits: new Array<string>(),
-                friends: new Array<string>(),
+                habits: [],
+                friends: [],
+                sentFriendRequests: [],
               };
 
               firestore()
