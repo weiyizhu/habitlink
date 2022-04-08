@@ -6,7 +6,7 @@ import {useTailwind} from 'tailwind-rn/dist';
 import FriendCard from '../components/FriendCard';
 import {useUserContext} from '../utils/fn';
 import {User, UserWID} from '../utils/models';
-import FriendRequestCard from '../components/RequestCard';
+import FriendRequestCard from '../components/FriendRequestCard';
 import FloatingBtn from '../components/FloatingBtn';
 import { FriendScreenProp } from '../utils/types';
 
