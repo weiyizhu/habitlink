@@ -9,15 +9,24 @@ import {
 import firestore from '@react-native-firebase/firestore';
 import {StackActions} from '@react-navigation/native';
 import CreateEditHabit from '../components/CreateEditHabit';
-import {calcGoalPerTP} from '../utils/fn';
+import {calcGoalPerTP, useUserContext} from '../utils/fn';
 
 const EditHabitScreen = ({
   navigation,
   route,
 }: EditHabitScreenNavigationProp) => {
   const tailwind = useTailwind();
-  const {uid, name, description, goalPerTP, timePeriod, friends, user} =
-    route.params;
+  const {setSnackE} = useUserContext();
+  const {
+    uid,
+    name,
+    description,
+    goalPerTP,
+    timePeriod,
+    friends,
+    user,
+    inCompetition,
+  } = route.params;
 
   const [TPRadioBtn, setTPRadioBtn] = useState(timePeriod);
   const [newName, setNewName] = useState(name);
@@ -47,13 +56,25 @@ const EditHabitScreen = ({
     setNewDescription,
     setNewSharedWith,
     setTPRadioBtn,
+    uid,
+    type: 'Edit',
+    navigation,
+    inCompetition,
   };
 
   useLayoutEffect(() => {
     const handleSave = () => {
+      if (newName.trim() === '') {
+        setSnackE('Habit name cannot be blank');
+        return;
+      }
+      if (newName.trim().length > 13) {
+        setSnackE('Habit name cannot be longer than 13 characters.');
+        return;
+      }
       const habitRef = firestore().collection('habits').doc(uid);
       habitRef.update({
-        name: newName,
+        name: newName.trim(),
         description: newDescription,
         timePeriod: TPRadioBtn,
         goalPerTP: calcGoalPerTP(TPRadioBtn, newWeeklyGoal, newMonthlyGoal),
@@ -65,9 +86,8 @@ const EditHabitScreen = ({
     navigation.setOptions({
       headerRight: () => (
         <Text
-          style={tailwind('text-xl font-SemiBold right-9')}
-          onPress={handleSave}
-        >
+          style={tailwind('text-xl font-YC_SemiBold right-9')}
+          onPress={handleSave}>
           Save
         </Text>
       ),
@@ -82,6 +102,7 @@ const EditHabitScreen = ({
     uid,
     newSharedWith,
     tailwind,
+    setSnackE,
   ]);
 
   return <CreateEditHabit {...props} />;

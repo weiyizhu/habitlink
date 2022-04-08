@@ -39,7 +39,7 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
 
   useLayoutEffect(() => {
     if (habit) {
-      const {name, description, goalPerTP, timePeriod, friends, user} = habit;
+      const {name, description, goalPerTP, timePeriod, friends, user, inCompetition} = habit;
       navigation.setOptions({
         headerRight: () => (
           <MaterialIcons
@@ -52,6 +52,7 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
                 timePeriod,
                 friends,
                 user,
+                inCompetition
               });
             }}
             name={'edit'}
@@ -89,7 +90,7 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
     });
   };
 
-  const {completed, dates, description, goalPerTP, name, timePeriod, user} =
+  const {dates, description, goalPerTP, name, timePeriod, user} =
     habit;
 
   const timePeriodGoal =

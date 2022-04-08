@@ -1,6 +1,10 @@
-import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import {
+  BottomTabNavigationProp,
+  BottomTabScreenProps,
+} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {
+  CompositeNavigationProp,
   CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
@@ -9,8 +13,9 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {Habit, User, UserWID} from './models';
+import {Habit, User, WLD, UserWID} from './models';
 import {MarkingProps} from 'react-native-calendars/src/calendar/day/marking';
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 
 export type HomeStackParamList = {
   HomeStack: undefined;
@@ -25,6 +30,7 @@ export type HomeStackParamList = {
     goalPerTP: number;
     friends: string[];
     user: string;
+    inCompetition: boolean;
   };
   CreateHabit: {
     user: string;
@@ -36,6 +42,13 @@ export type FriendStackParamList = {
   AddFriend: undefined;
   ShowHome: {
     user: UserWID;
+  };
+};
+
+export type CompetitionStackParamList = {
+  CompetitionStack: undefined;
+  CreateCompetition: {
+    user: User;
   };
 };
 
@@ -78,6 +91,16 @@ export type ShowHomeNavigationProp = CompositeScreenProps<
 export type FriendScreenProp = NativeStackScreenProps<
   FriendStackParamList,
   'FriendStack'
+>;
+
+export type CompetitionScreenProp = NativeStackScreenProps<
+  CompetitionStackParamList,
+  'CompetitionStack'
+>;
+
+export type CreateCompetitionScreenProp = CompositeScreenProps<
+  NativeStackScreenProps<CompetitionStackParamList, 'CreateCompetition'>,
+  BottomTabScreenProps<RootTabParamList>
 >;
 
 export type DetailsScreenNavigationProp = CompositeScreenProps<
@@ -201,6 +224,17 @@ export type FriendCheckbox = {
   checked: boolean;
 };
 
+export type FriendCardProps = {
+  name: string;
+  uid: string;
+};
+
+export type RequestCardProps = {
+  name: string;
+  handleCheck: () => void;
+  handleCross: () => void;
+};
+
 export interface CreateEditHabitProps {
   newName: string;
   newDescription: string;
@@ -217,6 +251,13 @@ export interface CreateEditHabitProps {
   setNewDescription: React.Dispatch<React.SetStateAction<string>>;
   setNewSharedWith: React.Dispatch<React.SetStateAction<string[]>>;
   setTPRadioBtn: React.Dispatch<React.SetStateAction<TimePeriod>>;
+  uid?: string;
+  type: 'Edit' | 'Create';
+  navigation?: CompositeNavigationProp<
+    NativeStackNavigationProp<HomeStackParamList, 'EditHabit'>,
+    BottomTabNavigationProp<RootTabParamList, keyof RootTabParamList>
+  >;
+  inCompetition: boolean;
 }
 
 export interface FloatingBtnProps {
@@ -226,3 +267,31 @@ export interface FloatingBtnProps {
 export type MarkedDatesType = {
   [key: string]: MarkingProps;
 };
+
+export interface DeleteHabitDialogProps {
+  isDeleteDialogVisible: boolean;
+  setIsDeleteDialogVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  handleDeleteHabit: () => void;
+}
+
+export interface CompetitorInfoProps {
+  wld: WLD;
+  name: string;
+  habits: HabitWithUid[];
+  startDate: FirebaseFirestoreTypes.Timestamp;
+  total: number;
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export type Challenger = {
+  uid: string;
+  name: string;
+};
+
+export interface ChallengerModalProps {
+  isModalVisible: boolean;
+  setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  challenger: Challenger | undefined;
+  setChallenger: React.Dispatch<React.SetStateAction<Challenger | undefined>>;
+}

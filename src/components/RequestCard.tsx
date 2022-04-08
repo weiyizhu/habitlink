@@ -6,7 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {UserWID} from '../utils/models';
 import {useUserContext} from '../utils/fn';
 
-const FriendRequestCard = (user: UserWID) => {
+const RequestCard = (user: UserWID) => {
   const tailwind = useTailwind();
   const {uid, friends} = useUserContext();
 
@@ -43,6 +43,7 @@ const FriendRequestCard = (user: UserWID) => {
               });
           }}
           size={25}
+          color="green"
           style={tailwind('px-3')}
         />
         <MaterialCommunityIcons
@@ -64,4 +65,4 @@ const FriendRequestCard = (user: UserWID) => {
   );
 };
 
-export default FriendRequestCard;
+export default RequestCard;

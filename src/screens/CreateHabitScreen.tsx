@@ -44,21 +44,29 @@ const CreateHabitScreen = ({
     setNewDescription,
     setNewSharedWith,
     setTPRadioBtn,
+    type: 'Create',
+    inCompetition: false,
   };
 
   useLayoutEffect(() => {
     const handleSave = () => {
+      if (newName.trim() === '') {
+        setSnackE('Habit name cannot be blank');
+        return;
+      }
+      if (newName.trim().length > 13) {
+        setSnackE('Habit name cannot be longer than 13 characters.');
+        return;
+      }
       const newHabit: Habit = {
         user,
-        name: newName,
+        name: newName.trim(),
         description: newDescription,
         timePeriod: TPRadioBtn,
         goalPerTP: calcGoalPerTP(TPRadioBtn, newWeeklyGoal, newMonthlyGoal),
-        completed: 0,
-        longestStreak: 0,
-        currentStreak: 0,
         dates: [],
         friends: newSharedWith,
+        inCompetition: false,
       };
       firebase
         .firestore()
@@ -75,7 +83,7 @@ const CreateHabitScreen = ({
     navigation.setOptions({
       headerRight: () => (
         <Text
-          style={tailwind('text-xl font-SemiBold right-8')}
+          style={tailwind('text-xl font-YC_SemiBold right-8')}
           onPress={handleSave}>
           Save
         </Text>

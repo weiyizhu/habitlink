@@ -1,5 +1,4 @@
 import React from 'react';
-import Competition from '../screens/CompeititionScreen';
 import FriendsScreen from '../screens/FriendsScreen';
 import Settings from '../routes/SettingsStackNavigator';
 import HomeStackNavigator from './HomeStackNavigator';
@@ -9,6 +8,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RootTabParamList} from '../utils/types';
 import FriendStackNavigator from './FriendStackNavigator';
 import { useUserContext } from '../utils/fn';
+import CompetitionStackNavigator from './CompetitionStackNavigator';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -30,8 +30,7 @@ const BottomTabNavigator = () => {
           height: 150,
         },
         headerTitleAlign: 'center',
-      })}
-    >
+      })}>
       <Tab.Screen
         name="Home"
         component={HomeStackNavigator}
@@ -45,7 +44,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Competition"
-        component={Competition}
+        component={CompetitionStackNavigator}
         options={() => ({
           tabBarIcon: ({focused, color, size}) => (
             <MaterialCommunityIcons
@@ -54,6 +53,7 @@ const BottomTabNavigator = () => {
               color={color}
             />
           ),
+          headerShown: false,
         })}
       />
       <Tab.Screen

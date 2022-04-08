@@ -65,7 +65,7 @@ const FrequencyModal = ({
             value={TPRadioBtn}>
             <View style={tailwind('flex-row items-center mb-3')}>
               <RadioButton value={TimePeriod.Day} />
-              <Text style={tailwind('text-xl font-Regular pl-3')}>
+              <Text style={tailwind('text-xl font-YC_Regular pl-3')}>
                 Every day
               </Text>
             </View>
@@ -85,7 +85,7 @@ const FrequencyModal = ({
             />
           </RadioButton.Group>
           <Text
-            style={tailwind('text-xl font-Medium self-end mr-2')}
+            style={tailwind('text-xl font-YC_Medium self-end mr-2')}
             onPress={handleModalSave}>
             Save
           </Text>

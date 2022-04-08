@@ -8,6 +8,8 @@ import {User, UserWID} from './utils/models';
 import {HabitWithUid, UserContext} from './utils/types';
 import RootStackNavigator from './routes/RootStackNavigator';
 import SnackBar from './components/SnackBar';
+import {Provider} from 'react-native-paper';
+import {LogBox} from 'react-native';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -39,12 +41,19 @@ const App = () => {
     setSnackE,
   };
 
+  // https://stackoverflow.com/a/70774437
+  LogBox.ignoreLogs([
+    "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
+  ]);
+
   return (
     <NavigationContainer theme={MyTheme}>
       <TailwindProvider utilities={utilities}>
         <DefUserContext.Provider value={userContextInitVal}>
-          <RootStackNavigator />
-          <SnackBar />
+          <Provider>
+            <RootStackNavigator />
+            <SnackBar />
+          </Provider>
         </DefUserContext.Provider>
       </TailwindProvider>
     </NavigationContainer>
