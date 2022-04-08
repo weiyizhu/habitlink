@@ -13,7 +13,7 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {Habit, User, WLD, UserWID} from './models';
+import {Habit, User, WLD, UserWID, CompetitionRequest} from './models';
 import {MarkingProps} from 'react-native-calendars/src/calendar/day/marking';
 import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 
@@ -47,8 +47,9 @@ export type FriendStackParamList = {
 
 export type CompetitionStackParamList = {
   CompetitionStack: undefined;
-  CreateCompetition: {
-    user: User;
+  CreateCompetition: undefined;
+  AcceptCompetition: {
+    request: CompetitionRequest;
   };
 };
 
@@ -103,6 +104,11 @@ export type CreateCompetitionScreenProp = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList>
 >;
 
+export type AcceptCompetitionScreenProp = CompositeScreenProps<
+  NativeStackScreenProps<CompetitionStackParamList, 'AcceptCompetition'>,
+  BottomTabScreenProps<RootTabParamList>
+>;
+
 export type DetailsScreenNavigationProp = CompositeScreenProps<
   NativeStackScreenProps<HomeStackParamList, 'Details'>,
   BottomTabScreenProps<RootTabParamList>
@@ -138,9 +144,9 @@ export type HabitItemProps = HabitWithUid & {
 };
 
 export enum fontType {
-  Light = 'light',
-  Medium = 'medium',
-  SemiBold = 'semibold',
+  Light = 'YC_Light',
+  Medium = 'YC_Medium',
+  SemiBold = 'YC_SemiBold',
 }
 
 export type CustomTextProp = {

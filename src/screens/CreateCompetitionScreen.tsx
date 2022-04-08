@@ -1,4 +1,5 @@
 import {firebase} from '@react-native-firebase/firestore';
+import {StackActions} from '@react-navigation/native';
 import moment from 'moment';
 import React, {useState} from 'react';
 import {View, Keyboard, TouchableWithoutFeedback} from 'react-native';
@@ -80,6 +81,11 @@ const CreateCompetitionScreen = ({
     firebase.firestore().collection('users').doc(challenger.uid).update({
       competitionRequests: newCompetitionRequests,
     });
+
+    setSnackE('Competition request sent');
+    const popAction = StackActions.pop(1);
+    navigation.dispatch(popAction);
+
     // let total = 0;
     // selectedHabits.forEach(habit => {
     //   const goalPerTP =

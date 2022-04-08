@@ -1,6 +1,10 @@
-import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
+import {
+  firebase,
+  FirebaseFirestoreTypes,
+} from '@react-native-firebase/firestore';
 import moment from 'moment';
 import React, {createContext, useContext, useEffect, useRef} from 'react';
+import {CompetitionRequest} from './models';
 import {HabitWithUid, MarkedDatesType, TimePeriod, UserContext} from './types';
 
 export const useEffectUpdate = (
@@ -113,5 +117,51 @@ export const sortDates = (
     const date1 = moment(a.toDate());
     const date2 = moment(b.toDate());
     return increasing ? date1.diff(date2) : date2.diff(date1);
+  });
+};
+
+export const calcCompetitionTotal = (habits: HabitWithUid[]) => {
+  const today = moment().day();
+  const startDate = moment().toDate();
+  const currWeek = moment().week();
+  const currYear = moment().year();
+
+  let total = 0;
+  habits.forEach(habit => {
+    const goalPerTP = habit.timePeriod === TimePeriod.Day ? 7 : habit.goalPerTP;
+    if (today === 0) {
+      total += goalPerTP * 3;
+    } else {
+      total += goalPerTP * 4;
+      let completed = 0;
+      const sortedDates = sortDates(habit.dates, false);
+      for (const date of sortedDates) {
+        const currDay = moment(date.toDate());
+        if (currDay.year() === currYear && currDay.week() === currWeek) {
+          if (currDay < moment(startDate)) completed++;
+        } else break;
+      }
+      const daysTilSunday = 7 - today;
+
+      if (completed >= goalPerTP) total -= goalPerTP;
+      else total -= Math.min(daysTilSunday, goalPerTP);
+    }
+  });
+
+  return total;
+};
+
+export const DeleteCompetitionRequest = (
+  competitionRequests: CompetitionRequest[],
+  uid: string,
+  requestUserId: string,
+) => {
+  const newCompetitionRequests = [...competitionRequests];
+  const index = newCompetitionRequests.findIndex(e => e.uid === requestUserId);
+  if (index > -1) {
+    newCompetitionRequests.splice(index, 1);
+  }
+  firebase.firestore().collection('users').doc(uid).update({
+    competitionRequests: newCompetitionRequests,
   });
 };

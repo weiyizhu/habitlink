@@ -1,6 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import CompeititionScreen from '../screens/CompeititionScreen';
+import AcceptCompetitionScreen from '../screens/AcceptCompetitionScreen';
+import CompetitionScreen from '../screens/CompetitionScreen';
 import CreateCompetitionScreen from '../screens/CreateCompetitionScreen';
 import {CompetitionStackParamList} from '../utils/types';
 
@@ -33,7 +34,7 @@ const CompetitionStackNavigator = () => {
       }}>
       <Stack.Screen
         name="CompetitionStack"
-        component={CompeititionScreen}
+        component={CompetitionScreen}
         options={() => ({
           title: 'Competition',
         })}
@@ -41,6 +42,13 @@ const CompetitionStackNavigator = () => {
       <Stack.Screen
         name="CreateCompetition"
         component={CreateCompetitionScreen}
+        options={() => ({
+          title: 'Details',
+        })}
+      />
+      <Stack.Screen
+        name="AcceptCompetition"
+        component={AcceptCompetitionScreen}
         options={() => ({
           title: 'Details',
         })}

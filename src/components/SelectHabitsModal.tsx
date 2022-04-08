@@ -31,7 +31,7 @@ const SelectHabitsModal = ({
     if (habit.timePeriod !== TimePeriod.Month) {
       initHabitsList.push({
         ...habit,
-        inCompetition: true,
+        inCompetition: false,
         checked: false,
       });
     }
