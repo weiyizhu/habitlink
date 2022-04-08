@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RootTabParamList} from '../utils/types';
 import FriendStackNavigator from './FriendStackNavigator';
-import { useUserContext } from '../utils/fn';
+import {useUserContext} from '../utils/fn';
 import CompetitionStackNavigator from './CompetitionStackNavigator';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
@@ -64,7 +64,8 @@ const BottomTabNavigator = () => {
             <Ionicons name="people" size={size} color={color} />
           ),
           headerShown: false,
-          tabBarBadge: (friendRequests.length == 0) ? undefined: friendRequests.length,
+          tabBarBadge:
+            friendRequests.length === 0 ? undefined : friendRequests.length,
         })}
       />
       <Tab.Screen

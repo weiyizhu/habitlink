@@ -13,7 +13,7 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
 
   const tailwind = useTailwind();
   return (
-    <View style={tailwind('flex-1 items-center justify-center')}> 
+    <View style={tailwind('flex-1 items-center justify-center')}>
       <TextInput
         style={tailwind(
           'border border-gray-200 bg-gray-50 p-2 m-2 h-5 w-10/12 rounded-md',
@@ -29,8 +29,7 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={friendRequestE !== ''}
-        >
+          visible={friendRequestE !== ''}>
           {friendRequestE}
         </HelperText>
       </View>
@@ -41,53 +40,56 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
           setFriendRequest('');
           setFriendRequestE('');
 
-          const re = /^(.+)@(.+)$/
+          const re = /^(.+)@(.+)$/;
           if (temp === '') {
-            setFriendRequestE('Please enter a value')
-            return
-          } else if (!(re.test(temp))) {
-            setFriendRequestE('Please enter a valid email address')
-            return
+            setFriendRequestE('Please enter a value');
+            return;
+          } else if (!re.test(temp)) {
+            setFriendRequestE('Please enter a valid email address');
+            return;
           } else if (temp.toLowerCase() === user?.email.toLowerCase()) {
-            console.log(temp.toLowerCase())
-            console.log(user?.email.toLowerCase())
-            setFriendRequestE('You can not send a friend request to yourself')
-            return
+            console.log(temp.toLowerCase());
+            console.log(user?.email.toLowerCase());
+            setFriendRequestE('You can not send a friend request to yourself');
+            return;
           }
 
           firestore()
-          .collection('users')
-          .where('email', '==', temp)
-          .get()
-          .then(querySnapshot => {
-            if (querySnapshot.size > 1) {
-              setSnackE('An error occurred')
-            } else if (querySnapshot.size == 0) {
-              setSnackE('If a user exists with this email, a friend request has been sent to them')
-              return;
-            } 
-
-            querySnapshot.forEach(
-              documentSnapshot => {
-                firestore()
             .collection('users')
-            .doc(uid as string)
-            .update({
-              sentFriendRequests: firestore.FieldValue.arrayUnion(documentSnapshot.id)
-            }); 
+            // Filter results
+            .where('email', '==', temp)
+            .get()
+            .then(querySnapshot => {
+              if (querySnapshot.size > 1) {
+                setSnackE('An error occurred');
+              } else if (querySnapshot.size === 0) {
+                setSnackE(
+                  'If a user exists with this email, a friend request has been sent to them',
+                );
+                return;
               }
-            )
 
-            setSnackE('If a user exists with this email, a friend request has been sent to them')
-          })
-        }}
-      >
+              querySnapshot.forEach(documentSnapshot => {
+                firestore()
+                  .collection('users')
+                  .doc(uid as string)
+                  .update({
+                    sentFriendRequests: firestore.FieldValue.arrayUnion(
+                      documentSnapshot.id,
+                    ),
+                  });
+              });
+
+              setSnackE(
+                'If a user exists with this email, a friend request has been sent to them',
+              );
+            });
+        }}>
         <Text style={tailwind('text-white text-center')}>
           {' '}
           Send Friend Request
         </Text>
       </TouchableOpacity>
-     
     </View>
   );
 };

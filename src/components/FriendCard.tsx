@@ -22,7 +22,7 @@ const FriendCard = ({user, navigation}: FriendCardProps) => {
       });}}
     >
       <View>
-        <Text style={tailwind('text-2xl font-SemiBold')}>{user.name}</Text>
+        <Text style={tailwind('text-2xl font-YC_SemiBold')}>{user.name}</Text>
       </View>
     </TouchableOpacity>
   );
