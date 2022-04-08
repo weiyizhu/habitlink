@@ -175,7 +175,8 @@ const AcceptCompetitionScreen = ({
           mode="contained"
           color="lightgreen"
           style={tailwind('mt-5')}
-          onPress={createChallenge}>
+          onPress={createChallenge}
+        >
           Accept Challenge
         </Button>
       </View>

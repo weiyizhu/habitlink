@@ -106,7 +106,8 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
             <Text
               style={tailwind(
                 'text-4xl pb-2 font-YC_SemiBold text-transparent',
-              )}>
+              )}
+            >
               0
             </Text>
             <Text style={tailwind('text-center text-xl font-YC_SemiBold')}>

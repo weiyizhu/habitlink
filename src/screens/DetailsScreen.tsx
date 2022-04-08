@@ -10,7 +10,11 @@ import {
 import {Calendar, DateData} from 'react-native-calendars';
 import DetailsInfo from '../components/DetailsInfo';
 import {TimePeriod} from '../utils/types';
-import {calcHabitDetailsInfo, findTimestampIndex, useUserContext} from '../utils/fn';
+import {
+  calcHabitDetailsInfo,
+  findTimestampIndex,
+  useUserContext,
+} from '../utils/fn';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import moment from 'moment';
 import {firebase} from '@react-native-firebase/firestore';
@@ -39,7 +43,15 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
 
   useLayoutEffect(() => {
     if (habit) {
-      const {name, description, goalPerTP, timePeriod, friends, user, inCompetition} = habit;
+      const {
+        name,
+        description,
+        goalPerTP,
+        timePeriod,
+        friends,
+        user,
+        inCompetition,
+      } = habit;
       navigation.setOptions({
         headerRight: () => (
           <MaterialIcons
@@ -52,7 +64,7 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
                 timePeriod,
                 friends,
                 user,
-                inCompetition
+                inCompetition,
               });
             }}
             name={'edit'}
@@ -90,8 +102,7 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
     });
   };
 
-  const {dates, description, goalPerTP, name, timePeriod, user} =
-    habit;
+  const {dates, description, goalPerTP, name, timePeriod, user} = habit;
 
   const timePeriodGoal =
     timePeriod === TimePeriod.Day ? 'Daily' : timePeriod + 'ly';

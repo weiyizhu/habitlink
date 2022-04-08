@@ -1,18 +1,19 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import CreateHabitScreen from '../screens/CreateHabitScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 import EditHabitScreen from '../screens/EditHabitScreen';
 import HomeScreen from '../screens/HomeScreen';
-import { useUserContext } from '../utils/fn';
-import { User, UserWID } from '../utils/models';
+import {useUserContext} from '../utils/fn';
+import {User, UserWID} from '../utils/models';
 import {HomeStackParamList} from '../utils/types';
 import firestore from '@react-native-firebase/firestore';
 
 const Stack = createStackNavigator<HomeStackParamList>();
 
 const HomeStackNavigator = () => {
-  const {uid, friends, setFriends, friendRequests, setFriendRequests} = useUserContext();
+  const {uid, friends, setFriends, friendRequests, setFriendRequests} =
+    useUserContext();
 
   useEffect(() => {
     const socialRef = firestore()

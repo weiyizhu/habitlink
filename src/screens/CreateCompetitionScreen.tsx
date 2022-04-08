@@ -178,7 +178,8 @@ const CreateCompetitionScreen = ({
           mode="contained"
           color="lightgreen"
           style={tailwind('mt-5')}
-          onPress={createChallenge}>
+          onPress={createChallenge}
+        >
           Send Challenge
         </Button>
       </View>

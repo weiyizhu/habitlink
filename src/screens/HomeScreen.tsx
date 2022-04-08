@@ -8,7 +8,6 @@ import firestore from '@react-native-firebase/firestore';
 import {Habit} from '../utils/models';
 import {useUserContext} from '../utils/fn';
 
-
 const HomeScreen = ({navigation}: HomeScreenProp) => {
   const tailwind = useTailwind();
   const {uid, habits, setHabits} = useUserContext();

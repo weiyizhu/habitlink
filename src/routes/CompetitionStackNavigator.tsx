@@ -31,7 +31,8 @@ const CompetitionStackNavigator = () => {
         //   paddingLeft: 15,
         // },
         headerTitleAlign: 'center',
-      }}>
+      }}
+    >
       <Stack.Screen
         name="CompetitionStack"
         component={CompetitionScreen}

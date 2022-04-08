@@ -33,7 +33,8 @@ const LoginScreen = () => {
           fontFamily: 'YaldeviColombo-SemiBold',
           height: 120,
           textAlign: 'center',
-        }}>
+        }}
+      >
         Habitlink
       </Text>
       <TextInput
@@ -51,7 +52,8 @@ const LoginScreen = () => {
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={usernameE !== ''}>
+          visible={usernameE !== ''}
+        >
           {usernameE}
         </HelperText>
       </View>
@@ -71,13 +73,15 @@ const LoginScreen = () => {
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={passwordE !== ''}>
+          visible={passwordE !== ''}
+        >
           {passwordE}
         </HelperText>
       </View>
       <Text
         onPress={() => navigation.navigate('RootForgotStack')}
-        style={tailwind('text-right w-10/12 pb-4 text-blue-500')}>
+        style={tailwind('text-right w-10/12 pb-4 text-blue-500')}
+      >
         {' '}
         Forgot password?
       </Text>
@@ -88,7 +92,7 @@ const LoginScreen = () => {
           setPasswordE('');
           const pwd = password;
           setPassword('');
-          signIn('oop_123@yopmail.com', 'oop_123')
+          signIn(username, password)
             .then((authUser: FirebaseAuthTypes.UserCredential) => {
               const userRef = firestore()
                 .collection('users')
@@ -114,7 +118,8 @@ const LoginScreen = () => {
                 setSnackE(error.message);
               }
             });
-        }}>
+        }}
+      >
         <Text style={tailwind('text-white text-center')}> Log In</Text>
       </TouchableOpacity>
       <View style={tailwind('absolute bottom-0 w-full')}>
@@ -130,7 +135,8 @@ const LoginScreen = () => {
             Don't have an account?{' '}
             <Text
               onPress={() => navigation.navigate('RootCreateStack')}
-              style={tailwind('text-blue-500')}>
+              style={tailwind('text-blue-500')}
+            >
               Sign Up
             </Text>
           </Text>

@@ -6,7 +6,7 @@ import {UserWID} from '../utils/models';
 type FriendCardProps = {
   user: UserWID;
   navigation: any;
-}
+};
 const FriendCard = ({user, navigation}: FriendCardProps) => {
   const tailwind = useTailwind();
   const friendUid = user.uid;
@@ -16,10 +16,12 @@ const FriendCard = ({user, navigation}: FriendCardProps) => {
       style={tailwind(
         'px-3 py-2 bg-neutral-200 flex-row justify-between items-center mb-4',
       )}
-      onPress={() => { navigation.navigate('ShowHome', {
-        friendUid: friendUid, 
-        friendName: user.name
-      });}}
+      onPress={() => {
+        navigation.navigate('ShowHome', {
+          friendUid: friendUid,
+          friendName: user.name,
+        });
+      }}
     >
       <View>
         <Text style={tailwind('text-2xl font-YC_SemiBold')}>{user.name}</Text>

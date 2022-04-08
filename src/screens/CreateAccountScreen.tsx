@@ -123,7 +123,7 @@ const CreateAccountScreen = () => {
                 wld: wld,
                 friends: [],
                 sentFriendRequests: [],
-                competitionRequests: []
+                competitionRequests: [],
               };
 
               firestore()

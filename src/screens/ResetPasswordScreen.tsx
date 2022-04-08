@@ -1,13 +1,10 @@
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {TextInput, HelperText} from 'react-native-paper';
-import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TextInput, HelperText, Button} from 'react-native-paper';
+import React, {useState} from 'react';
+import {View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
-import {useNavigation} from '@react-navigation/native';
-import {ResetScreenProp, SettingsScreenProp} from '../utils/types';
 import {sendPasswordReset} from '../utils/auth';
 import {useUserContext} from '../utils/fn';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {ResetScreenNavigationProp} from '../utils/types';
 
 const ResetPasswordScreen = ({navigation}: ResetScreenNavigationProp) => {
@@ -17,10 +14,11 @@ const ResetPasswordScreen = ({navigation}: ResetScreenNavigationProp) => {
 
   const tailwind = useTailwind();
   return (
-    <View style={tailwind('flex-1 items-center justify-center')}>
+    <View style={tailwind('flex-1 px-7')}>
+      <View style={tailwind('py-3')}></View>
       <TextInput
         style={tailwind(
-          'border border-gray-200 bg-gray-50 p-2 m-2 h-5 w-10/12 rounded-md',
+          'border border-gray-200 bg-gray-50 p-2 m-1 h-5 rounded-md',
         )}
         underlineColor="transparent"
         activeUnderlineColor="transparent"
@@ -29,7 +27,7 @@ const ResetPasswordScreen = ({navigation}: ResetScreenNavigationProp) => {
         error={usernameE !== ''}
         onChangeText={val => setUsername(val)}
       />
-      <View style={tailwind('w-10/12')}>
+      <View style={tailwind('w-10/12 pb-1')}>
         <HelperText
           style={tailwind('text-left')}
           type="error"
@@ -38,8 +36,11 @@ const ResetPasswordScreen = ({navigation}: ResetScreenNavigationProp) => {
           {usernameE}
         </HelperText>
       </View>
-      <TouchableOpacity
-        style={tailwind('bg-blue-500 rounded py-2 my-3 w-10/12')}
+      <Button
+        icon="send"
+        mode="contained"
+        color="lightgreen"
+        style={tailwind('mt-5 m-1')}
         onPress={() => {
           const temp = username;
           setUsername('');
@@ -61,11 +62,8 @@ const ResetPasswordScreen = ({navigation}: ResetScreenNavigationProp) => {
             });
         }}
       >
-        <Text style={tailwind('text-white text-center')}>
-          {' '}
-          Send Reset Email
-        </Text>
-      </TouchableOpacity>
+        Send Reset Email
+      </Button>
     </View>
   );
 };

@@ -30,7 +30,8 @@ const BottomTabNavigator = () => {
           height: 150,
         },
         headerTitleAlign: 'center',
-      })}>
+      })}
+    >
       <Tab.Screen
         name="Home"
         component={HomeStackNavigator}

@@ -18,7 +18,8 @@ const DeleteHabitDialog = ({
       // useNativeDriver
       // hideModalContentWhileAnimating
       animationIn="fadeIn"
-      animationOut="fadeOut">
+      animationOut="fadeOut"
+    >
       <View style={tailwind('bg-white p-7')}>
         <Text style={tailwind('text-2xl pb-3 font-YC_SemiBold')}>
           Delete habit?
@@ -29,7 +30,8 @@ const DeleteHabitDialog = ({
         <View style={tailwind('flex-row justify-end')}>
           <Text
             style={tailwind('text-xl font-YC_Medium mr-6 font-bold')}
-            onPress={() => setIsDeleteDialogVisible(false)}>
+            onPress={() => setIsDeleteDialogVisible(false)}
+          >
             No
           </Text>
           <Text
@@ -37,7 +39,8 @@ const DeleteHabitDialog = ({
             onPress={() => {
               setIsDeleteDialogVisible(false);
               handleDeleteHabit();
-            }}>
+            }}
+          >
             Yes
           </Text>
         </View>

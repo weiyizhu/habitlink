@@ -46,10 +46,7 @@ const FriendStackNavigator = () => {
           title: 'Add A Friend',
         })}
       />
-<Stack.Screen
-        name="ShowHome"
-        component={FriendHabitScreen}
-      />
+      <Stack.Screen name="ShowHome" component={FriendHabitScreen} />
     </Stack.Navigator>
   );
 };

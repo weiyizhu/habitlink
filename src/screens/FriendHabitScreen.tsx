@@ -9,15 +9,18 @@ import {useUserContext} from '../utils/fn';
 
 const FriendHabitScreen = ({route, navigation}: ShowHomeNavigationProp) => {
   const {friendUid, friendName} = route.params;
-  const {uid} = useUserContext()
+  const {uid} = useUserContext();
   const tailwind = useTailwind();
-  const [habits, setHabits] = useState<HabitWithUid[]>([])
+  const [habits, setHabits] = useState<HabitWithUid[]>([]);
 
   useEffect(() => {
     navigation.setOptions({
-      title: friendName ? friendName: 'Error',
+      title: friendName ? friendName : 'Error',
     });
-    const habitRef = firestore().collection('habits').where('user', '==', friendUid).where('friends','array-contains', uid);
+    const habitRef = firestore()
+      .collection('habits')
+      .where('user', '==', friendUid)
+      .where('friends', 'array-contains', uid);
     return habitRef.onSnapshot(querySnapshot => {
       console.log(querySnapshot);
       const habitList: HabitWithUid[] = [];
@@ -29,9 +32,9 @@ const FriendHabitScreen = ({route, navigation}: ShowHomeNavigationProp) => {
     });
   }, [uid, setHabits]);
 
-  const renderItem: ListRenderItem<HabitWithUid> = ({
-    item,
-  }) => <FriendHabitItem {...item} navigation={navigation} />;
+  const renderItem: ListRenderItem<HabitWithUid> = ({item}) => (
+    <FriendHabitItem {...item} navigation={navigation} />
+  );
 
   return (
     <View style={tailwind('flex-1 px-7')}>

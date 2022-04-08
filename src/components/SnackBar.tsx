@@ -9,7 +9,8 @@ const SnackBar = () => {
       visible={snackE !== ''}
       onDismiss={() => {
         setSnackE('');
-      }}>
+      }}
+    >
       {snackE}
     </Snackbar>
   );

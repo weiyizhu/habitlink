@@ -54,7 +54,7 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
         data={friendRequests.concat(friends)}
         renderItem={({item}) => {
           return item.friends.includes(uid as string) ? (
-            <FriendCard user={item as UserWID} navigation={navigation}/>
+            <FriendCard user={item as UserWID} navigation={navigation} />
           ) : (
             <FriendRequestCard
               name={item.name}

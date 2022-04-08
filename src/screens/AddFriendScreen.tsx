@@ -1,6 +1,6 @@
-import {TextInput, HelperText} from 'react-native-paper';
+import {TextInput, HelperText, Button} from 'react-native-paper';
 import React, {useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import {AddFriendNavigationProp} from '../utils/types';
 import firestore from '@react-native-firebase/firestore';
@@ -13,10 +13,11 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
 
   const tailwind = useTailwind();
   return (
-    <View style={tailwind('flex-1 items-center justify-center')}>
+    <View style={tailwind('flex-1 px-7')}>
+      <View style={tailwind('py-3')}></View>
       <TextInput
         style={tailwind(
-          'border border-gray-200 bg-gray-50 p-2 m-2 h-5 w-10/12 rounded-md',
+          'border border-gray-200 bg-gray-50 p-2 m-1 h-5 rounded-md',
         )}
         underlineColor="transparent"
         activeUnderlineColor="transparent"
@@ -25,16 +26,21 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
         error={friendRequestE !== ''}
         onChangeText={val => setFriendRequest(val)}
       />
-      <View style={tailwind('w-10/12')}>
+      <View style={tailwind('w-10/12 pb-1')}>
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={friendRequestE !== ''}>
+          visible={friendRequestE !== ''}
+        >
           {friendRequestE}
         </HelperText>
       </View>
-      <TouchableOpacity
-        style={tailwind('bg-blue-500 rounded py-2 my-3 w-10/12')}
+
+      <Button
+        icon="send"
+        mode="contained"
+        color="lightgreen"
+        style={tailwind('mt-5 m-1')}
         onPress={() => {
           const temp = friendRequest;
           setFriendRequest('');
@@ -62,6 +68,7 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
             .then(querySnapshot => {
               if (querySnapshot.size > 1) {
                 setSnackE('An error occurred');
+                return;
               } else if (querySnapshot.size === 0) {
                 setSnackE(
                   'If a user exists with this email, a friend request has been sent to them',
@@ -79,17 +86,14 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
                     ),
                   });
               });
-
               setSnackE(
                 'If a user exists with this email, a friend request has been sent to them',
               );
             });
-        }}>
-        <Text style={tailwind('text-white text-center')}>
-          {' '}
-          Send Friend Request
-        </Text>
-      </TouchableOpacity>
+        }}
+      >
+        Send Friend Request
+      </Button>
     </View>
   );
 };

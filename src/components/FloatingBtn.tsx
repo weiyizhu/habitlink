@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTailwind} from 'tailwind-rn/dist';
-import { FloatingBtnProps } from '../utils/types';
+import {FloatingBtnProps} from '../utils/types';
 
 const FloatingBtn = ({handlePlusCirclePress}: FloatingBtnProps) => {
   const tailwind = useTailwind();
