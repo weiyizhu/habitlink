@@ -1,16 +1,12 @@
-import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {TextInput, HelperText} from 'react-native-paper';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
-import {useNavigation} from '@react-navigation/native';
-import {FriendScreenProp} from '../utils/types';
-import {sendPasswordReset} from '../utils/auth';
+import {AddFriendNavigationProp} from '../utils/types';
 import firestore from '@react-native-firebase/firestore';
-import {User} from '../utils/models';
 import {useUserContext} from '../utils/fn';
 
-const AddFriendsScreen = ({navigation}: FriendScreenProp) => {
+const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
   const {uid, user, setSnackE} = useUserContext();
   const [friendRequest, setFriendRequest] = useState('');
   const [friendRequestE, setFriendRequestE] = useState('');
@@ -61,7 +57,6 @@ const AddFriendsScreen = ({navigation}: FriendScreenProp) => {
 
           firestore()
           .collection('users')
-          // Filter results
           .where('email', '==', temp)
           .get()
           .then(querySnapshot => {

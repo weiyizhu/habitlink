@@ -41,7 +41,8 @@ export type FriendStackParamList = {
   FriendStack: undefined;
   AddFriend: undefined;
   ShowHome: {
-    user: UserWID;
+    friendUid: string;
+    friendName: string;
   };
 };
 
@@ -92,7 +93,6 @@ export type FriendScreenProp = NativeStackScreenProps<
   FriendStackParamList,
   'FriendStack'
 >;
-
 export type CompetitionScreenProp = NativeStackScreenProps<
   CompetitionStackParamList,
   'CompetitionStack'
@@ -134,7 +134,7 @@ export type HabitWithUid = Habit & {
 };
 
 export type HabitItemProps = HabitWithUid & {
-  navigation: NativeStackNavigationProp<HomeStackParamList, 'HomeStack'>;
+  navigation: any;
 };
 
 export enum fontType {

@@ -88,7 +88,7 @@ const LoginScreen = () => {
           setPasswordE('');
           const pwd = password;
           setPassword('');
-          signIn(username, pwd)
+          signIn('oop_123@yopmail.com', 'oop_123')
             .then((authUser: FirebaseAuthTypes.UserCredential) => {
               const userRef = firestore()
                 .collection('users')

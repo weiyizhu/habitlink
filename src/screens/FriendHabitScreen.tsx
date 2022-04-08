@@ -1,26 +1,23 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, ListRenderItem, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
-import FloatingBtn from '../components/FloatingBtn';
-import HabitItem from '../components/HabitItem';
-import {HabitWithUid, HomeScreenProp, TimePeriod} from '../utils/types';
+import FriendHabitItem from '../components/FriendHabitItem';
+import {HabitWithUid, ShowHomeNavigationProp} from '../utils/types';
 import firestore from '@react-native-firebase/firestore';
 import {Habit} from '../utils/models';
 import {useUserContext} from '../utils/fn';
 
-
-const HomeScreen = ({navigation}: HomeScreenProp) => {
+const FriendHabitScreen = ({route, navigation}: ShowHomeNavigationProp) => {
+  const {friendUid, friendName} = route.params;
+  const {uid} = useUserContext()
   const tailwind = useTailwind();
-  const {uid, habits, setHabits} = useUserContext();
-
-  const handlePlusCirclePress = () => {
-    navigation.navigate('CreateHabit', {
-      user: uid as string,
-    });
-  };
+  const [habits, setHabits] = useState<HabitWithUid[]>([])
 
   useEffect(() => {
-    const habitRef = firestore().collection('habits').where('user', '==', uid);
+    navigation.setOptions({
+      title: friendName ? friendName: 'Error',
+    });
+    const habitRef = firestore().collection('habits').where('user', '==', friendUid).where('friends','array-contains', uid);
     return habitRef.onSnapshot(querySnapshot => {
       console.log(querySnapshot);
       const habitList: HabitWithUid[] = [];
@@ -34,16 +31,13 @@ const HomeScreen = ({navigation}: HomeScreenProp) => {
 
   const renderItem: ListRenderItem<HabitWithUid> = ({
     item,
-    index,
-    separators,
-  }) => <HabitItem {...item} navigation={navigation} />;
+  }) => <FriendHabitItem {...item} navigation={navigation} />;
 
   return (
     <View style={tailwind('flex-1 px-7')}>
       <FlatList data={habits} renderItem={renderItem} extraData={habits} />
-      <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
     </View>
   );
 };
 
-export default HomeScreen;
+export default FriendHabitScreen;

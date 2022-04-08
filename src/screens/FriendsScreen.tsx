@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {FlatList} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import {View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import FriendCard from '../components/FriendCard';
 import {useUserContext} from '../utils/fn';
-import {User, UserWID} from '../utils/models';
+import {UserWID} from '../utils/models';
 import FriendRequestCard from '../components/RequestCard';
 import FloatingBtn from '../components/FloatingBtn';
 import {FriendScreenProp} from '../utils/types';
@@ -54,7 +54,7 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
         data={friendRequests.concat(friends)}
         renderItem={({item}) => {
           return item.friends.includes(uid as string) ? (
-            <FriendCard {...item} />
+            <FriendCard user={item as UserWID} navigation={navigation}/>
           ) : (
             <FriendRequestCard
               name={item.name}

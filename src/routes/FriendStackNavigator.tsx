@@ -1,9 +1,8 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import AddFriendsScreen from '../screens/AddFriendScreen';
-import EditHabitScreen from '../screens/EditHabitScreen';
+import FriendHabitScreen from '../screens/FriendHabitScreen';
 import FriendsScreen from '../screens/FriendsScreen';
-import HomeScreen from '../screens/HomeScreen';
 import {FriendStackParamList, HomeStackParamList} from '../utils/types';
 
 const Stack = createStackNavigator<FriendStackParamList>();
@@ -37,15 +36,19 @@ const FriendStackNavigator = () => {
         name="FriendStack"
         component={FriendsScreen}
         options={() => ({
-          title: 'Habitlink',
+          title: 'Friends',
         })}
       />
       <Stack.Screen
         name="AddFriend"
         component={AddFriendsScreen}
         options={() => ({
-          title: 'Habitlink',
+          title: 'Add A Friend',
         })}
+      />
+<Stack.Screen
+        name="ShowHome"
+        component={FriendHabitScreen}
       />
     </Stack.Navigator>
   );
