@@ -7,13 +7,12 @@ import {UserWID} from '../utils/models';
 import {useUserContext} from '../utils/fn';
 
 type RequestProps = {
-  obj: any;
   check: (item: any) => void;
   close: (item: any) => void;
   name: string;
-}
+};
 
-const RequestCard = ({obj, check, close, name}: RequestProps) => {
+const RequestCard = ({check, close, name}: RequestProps) => {
   const tailwind = useTailwind();
   const {uid, friends} = useUserContext();
 
@@ -27,16 +26,12 @@ const RequestCard = ({obj, check, close, name}: RequestProps) => {
       <View style={tailwind('flex-row')}>
         <MaterialCommunityIcons
           name={'check'}
-          onPress={() => check(obj)}
+          onPress={check}
           size={25}
           color="green"
           style={tailwind('px-3')}
         />
-        <MaterialCommunityIcons
-          name={'close'}
-          onPress={() => close(obj)}
-          size={25}
-        />
+        <MaterialCommunityIcons name={'close'} onPress={close} size={25} />
       </View>
     </View>
   );

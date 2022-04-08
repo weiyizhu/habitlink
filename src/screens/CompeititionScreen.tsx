@@ -92,7 +92,8 @@ const CompeititionScreen = ({route, navigation}: CompetitionScreenProp) => {
             <Text
               style={tailwind(
                 'text-4xl pb-2 font-YC_SemiBold text-transparent',
-              )}>
+              )}
+            >
               0
             </Text>
             <Text style={tailwind('text-center text-xl font-YC_SemiBold')}>
@@ -115,7 +116,11 @@ const CompeititionScreen = ({route, navigation}: CompetitionScreenProp) => {
           {/* <Text>Compeitition Screen</Text> */}
           {user &&
             user.competitionRequests.map(request => (
-              <FriendRequestCard obj={null} name={request.name} check={(v)=> console.log()} close={(v) => console.log()} />
+              <FriendRequestCard
+                name={request.name}
+                check={v => console.log()}
+                close={v => console.log()}
+              />
             ))}
           <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
         </>

@@ -8,12 +8,11 @@ import {useUserContext} from '../utils/fn';
 import {User, UserWID} from '../utils/models';
 import FriendRequestCard from '../components/RequestCard';
 import FloatingBtn from '../components/FloatingBtn';
-import { FriendScreenProp } from '../utils/types';
+import {FriendScreenProp} from '../utils/types';
 
 const FriendsScreen = ({navigation}: FriendScreenProp) => {
   const tailwind = useTailwind();
-  const {uid, friends, friendRequests}=
-    useUserContext();
+  const {uid, friends, friendRequests} = useUserContext();
 
   const check = (user: UserWID) => {
     const friendsArr = [...user.friends];
@@ -36,7 +35,7 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
       .update({
         friends: myArr,
       });
-  }
+  };
 
   const close = (user: UserWID) => {
     firestore()
@@ -47,7 +46,7 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
           (id: string) => id !== uid,
         ),
       });
-  }
+  };
 
   return (
     <View style={tailwind('flex-1 px-7')}>
@@ -57,14 +56,18 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
           return item.friends.includes(uid as string) ? (
             <FriendCard {...item} />
           ) : (
-            <FriendRequestCard obj={item} name={item.name} check={check} close={close} />
+            <FriendRequestCard
+              name={item.name}
+              check={() => check(item)}
+              close={() => close(item)}
+            />
           );
         }}
         extraData={friendRequests.concat(friends)}
       />
       <FloatingBtn
         handlePlusCirclePress={() => {
-          navigation.navigate("AddFriend")
+          navigation.navigate('AddFriend');
         }}
       />
     </View>
