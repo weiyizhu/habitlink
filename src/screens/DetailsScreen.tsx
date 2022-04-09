@@ -18,11 +18,12 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import moment from 'moment';
 import {firebase} from '@react-native-firebase/firestore';
+import {Competition} from '../utils/models';
 
 const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
   const tailwind = useTailwind();
-  const {habits} = useUserContext();
-  const {uid} = route.params;
+  const {habits, user: currUser, uid: userId} = useUserContext();
+  const {uid} = route.params; // habit uid
   const habit = habits.find(habitObj => habitObj.uid === uid);
   const [markedDates, setMarkedDates] = useState<MarkedDatesType>({});
   const [currentStreak, setCurrentStreak] = useState(0);
@@ -100,6 +101,33 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
     firebase.firestore().collection('habits').doc(uid).update({
       dates: newDates,
     });
+
+    if (
+      currUser &&
+      currUser.competition &&
+      Object.keys(currUser.competition).length > 0 &&
+      userId
+    ) {
+      const startDate = moment(
+        currUser.competition.startDate.toDate(),
+        'YYYY-MM-DD',
+      );
+      const endDate = moment(
+        currUser.competition.endDate.toDate(),
+        'YYYY-MM-DD',
+      );
+      const pressedDate = moment(day.dateString, 'YYYY-MM-DD');
+      const newCompleted = currUser.competition.completed + index > -1 ? -1 : 1;
+      const newCompetition: Competition = {
+        ...currUser.competition,
+        completed: newCompleted,
+      };
+      if (pressedDate >= startDate && pressedDate <= endDate) {
+        firebase.firestore().collection('users').doc(userId).update({
+          competition: newCompetition,
+        });
+      }
+    }
   };
 
   const {dates, description, goalPerTP, name, timePeriod, user} = habit;

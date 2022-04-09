@@ -86,13 +86,18 @@ const AcceptCompetitionScreen = ({
       });
     });
 
+    firebase.firestore.Timestamp.fromDate(new Date(moment().format('LL')));
+
     const userCompetition: Competition = {
       competitor: request.uid,
-      startDate: firebase.firestore.Timestamp.fromDate(new Date(startDate)),
+      startDate: firebase.firestore.Timestamp.fromDate(
+        new Date(moment(startDate).format('LL')),
+      ),
       endDate: firebase.firestore.Timestamp.fromDate(
-        new Date(endDate.toDate()),
+        new Date(moment(endDate.toDate()).format('LL')),
       ),
       total: calcCompetitionTotal(selectedHabits),
+      completed: 0,
     };
 
     firebase.firestore().collection('users').doc(uid).update({
@@ -101,11 +106,14 @@ const AcceptCompetitionScreen = ({
 
     const challengerCompetition: Competition = {
       competitor: uid,
-      startDate: firebase.firestore.Timestamp.fromDate(new Date(startDate)),
+      startDate: firebase.firestore.Timestamp.fromDate(
+        new Date(moment(startDate).format('LL')),
+      ),
       endDate: firebase.firestore.Timestamp.fromDate(
-        new Date(endDate.toDate()),
+        new Date(moment(endDate.toDate()).format('LL')),
       ),
       total: calcCompetitionTotal(validChallengerHabits),
+      completed: 0,
     };
 
     firebase.firestore().collection('users').doc(request.uid).update({
@@ -175,8 +183,7 @@ const AcceptCompetitionScreen = ({
           mode="contained"
           color="lightgreen"
           style={tailwind('mt-5')}
-          onPress={createChallenge}
-        >
+          onPress={createChallenge}>
           Accept Challenge
         </Button>
       </View>

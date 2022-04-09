@@ -5,32 +5,11 @@ import {useTailwind} from 'tailwind-rn/dist';
 import {sortDates} from '../utils/fn';
 import {CompetitorInfoProps, TimePeriod} from '../utils/types';
 
-const CompetitorInfo = ({
-  wld,
-  name,
-  habits,
-  startDate,
-  total,
-  score,
-  setScore,
-}: CompetitorInfoProps) => {
+const CompetitorInfo = ({wld, name, habits, score}: CompetitorInfoProps) => {
   const tailwind = useTailwind();
   const {wins, losses, draws} = wld;
   const currWeek = moment().week();
   const currYear = moment().year();
-
-  useEffect(() => {
-    let completed = 0;
-    habits.forEach(habit => {
-      const sortedDates = sortDates(habit.dates, false);
-      for (const date of sortedDates) {
-        const currDay = moment(date.toDate());
-        if (currDay < moment(startDate.toDate())) break;
-        completed++;
-      }
-    });
-    setScore(Math.ceil((completed / total) * 100));
-  }, [habits, setScore, startDate, total]);
 
   return (
     <View style={tailwind('w-5/12 items-center')}>
@@ -59,8 +38,7 @@ const CompetitorInfo = ({
             key={habit.uid}
             style={tailwind(
               `px-3 py-2 bg-neutral-200 mb-4 w-full items-center ${bgColor}`,
-            )}
-          >
+            )}>
             <Text style={tailwind('text-xl font-YC_SemiBold')}>
               {habit.name}
             </Text>

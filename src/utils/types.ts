@@ -284,10 +284,7 @@ export interface CompetitorInfoProps {
   wld: WLD;
   name: string;
   habits: HabitWithUid[];
-  startDate: FirebaseFirestoreTypes.Timestamp;
-  total: number;
   score: number;
-  setScore: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export type Challenger = {

@@ -15,8 +15,6 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
   const [myHabits, setMyHabits] = useState<HabitWithUid[]>([]);
   const [compUser, setCompUser] = useState<User>();
   const [compHabits, setCompHabits] = useState<HabitWithUid[]>([]);
-  const [myScore, setMyScore] = useState<number>(0);
-  const [compScore, setCompScore] = useState<number>(0);
 
   useEffect(() => {
     if (user && user.competition && Object.keys(user.competition).length > 0) {
@@ -97,17 +95,15 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
             wld={user.wld}
             name={user.name}
             habits={myHabits}
-            startDate={user.competition.startDate}
-            total={user.competition.total}
-            score={myScore}
-            setScore={setMyScore}
+            score={Math.ceil(
+              (user.competition.completed / user.competition.total) * 100,
+            )}
           />
           <View style={tailwind('w-1/12 items-center')}>
             <Text
               style={tailwind(
                 'text-4xl pb-2 font-YC_SemiBold text-transparent',
-              )}
-            >
+              )}>
               0
             </Text>
             <Text style={tailwind('text-center text-xl font-YC_SemiBold')}>
@@ -118,10 +114,10 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
             wld={compUser.wld}
             name={compUser.name}
             habits={compHabits}
-            startDate={compUser.competition.startDate}
-            total={compUser.competition.total}
-            score={compScore}
-            setScore={setCompScore}
+            score={Math.ceil(
+              (compUser.competition.completed / compUser.competition.total) *
+                100,
+            )}
           />
         </View>
       ) : (

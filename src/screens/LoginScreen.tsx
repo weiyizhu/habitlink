@@ -90,7 +90,6 @@ const LoginScreen = () => {
         onPress={() => {
           setUsernameE('');
           setPasswordE('');
-          const pwd = password;
           setPassword('');
           signIn(username, password)
             .then((authUser: FirebaseAuthTypes.UserCredential) => {
