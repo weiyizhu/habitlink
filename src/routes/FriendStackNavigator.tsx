@@ -26,12 +26,8 @@ const FriendStackNavigator = () => {
         headerStyle: {
           height: 150,
         },
-        headerRightContainerStyle: {
-          paddingLeft: 15,
-        },
         headerTitleAlign: 'center',
-      }}
-    >
+      }}>
       <Stack.Screen
         name="FriendStack"
         component={FriendsScreen}
