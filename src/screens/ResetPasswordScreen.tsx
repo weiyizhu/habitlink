@@ -15,7 +15,7 @@ const ResetPasswordScreen = ({navigation}: ResetScreenNavigationProp) => {
   const tailwind = useTailwind();
   return (
     <View style={tailwind('flex-1 px-7')}>
-      <View style={tailwind('py-3')}></View>
+      <View style={tailwind('py-3')} />
       <TextInput
         style={tailwind(
           'border border-gray-200 bg-gray-50 p-2 m-1 h-5 rounded-md',

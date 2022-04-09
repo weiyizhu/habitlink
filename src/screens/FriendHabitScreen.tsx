@@ -30,7 +30,7 @@ const FriendHabitScreen = ({route, navigation}: ShowHomeNavigationProp) => {
       });
       setHabits(habitList);
     });
-  }, [uid, setHabits]);
+  }, [uid, setHabits, navigation, friendName, friendUid]);
 
   const renderItem: ListRenderItem<HabitWithUid> = ({item}) => (
     <FriendHabitItem {...item} navigation={navigation} />
