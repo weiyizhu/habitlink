@@ -1,13 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
-import {RadioButton} from 'react-native-paper';
 import {useTailwind} from 'tailwind-rn/dist';
-import {FrequencyModalProps, HabitWithUid, TimePeriod} from '../utils/types';
+import {HabitWithUid, TimePeriod} from '../utils/types';
 import Modal from 'react-native-modal/dist/modal';
-import FrequencyRadioBtn from './FrequencyRadioBtn';
 import {useUserContext} from '../utils/fn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Habit} from '../utils/models';
 
 export interface SelectHabitsModal {
   isModalVisible: boolean;
@@ -25,26 +22,31 @@ const SelectHabitsModal = ({
   setSelectedHabits,
 }: SelectHabitsModal) => {
   const tailwind = useTailwind();
-  const {setSnackE, habits} = useUserContext();
-  const initHabitsList: HabitsCheckBox[] = [];
-  habits.forEach(habit => {
-    if (habit.timePeriod !== TimePeriod.Month) {
-      initHabitsList.push({
-        ...habit,
-        inCompetition: false,
-        checked: false,
-      });
-    }
-  });
-  const [habitsList, setHabitsList] =
-    useState<HabitsCheckBox[]>(initHabitsList);
+  const {habits} = useUserContext();
+  const [habitsList, setHabitsList] = useState<HabitsCheckBox[]>([]);
 
-  const handleModalSave = () => {
+  useEffect(() => {
+    const newHabitsList: HabitsCheckBox[] = [];
+    habits.forEach(habit => {
+      if (habit.timePeriod !== TimePeriod.Month) {
+        const index = habitsList.findIndex(e => e.uid === habit.uid);
+        if (index > -1) {
+          newHabitsList.push({...habit, checked: habitsList[index].checked});
+        } else {
+          newHabitsList.push({...habit, checked: false});
+        }
+      }
+    });
+    setHabitsList(newHabitsList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [habits]);
+
+  useEffect(() => {
     const getCheckedFriends: HabitWithUid[] = habitsList
       .filter(habit => habit.checked)
       .map(({checked, ...properties}) => properties);
     setSelectedHabits(getCheckedFriends);
-  };
+  }, [habitsList, setSelectedHabits]);
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -54,9 +56,7 @@ const SelectHabitsModal = ({
         // useNativeDriver
         // hideModalContentWhileAnimating
         animationIn="fadeIn"
-        animationOut="fadeOut"
-        onDismiss={handleModalSave}
-      >
+        animationOut="fadeOut">
         <View style={tailwind('bg-white p-7')}>
           {habitsList.length > 0 ? (
             <>
@@ -64,8 +64,7 @@ const SelectHabitsModal = ({
                 return (
                   <View
                     key={habit.uid}
-                    style={tailwind('flex-row mb-3 items-center')}
-                  >
+                    style={tailwind('flex-row mb-3 items-center')}>
                     <MaterialCommunityIcons
                       onPress={() => {
                         setHabitsList(prev => {
@@ -91,11 +90,6 @@ const SelectHabitsModal = ({
                   </View>
                 );
               })}
-              {/* <Text
-                style={tailwind('text-xl font-YC_Medium self-end mr-2')}
-                onPress={handleModalSave}>
-                Save
-              </Text> */}
             </>
           ) : (
             <Text style={tailwind('text-xl font-YC_Regular pl-3')}>

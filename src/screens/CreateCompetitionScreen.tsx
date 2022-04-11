@@ -85,49 +85,11 @@ const CreateCompetitionScreen = ({
     setSnackE('Competition request sent');
     const popAction = StackActions.pop(1);
     navigation.dispatch(popAction);
-
-    // let total = 0;
-    // selectedHabits.forEach(habit => {
-    //   const goalPerTP =
-    //     habit.timePeriod === TimePeriod.Day ? 7 : habit.goalPerTP;
-
-    //   if (today === 0) {
-    //     total += goalPerTP * 3;
-    //   } else {
-    //     total += goalPerTP * 4;
-
-    //     let completed = 0;
-    //     const sortedDates = sortDates(habit.dates, false);
-    //     for (const date of sortedDates) {
-    //       const currDay = moment(date.toDate());
-    //       if (currDay.year() === currYear && currDay.week() === currWeek) {
-    //         if (currDay < moment(startDate)) completed++;
-    //       } else break;
-    //     }
-    //     total -= completed;
-    //   }
-    // });
   };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={tailwind('flex-1 px-7')}>
-        {/* <TextInput
-          label="Start Date"
-          value={moment(startDate).format('dddd (MMMM DD, YYYY)')}
-          underlineColor="#A7A7A7"
-          activeUnderlineColor="#637081"
-          style={tailwind('mb-5 bg-white')}
-          editable={false}
-        />
-        <TextInput
-          label="End Date"
-          value={endDate.format('dddd (MMMM DD, YYYY)')}
-          underlineColor="#A7A7A7"
-          activeUnderlineColor="#637081"
-          style={tailwind('mb-5 bg-white')}
-          editable={false}
-        /> */}
         <TextInput
           label="Choose Habits"
           value={`${selectedHabits.length} habit${
@@ -178,8 +140,7 @@ const CreateCompetitionScreen = ({
           mode="contained"
           color="lightgreen"
           style={tailwind('mt-5')}
-          onPress={createChallenge}
-        >
+          onPress={createChallenge}>
           Send Challenge
         </Button>
       </View>
