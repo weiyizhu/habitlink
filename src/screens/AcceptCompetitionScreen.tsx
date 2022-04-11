@@ -5,22 +5,10 @@ import React, {useState} from 'react';
 import {View, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useTailwind} from 'tailwind-rn/dist';
-import ChallengerModal from '../components/ChallengerModal';
 import SelectHabitsModal from '../components/SelectHabitsModal';
-import {
-  calcCompetitionTotal,
-  DeleteCompetitionRequest,
-  sortDates,
-  useUserContext,
-} from '../utils/fn';
-import {Competition, CompetitionRequest, Habit, User} from '../utils/models';
-import {
-  AcceptCompetitionScreenProp,
-  Challenger,
-  CreateCompetitionScreenProp,
-  HabitWithUid,
-  TimePeriod,
-} from '../utils/types';
+import {calcCompetitionTotal, useUserContext} from '../utils/fn';
+import {Competition, Habit} from '../utils/models';
+import {AcceptCompetitionScreenProp, HabitWithUid} from '../utils/types';
 
 const AcceptCompetitionScreen = ({
   navigation,
@@ -42,16 +30,17 @@ const AcceptCompetitionScreen = ({
   }
 
   const createChallenge = async () => {
+    // check validity
     if (selectedHabits.length === 0) {
       setSnackE('At least one habit has to be chosen');
       return;
     }
-
     if (uid === null || user === null) {
       setSnackE('Cannot find user');
       return;
     }
 
+    // update inCompetition to true for selected habits
     selectedHabits.forEach(habit => {
       firebase.firestore().collection('habits').doc(habit.uid).update({
         inCompetition: true,
@@ -86,8 +75,7 @@ const AcceptCompetitionScreen = ({
       });
     });
 
-    firebase.firestore.Timestamp.fromDate(new Date(moment().format('LL')));
-
+    // Create competition object
     const userCompetition: Competition = {
       competitor: request.uid,
       startDate: firebase.firestore.Timestamp.fromDate(
@@ -99,7 +87,6 @@ const AcceptCompetitionScreen = ({
       total: calcCompetitionTotal(selectedHabits),
       completed: 0,
     };
-
     firebase.firestore().collection('users').doc(uid).update({
       competition: userCompetition,
     });
@@ -115,13 +102,19 @@ const AcceptCompetitionScreen = ({
       total: calcCompetitionTotal(validChallengerHabits),
       completed: 0,
     };
-
     firebase.firestore().collection('users').doc(request.uid).update({
       competition: challengerCompetition,
     });
 
-    DeleteCompetitionRequest(user.competitionRequests, uid, request.uid);
+    // clear competitionRequests field
+    firebase.firestore().collection('users').doc(uid).update({
+      competitionRequests: [],
+    });
+    firebase.firestore().collection('users').doc(request.uid).update({
+      competitionRequests: [],
+    });
 
+    // go back to competition page
     setSnackE('Competition created');
     const popAction = StackActions.pop(1);
     navigation.dispatch(popAction);

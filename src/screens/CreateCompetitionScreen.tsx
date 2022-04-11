@@ -65,7 +65,7 @@ const CreateCompetitionScreen = ({
     );
     if (index > -1) {
       setSnackE(
-        `A previous competition request has already been sent to ${challenger.name}`,
+        `A competition request has already been sent to ${challenger.name}`,
       );
       return;
     }
