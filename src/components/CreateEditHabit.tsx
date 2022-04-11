@@ -149,7 +149,6 @@ const CreateEditHabit = ({
           setIsSharedModalVisible={setIsSharedModalVisible}
           newSharedWith={newSharedWith}
           setNewSharedWith={setNewSharedWith}
-          userUid={user}
         />
         {type === 'Edit' && (
           <>
@@ -162,8 +161,7 @@ const CreateEditHabit = ({
                 if (inCompetition) {
                   setSnackE('Cannot delete habits in competition');
                 } else setDeleteDialogVisible(true);
-              }}
-            >
+              }}>
               Delete habit
             </Button>
 

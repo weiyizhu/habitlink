@@ -221,7 +221,6 @@ export interface SharedWithModalProps {
   setIsSharedModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   newSharedWith: string[];
   setNewSharedWith: React.Dispatch<React.SetStateAction<string[]>>;
-  userUid: string;
 }
 
 export type FriendCheckbox = {
