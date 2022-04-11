@@ -150,3 +150,18 @@ export const calcCompetitionTotal = (habits: HabitWithUid[]) => {
 
   return total;
 };
+
+export const DeleteCompetitionRequest = (
+  competitionRequests: CompetitionRequest[],
+  uid: string,
+  requestUserId: string,
+) => {
+  const newCompetitionRequests = [...competitionRequests];
+  const index = newCompetitionRequests.findIndex(e => e.uid === requestUserId);
+  if (index > -1) {
+    newCompetitionRequests.splice(index, 1);
+  }
+  firebase.firestore().collection('users').doc(uid).update({
+    competitionRequests: newCompetitionRequests,
+  });
+};
