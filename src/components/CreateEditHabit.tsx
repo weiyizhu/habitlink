@@ -5,7 +5,7 @@ import {useTailwind} from 'tailwind-rn/dist';
 import {CreateEditHabitProps, TimePeriod} from '../utils/types';
 import FrequencyModal from '../components/FrequencyModal';
 import SharedWithModal from '../components/SharedWithModal';
-import DeleteHabitDialog from './DeleteHabitDialog';
+import Dialog from './Dialog';
 import {firebase} from '@react-native-firebase/firestore';
 import {useUserContext} from '../utils/fn';
 
@@ -165,10 +165,14 @@ const CreateEditHabit = ({
               Delete habit
             </Button>
 
-            <DeleteHabitDialog
-              isDeleteDialogVisible={isDeleteDialogVisible}
-              setIsDeleteDialogVisible={setDeleteDialogVisible}
-              handleDeleteHabit={handleDeleteHabit}
+            <Dialog
+              isDialogVisible={isDeleteDialogVisible}
+              setIsDialogVisible={setDeleteDialogVisible}
+              handleYes={handleDeleteHabit}
+              title={'Delete habit?'}
+              message={
+                'The habit will be permanently deleted. This action cannot be undone.'
+              }
             />
           </>
         )}
