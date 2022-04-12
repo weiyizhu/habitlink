@@ -21,7 +21,6 @@ const HomeScreen = ({navigation}: HomeScreenProp) => {
   useEffect(() => {
     const habitRef = firestore().collection('habits').where('user', '==', uid);
     return habitRef.onSnapshot(querySnapshot => {
-      console.log(querySnapshot);
       const habitList: HabitWithUid[] = [];
       querySnapshot.forEach(doc => {
         const habitInfo = doc.data() as Habit;

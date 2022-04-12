@@ -221,7 +221,6 @@ export interface SharedWithModalProps {
   setIsSharedModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   newSharedWith: string[];
   setNewSharedWith: React.Dispatch<React.SetStateAction<string[]>>;
-  userUid: string;
 }
 
 export type FriendCheckbox = {
@@ -274,10 +273,14 @@ export type MarkedDatesType = {
   [key: string]: MarkingProps;
 };
 
-export interface DeleteHabitDialogProps {
-  isDeleteDialogVisible: boolean;
-  setIsDeleteDialogVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  handleDeleteHabit: () => void;
+export interface DialogProps {
+  isDialogVisible: boolean;
+  setIsDialogVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  handleYes: () => void;
+  title: string;
+  message: string;
+  yesLabel?: string;
+  noLabel?: string;
 }
 
 export interface CompetitorInfoProps {
