@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import {View, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useTailwind} from 'tailwind-rn/dist';
+import Dialog from '../components/Dialog';
 import SelectHabitsModal from '../components/SelectHabitsModal';
 import {calcCompetitionTotal, useUserContext} from '../utils/fn';
 import {Competition, Habit} from '../utils/models';
@@ -21,6 +22,7 @@ const AcceptCompetitionScreen = ({
   const [isSelectHabitModalVisible, setIsSelectHabitModalVisible] =
     useState(false);
   const [selectedHabits, setSelectedHabits] = useState<HabitWithUid[]>([]);
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
 
   const startDate = moment().toDate();
   const today = moment().day();
@@ -176,9 +178,20 @@ const AcceptCompetitionScreen = ({
           mode="contained"
           color="lightgreen"
           style={tailwind('mt-5')}
-          onPress={createChallenge}>
+          onPress={() => setIsDialogVisible(true)}>
           Accept Challenge
         </Button>
+        <Dialog
+          isDialogVisible={isDialogVisible}
+          setIsDialogVisible={setIsDialogVisible}
+          title="Warning"
+          message={
+            'The competition would last for 3 weeks. \nYou CANNOT edit/delete the habits that are in competition.'
+          }
+          handleYes={createChallenge}
+          yesLabel="Proceed"
+          noLabel="Cancel"
+        />
       </View>
     </TouchableWithoutFeedback>
   );

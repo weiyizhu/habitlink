@@ -7,13 +7,13 @@ import {Button, TextInput} from 'react-native-paper';
 import {useTailwind} from 'tailwind-rn/dist';
 import ChallengerModal from '../components/ChallengerModal';
 import SelectHabitsModal from '../components/SelectHabitsModal';
-import {sortDates, useUserContext} from '../utils/fn';
+import Dialog from '../components/Dialog';
+import {useUserContext} from '../utils/fn';
 import {CompetitionRequest, User} from '../utils/models';
 import {
   Challenger,
   CreateCompetitionScreenProp,
   HabitWithUid,
-  TimePeriod,
 } from '../utils/types';
 
 const CreateCompetitionScreen = ({
@@ -28,6 +28,7 @@ const CreateCompetitionScreen = ({
   const [isChallengerModalVisible, setIsChallengerModalVisible] =
     useState(false);
   const [challenger, setChallenger] = useState<Challenger>();
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
 
   const startDate = moment().toDate();
   const today = moment().day();
@@ -35,8 +36,6 @@ const CreateCompetitionScreen = ({
   if (today !== 0) {
     endDate.add(7 - today, 'days');
   }
-  const currWeek = moment().week();
-  const currYear = moment().year();
 
   const createChallenge = async () => {
     if (selectedHabits.length === 0) {
@@ -140,9 +139,20 @@ const CreateCompetitionScreen = ({
           mode="contained"
           color="lightgreen"
           style={tailwind('mt-5')}
-          onPress={createChallenge}>
+          onPress={() => setIsDialogVisible(true)}>
           Send Challenge
         </Button>
+        <Dialog
+          isDialogVisible={isDialogVisible}
+          setIsDialogVisible={setIsDialogVisible}
+          title="Warning"
+          message={
+            'The competition would last for 3 weeks. \nYou CANNOT edit/delete the habits that are in competition.'
+          }
+          handleYes={createChallenge}
+          yesLabel="Proceed"
+          noLabel="Cancel"
+        />
       </View>
     </TouchableWithoutFeedback>
   );
