@@ -26,10 +26,14 @@ const App = () => {
   const [friends, setFriends] = useState<UserWID[]>([]);
   const [friendRequests, setFriendRequests] = useState<UserWID[]>([]);
   const [snackE, setSnackE] = useState('');
+  const [unsubscribe, setUnsubscribe] = useState<any>(() => {})
+
   const userContextInitVal: UserContext = {
     user,
     setUser,
     uid,
+    unsubscribe,
+    setUnsubscribe,
     setUid,
     habits,
     setHabits,

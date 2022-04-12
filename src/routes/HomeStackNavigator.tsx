@@ -21,7 +21,6 @@ const HomeStackNavigator = () => {
       .where('friends', 'array-contains', uid);
 
     return socialRef.onSnapshot(querySnapshot => {
-      console.log(querySnapshot);
       const toAdd: UserWID[] = [];
 
       querySnapshot.forEach(friend => {
@@ -49,6 +48,7 @@ const HomeStackNavigator = () => {
       setFriendRequests(toAdd);
     });
   }, [uid, setFriendRequests]);
+  
 
   return (
     <Stack.Navigator

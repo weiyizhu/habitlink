@@ -9,7 +9,7 @@ import {signOut} from '../utils/auth';
 
 const SettingsScreen = () => {
   const tailwind = useTailwind();
-  const {user, setUser, setSnackE} = useUserContext();
+  const {user, setUser, setSnackE, unsubscribe} = useUserContext();
   const navigation = useNavigation<SettingsScreenProp>();
 
   const fontFam = {
@@ -31,6 +31,7 @@ const SettingsScreen = () => {
           signOut()
             .then(() => {
               setUser(null);
+              unsubscribe();
               navigation.navigate('RootLoginStack');
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {

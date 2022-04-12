@@ -160,7 +160,9 @@ export type UserContext = {
   user: User | null;
   setUser: (u: User | null) => void;
   uid: string | null;
-  setUid: (uid: string) => void;
+  setUid: (uid: string) => void | void;
+  unsubscribe: () => any;
+  setUnsubscribe: (fun: any) => void;
   habits: HabitWithUid[];
   setHabits: (habits: HabitWithUid[]) => void;
   friends: UserWID[];

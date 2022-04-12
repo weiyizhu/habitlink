@@ -26,6 +26,8 @@ export const DefUserContext = createContext<UserContext>({
   setUser: () => {},
   uid: null,
   setUid: () => {},
+  unsubscribe: () => {},
+  setUnsubscribe: () => {},
   habits: [],
   setHabits: () => {},
   friends: [],

@@ -12,7 +12,7 @@ import {useUserContext} from '../utils/fn';
 
 const CreateAccountScreen = () => {
   const navigation = useNavigation<CreateAccountScreenProp>();
-  const {user, setUser, setUid, setSnackE} = useUserContext();
+  const {user, setUnsubscribe, setUser, setUid, setSnackE} = useUserContext();
   const [username, setUsername] = useState('');
   const [usernameE, setUsernameE] = useState('');
   const [password, setPassword] = useState('');
@@ -135,12 +135,15 @@ const CreateAccountScreen = () => {
                     .collection('users')
                     .doc(authUser.user.uid);
                   setUid(authUser.user.uid);
-                  userRef.onSnapshot(documentSnapshot => {
+                   const unsubscribeFun = userRef.onSnapshot(documentSnapshot => {
                     const currentUser = documentSnapshot.data() as User | null;
-                    if (currentUser) setUser(currentUser);
+                    if (currentUser) {
+                      setUser(currentUser);
+                    }
                   });
-
+                  setUnsubscribe(() => unsubscribeFun)
                   navigation.navigate('RootHomeStack');
+                  setUsername('');
                 });
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
