@@ -88,10 +88,11 @@ const LoginScreen = () => {
       <TouchableOpacity
         style={tailwind('bg-blue-500 rounded py-2 my-3 w-10/12')}
         onPress={() => {
+          const temp = password;
           setUsernameE('');
           setPasswordE('');
           setPassword('');
-          signIn(username, password)
+          signIn(username, temp)
             .then((authUser: FirebaseAuthTypes.UserCredential) => {
               const userRef = firestore()
                 .collection('users')
@@ -101,8 +102,8 @@ const LoginScreen = () => {
                 const currentUser = documentSnapshot.data() as User | null;
                 if (currentUser) setUser(currentUser);
               });
-
               navigation.navigate('RootHomeStack');
+              setUsername('');
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
               if (error.code === 'auth/invalid-email') {

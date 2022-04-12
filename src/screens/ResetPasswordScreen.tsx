@@ -42,7 +42,7 @@ const ResetPasswordScreen = ({navigation}: ResetScreenNavigationProp) => {
         color="lightgreen"
         style={tailwind('mt-5 m-1')}
         onPress={() => {
-          const temp = username;
+          const temp = username.toLowerCase();
           setUsername('');
           setUsernameE('');
           sendPasswordReset(temp)

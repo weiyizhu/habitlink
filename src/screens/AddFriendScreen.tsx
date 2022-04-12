@@ -8,6 +8,7 @@ import {useUserContext} from '../utils/fn';
 
 const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
   const {uid, user, setSnackE} = useUserContext();
+  const {friends, friendRequests} = useUserContext();
   const [friendRequest, setFriendRequest] = useState('');
   const [friendRequestE, setFriendRequestE] = useState('');
 
@@ -42,7 +43,7 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
         color="lightgreen"
         style={tailwind('mt-5 m-1')}
         onPress={() => {
-          const temp = friendRequest;
+          const temp = friendRequest.toLowerCase();
           setFriendRequest('');
           setFriendRequestE('');
 
@@ -53,16 +54,19 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
           } else if (!re.test(temp)) {
             setFriendRequestE('Please enter a valid email address');
             return;
-          } else if (temp.toLowerCase() === user?.email.toLowerCase()) {
-            console.log(temp.toLowerCase());
-            console.log(user?.email.toLowerCase());
+          } else if (temp === user?.email) {
             setFriendRequestE('You can not send a friend request to yourself');
+            return;
+          } else if (friends.some((user)=> user.email === temp)) {
+            setFriendRequestE('You can not send a friend request to someone who is already your friend')
+            return;
+          } else if (friendRequests.some((user) => user.email == temp)) {
+            setFriendRequestE('This user has already sent you a friend request')
             return;
           }
 
           firestore()
             .collection('users')
-            // Filter results
             .where('email', '==', temp)
             .get()
             .then(querySnapshot => {
@@ -75,7 +79,7 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
                 );
                 return;
               }
-
+              
               querySnapshot.forEach(documentSnapshot => {
                 firestore()
                   .collection('users')

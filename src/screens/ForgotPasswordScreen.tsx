@@ -58,7 +58,7 @@ const ForgotPasswordScreen = () => {
       <TouchableOpacity
         style={tailwind('bg-blue-500 rounded py-2 my-3 w-10/12')}
         onPress={() => {
-          const temp = username;
+          const temp = username.toLowerCase();
           setUsername('');
           setUsernameE('');
           sendPasswordReset(temp)

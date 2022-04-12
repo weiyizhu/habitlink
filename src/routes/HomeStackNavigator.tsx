@@ -38,7 +38,7 @@ const HomeStackNavigator = () => {
       .collection('users')
       .where('sentFriendRequests', 'array-contains', uid);
 
-    friendRequestRef.onSnapshot(querySnapshot => {
+    return friendRequestRef.onSnapshot(querySnapshot => {
       const toAdd: UserWID[] = [];
 
       querySnapshot.forEach(friend => {

@@ -117,7 +117,7 @@ const CreateAccountScreen = () => {
             .then((authUser: FirebaseAuthTypes.UserCredential) => {
               const wld: WLD = {wins: 0, losses: 0, draws: 0};
               const newUser: User = {
-                email: username,
+                email: username.toLowerCase(),
                 name: name,
                 competition: null,
                 wld: wld,

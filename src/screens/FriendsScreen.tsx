@@ -14,16 +14,16 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
   const tailwind = useTailwind();
   const {uid, friends, friendRequests} = useUserContext();
 
-  const check = (user: UserWID) => {
-    const friendsArr = [...user.friends];
+  const check = (ouser: UserWID) => {
+    const friendsArr = [...ouser.friends];
     friendsArr.push(uid as string);
     const myArr = friends.map(item => item.uid);
-    myArr.unshift(user.uid);
+    myArr.unshift(ouser.uid);
     firestore()
       .collection('users')
-      .doc(user.uid)
+      .doc(ouser.uid)
       .update({
-        sentFriendRequests: user.sentFriendRequests.filter(
+        sentFriendRequests: ouser.sentFriendRequests.filter(
           (id: string) => id !== uid,
         ),
         friends: friendsArr,
