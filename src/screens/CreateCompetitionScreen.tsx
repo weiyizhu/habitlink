@@ -56,6 +56,13 @@ const CreateCompetitionScreen = ({
       return;
     }
 
+    if (user?.competitionRequests.findIndex(obj => obj.uid === challenger.uid) > -1 ) {
+      setSnackE(
+        `${challenger.name} has already sent a competition request to you`,
+      );
+      return;
+    }
+
     const challengerRef = firebase
       .firestore()
       .collection('users')
