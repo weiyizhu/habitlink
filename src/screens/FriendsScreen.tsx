@@ -8,7 +8,8 @@ import {useUserContext} from '../utils/fn';
 import {UserWID} from '../utils/models';
 import FriendRequestCard from '../components/RequestCard';
 import FloatingBtn from '../components/FloatingBtn';
-import {FriendScreenProp} from '../utils/types';
+import {fontType, FriendScreenProp} from '../utils/types';
+import CustomText from '../components/CustomText';
 
 const FriendsScreen = ({navigation}: FriendScreenProp) => {
   const tailwind = useTailwind();
@@ -50,7 +51,7 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
 
   return (
     <View style={tailwind('flex-1 px-7')}>
-      <FlatList
+      {(friendRequests.length !== 0 || friends.length !== 0) && <FlatList
         data={friendRequests.concat(friends)}
         renderItem={({item}) => {
           return item.friends.includes(uid as string) ? (
@@ -64,7 +65,10 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
           );
         }}
         extraData={friendRequests.concat(friends)}
-      />
+      /> }
+      {friendRequests.length === 0 &&  friends.length === 0 && <CustomText font={fontType.Medium} size={18} additionStyle={'mb-5'}>
+      Click the add button to add some friends!
+      </CustomText>}
       <FloatingBtn
         handlePlusCirclePress={() => {
           navigation.navigate('AddFriend');
