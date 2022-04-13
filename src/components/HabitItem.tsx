@@ -3,9 +3,10 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {useTailwind} from 'tailwind-rn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {HabitItemProps, TimePeriod} from '../utils/types';
-import {findTimestampIndex, sortDates} from '../utils/fn';
+import {findTimestampIndex, sortDates, useUserContext} from '../utils/fn';
 import firestore, {firebase} from '@react-native-firebase/firestore';
 import moment from 'moment';
+import {Competition, Habit} from '../utils/models';
 
 const HabitItem = ({
   navigation,
@@ -14,10 +15,11 @@ const HabitItem = ({
   goalPerTP,
   name,
   timePeriod,
-  user,
+  user: userId,
   uid, // habit uid
 }: HabitItemProps) => {
   const tailwind = useTailwind();
+  const {user} = useUserContext();
   const todayTimestamp = firebase.firestore.Timestamp.fromDate(
     new Date(moment().format('LL')),
   );
@@ -52,7 +54,7 @@ const HabitItem = ({
     : 'checkbox-blank-outline';
   const bgColor = completed >= goalPerTP ? 'bg-hl-blue' : 'bg-neutral-200';
 
-  const handleCheckBoxCheck = () => {
+  const handleCheckBoxCheck = async () => {
     const habitRef = firestore().collection('habits').doc(uid);
     if (!checked) {
       habitRef.update({
@@ -67,6 +69,30 @@ const HabitItem = ({
       habitRef.update({
         dates: newDates,
       });
+    }
+
+    // update completed field if habit is in competition
+    if (user && user.competition && Object.keys(user.competition).length > 0) {
+      const startDate = moment(
+        user.competition.startDate.toDate(),
+        'YYYY-MM-DD',
+      );
+      const endDate = moment(user.competition.endDate.toDate(), 'YYYY-MM-DD');
+      const today = moment();
+      const habitData = (
+        await firestore().collection('habits').doc(uid).get()
+      ).data() as Habit;
+      if (today >= startDate && today <= endDate && habitData.inCompetition) {
+        const newCompetition: Competition = {
+          ...user.competition,
+          completed: checked
+            ? user.competition.completed - 1
+            : user.competition.completed + 1,
+        };
+        firestore().collection('users').doc(userId).update({
+          competition: newCompetition,
+        });
+      }
     }
   };
 

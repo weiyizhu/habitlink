@@ -42,6 +42,10 @@ const CreateCompetitionScreen = ({
       setSnackE('At least one habit has to be chosen');
       return;
     }
+    if (selectedHabits.length > 5) {
+      setSnackE('At most five habits can be chosen');
+      return;
+    }
     if (challenger === undefined) {
       setSnackE('Please select a friend to challenge');
       return;

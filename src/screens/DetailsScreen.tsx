@@ -106,7 +106,8 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
       currUser &&
       currUser.competition &&
       Object.keys(currUser.competition).length > 0 &&
-      userId
+      userId &&
+      habit.inCompetition
     ) {
       const startDate = moment(
         currUser.competition.startDate.toDate(),
@@ -117,10 +118,12 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
         'YYYY-MM-DD',
       );
       const pressedDate = moment(day.dateString, 'YYYY-MM-DD');
-      const newCompleted = currUser.competition.completed + index > -1 ? -1 : 1;
       const newCompetition: Competition = {
         ...currUser.competition,
-        completed: newCompleted,
+        completed:
+          index > -1
+            ? currUser.competition.completed - 1
+            : currUser.competition.completed + 1,
       };
       if (pressedDate >= startDate && pressedDate <= endDate) {
         firebase.firestore().collection('users').doc(userId).update({
