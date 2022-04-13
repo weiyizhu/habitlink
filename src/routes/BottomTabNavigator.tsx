@@ -17,7 +17,7 @@ const BottomTabNavigator = () => {
   const {user, friendRequests} = useUserContext();
 
   const badgeCalculation = () => {
-    if (user?.competition) {
+    if (user?.competition && Object.keys(user.competition).length > 0) {
       const momentEnd = moment(user?.competition.endDate.toDate());
       const today = moment();
       return (today >= momentEnd) ? '' : undefined;
@@ -27,11 +27,11 @@ const BottomTabNavigator = () => {
   };
 
   const competitionColor = (focused: boolean, color: string) => {
-    if (!user?.competition) {
+    if (!(user?.competition && Object.keys(user.competition).length > 0)) {
       return color;
     }
 
-    return (focused) ?  '#FF3333' : '#9C5151';
+    return (focused) ?  '#D6112B' : '#9C5151';
   };
 
   return (
