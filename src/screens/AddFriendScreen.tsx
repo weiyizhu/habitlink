@@ -57,12 +57,12 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
           } else if (temp === user?.email) {
             setFriendRequestE('You can not send a friend request to yourself');
             return;
-          } else if (friends.some(user => user.email === temp)) {
+          } else if (friends.some(u => u.email === temp)) {
             setFriendRequestE(
               'You can not send a friend request to someone who is already your friend',
             );
             return;
-          } else if (friendRequests.some(user => user.email == temp)) {
+          } else if (friendRequests.some(u => u.email === temp)) {
             setFriendRequestE(
               'This user has already sent you a friend request',
             );

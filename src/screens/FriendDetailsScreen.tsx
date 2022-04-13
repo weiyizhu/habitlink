@@ -36,7 +36,7 @@ const FriendDetailsScreen = ({
         const data = querySnapshot.data() as Habit;
         setHabit({...data, uid: uid});
       });
-  }, [navigation]);
+  }, [uid, navigation]);
 
   useEffect(() => {
     navigation.setOptions({
