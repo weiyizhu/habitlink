@@ -1,6 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import AddFriendsScreen from '../screens/AddFriendScreen';
+import FriendDetailsScreen from '../screens/FriendDetailsScreen';
 import FriendHabitScreen from '../screens/FriendHabitScreen';
 import FriendsScreen from '../screens/FriendsScreen';
 import {FriendStackParamList, HomeStackParamList} from '../utils/types';
@@ -27,7 +28,8 @@ const FriendStackNavigator = () => {
           height: 150,
         },
         headerTitleAlign: 'center',
-      }}>
+      }}
+    >
       <Stack.Screen
         name="FriendStack"
         component={FriendsScreen}
@@ -43,6 +45,7 @@ const FriendStackNavigator = () => {
         })}
       />
       <Stack.Screen name="ShowHome" component={FriendHabitScreen} />
+      <Stack.Screen name="ShowDetails" component={FriendDetailsScreen} />
     </Stack.Navigator>
   );
 };

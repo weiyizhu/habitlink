@@ -55,7 +55,8 @@ const FrequencyModal = ({
         // hideModalContentWhileAnimating
         onDismiss={handleModalSave}
         animationIn="fadeIn"
-        animationOut="fadeOut">
+        animationOut="fadeOut"
+      >
         <View style={tailwind('bg-white p-7')}>
           <RadioButton.Group
             onValueChange={val => {
@@ -63,7 +64,8 @@ const FrequencyModal = ({
               setTPRadioBtn(timePeriod);
               Keyboard.dismiss();
             }}
-            value={TPRadioBtn}>
+            value={TPRadioBtn}
+          >
             <View style={tailwind('flex-row items-center mb-3')}>
               <RadioButton value={TimePeriod.Day} />
               <Text style={tailwind('text-xl font-YC_Regular pl-3')}>

@@ -23,7 +23,8 @@ const ChallengerModal = ({
         // useNativeDriver
         // hideModalContentWhileAnimating
         animationIn="fadeIn"
-        animationOut="fadeOut">
+        animationOut="fadeOut"
+      >
         <View style={tailwind('bg-white p-7')}>
           <Text style={tailwind('text-2xl pb-3 font-YC_SemiBold')}>
             Friends
@@ -34,11 +35,13 @@ const ChallengerModal = ({
               selected &&
                 setChallenger({name: selected.name, uid: selected.uid});
             }}
-            value={challenger?.uid ?? ''}>
+            value={challenger?.uid ?? ''}
+          >
             {friends.map(friend => (
               <View
                 key={friend.uid}
-                style={tailwind('flex-row items-center mb-3')}>
+                style={tailwind('flex-row items-center mb-3')}
+              >
                 <RadioButton value={friend.uid} />
                 <Text style={tailwind('text-xl font-YC_Regular pl-3')}>
                   {friend.name}

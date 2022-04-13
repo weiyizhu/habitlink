@@ -7,10 +7,12 @@ import {firebase} from '@react-native-firebase/firestore';
 import moment from 'moment';
 
 const FriendHabitItem = ({
+  navigation,
   dates,
   goalPerTP,
   name,
   timePeriod,
+  uid,
 }: HabitItemProps) => {
   const tailwind = useTailwind();
   const todayTimestamp = firebase.firestore.Timestamp.fromDate(
@@ -45,10 +47,15 @@ const FriendHabitItem = ({
   const bgColor = completed >= goalPerTP ? 'bg-hl-blue' : 'bg-neutral-200';
 
   return (
-    <View
+    <TouchableOpacity
       style={tailwind(
         `px-3 py-2 ${bgColor} flex-row justify-between items-center mb-4`,
       )}
+      onPress={() => {
+        navigation.navigate('ShowDetails', {
+          uid,
+        });
+      }}
     >
       <View>
         <Text style={tailwind('text-2xl font-YC_SemiBold')}>{name}</Text>
@@ -56,7 +63,7 @@ const FriendHabitItem = ({
           style={tailwind('text-sm font-YC_Light')}
         >{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

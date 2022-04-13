@@ -42,14 +42,16 @@ const SharedWithModal = ({
         // hideModalContentWhileAnimating
         onDismiss={handleModalSave}
         animationIn="fadeIn"
-        animationOut="fadeOut">
+        animationOut="fadeOut"
+      >
         <View style={tailwind('bg-white p-7')}>
           {friendsList.length > 0 ? (
             <>
               {friendsList.map(value => (
                 <View
                   key={value.uid}
-                  style={tailwind('flex-row mb-3 items-center')}>
+                  style={tailwind('flex-row mb-3 items-center')}
+                >
                   <MaterialCommunityIcons
                     onPress={() => {
                       setFriendsList(prev => {

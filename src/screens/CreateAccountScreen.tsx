@@ -135,13 +135,16 @@ const CreateAccountScreen = () => {
                     .collection('users')
                     .doc(authUser.user.uid);
                   setUid(authUser.user.uid);
-                   const unsubscribeFun = userRef.onSnapshot(documentSnapshot => {
-                    const currentUser = documentSnapshot.data() as User | null;
-                    if (currentUser) {
-                      setUser(currentUser);
-                    }
-                  });
-                  setUnsubscribe(() => unsubscribeFun)
+                  const unsubscribeFun = userRef.onSnapshot(
+                    documentSnapshot => {
+                      const currentUser =
+                        documentSnapshot.data() as User | null;
+                      if (currentUser) {
+                        setUser(currentUser);
+                      }
+                    },
+                  );
+                  setUnsubscribe(() => unsubscribeFun);
                   navigation.navigate('RootHomeStack');
                   setUsername('');
                 });

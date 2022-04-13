@@ -48,7 +48,6 @@ const HomeStackNavigator = () => {
       setFriendRequests(toAdd);
     });
   }, [uid, setFriendRequests]);
-  
 
   return (
     <Stack.Navigator

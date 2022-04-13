@@ -56,7 +56,8 @@ const SelectHabitsModal = ({
         // useNativeDriver
         // hideModalContentWhileAnimating
         animationIn="fadeIn"
-        animationOut="fadeOut">
+        animationOut="fadeOut"
+      >
         <View style={tailwind('bg-white p-7')}>
           {habitsList.length > 0 ? (
             <>
@@ -64,7 +65,8 @@ const SelectHabitsModal = ({
                 return (
                   <View
                     key={habit.uid}
-                    style={tailwind('flex-row mb-3 items-center')}>
+                    style={tailwind('flex-row mb-3 items-center')}
+                  >
                     <MaterialCommunityIcons
                       onPress={() => {
                         setHabitsList(prev => {

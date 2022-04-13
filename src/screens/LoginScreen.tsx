@@ -12,7 +12,8 @@ import {useUserContext} from '../utils/fn';
 
 const LoginScreen = () => {
   const navigation = useNavigation<AuthScreenProp>();
-  const {user, setUser, setUid, setSnackE, setUnsubscribe, unsubscribe} = useUserContext();
+  const {user, setUser, setUid, setSnackE, setUnsubscribe, unsubscribe} =
+    useUserContext();
   const [username, setUsername] = useState('');
   const [usernameE, setUsernameE] = useState('');
   const [password, setPassword] = useState('');
@@ -100,11 +101,11 @@ const LoginScreen = () => {
               setUid(authUser.user.uid);
               const unsubscribeFun = userRef.onSnapshot(documentSnapshot => {
                 const currentUser = documentSnapshot.data() as User | null;
-                if (currentUser) { 
+                if (currentUser) {
                   setUser(currentUser);
                 }
               });
-              setUnsubscribe(() => unsubscribeFun)
+              setUnsubscribe(() => unsubscribeFun);
               navigation.navigate('RootHomeStack');
               setUsername('');
             })

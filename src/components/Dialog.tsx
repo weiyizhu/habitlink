@@ -22,14 +22,16 @@ const Dialog = ({
       // useNativeDriver
       // hideModalContentWhileAnimating
       animationIn="fadeIn"
-      animationOut="fadeOut">
+      animationOut="fadeOut"
+    >
       <View style={tailwind('bg-white p-7')}>
         <Text style={tailwind('text-2xl pb-3 font-YC_SemiBold')}>{title}</Text>
         <Text style={tailwind('text-lg font-YC_Medium pb-3')}>{message}</Text>
         <View style={tailwind('flex-row justify-end')}>
           <Text
             style={tailwind('text-xl font-YC_Medium mr-6 font-bold')}
-            onPress={() => setIsDialogVisible(false)}>
+            onPress={() => setIsDialogVisible(false)}
+          >
             {noLabel}
           </Text>
           <Text
@@ -37,7 +39,8 @@ const Dialog = ({
             onPress={() => {
               setIsDialogVisible(false);
               handleYes();
-            }}>
+            }}
+          >
             {yesLabel}
           </Text>
         </View>

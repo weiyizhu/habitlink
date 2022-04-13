@@ -44,6 +44,9 @@ export type FriendStackParamList = {
     friendUid: string;
     friendName: string;
   };
+  ShowDetails: {
+    uid: string;
+  };
 };
 
 export type CompetitionStackParamList = {
@@ -87,6 +90,11 @@ export type AddFriendNavigationProp = CompositeScreenProps<
 
 export type ShowHomeNavigationProp = CompositeScreenProps<
   NativeStackScreenProps<FriendStackParamList, 'ShowHome'>,
+  BottomTabScreenProps<RootTabParamList>
+>;
+
+export type ShowDetailsNavigationProp = CompositeScreenProps<
+  NativeStackScreenProps<FriendStackParamList, 'ShowDetails'>,
   BottomTabScreenProps<RootTabParamList>
 >;
 
