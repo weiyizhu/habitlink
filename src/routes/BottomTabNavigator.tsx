@@ -9,11 +9,31 @@ import {RootTabParamList} from '../utils/types';
 import FriendStackNavigator from './FriendStackNavigator';
 import {useUserContext} from '../utils/fn';
 import CompetitionStackNavigator from './CompetitionStackNavigator';
+import moment from 'moment';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const BottomTabNavigator = () => {
-  const {friendRequests} = useUserContext();
+  const {user, friendRequests} = useUserContext();
+
+  const badgeCalculation = () => {
+    if (user?.competition) {
+      const momentEnd = moment(user?.competition.endDate.toDate());
+      const today = moment();
+      return (today >= momentEnd) ? '' : undefined;
+    }
+
+    return (user?.competitionRequests.length === 0) ? undefined : user?.competitionRequests.length;
+  };
+
+  const competitionColor = (focused: boolean, color: string) => {
+    if (!user?.competition) {
+      return color;
+    }
+
+    return (focused) ?  '#FF3333' : '#9C5151';
+  };
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -51,10 +71,11 @@ const BottomTabNavigator = () => {
             <MaterialCommunityIcons
               name="sword-cross"
               size={size}
-              color={color}
+              color={competitionColor(focused, color)}
             />
           ),
           headerShown: false,
+          tabBarBadge: badgeCalculation()
         })}
       />
       <Tab.Screen
