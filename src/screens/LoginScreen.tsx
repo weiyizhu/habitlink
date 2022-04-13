@@ -92,7 +92,6 @@ const LoginScreen = () => {
           const temp = password;
           setUsernameE('');
           setPasswordE('');
-          setPassword('');
           signIn(username, temp)
             .then((authUser: FirebaseAuthTypes.UserCredential) => {
               const userRef = firestore()
@@ -108,6 +107,7 @@ const LoginScreen = () => {
               setUnsubscribe(() => unsubscribeFun);
               navigation.navigate('RootHomeStack');
               setUsername('');
+              setPassword('');
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
               if (error.code === 'auth/invalid-email') {
@@ -121,6 +121,7 @@ const LoginScreen = () => {
               } else {
                 setSnackE(error.message);
               }
+              setPassword('');
             });
         }}
       >

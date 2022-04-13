@@ -107,7 +107,6 @@ const CreateAccountScreen = () => {
           setPasswordE('');
           setNameE('');
           const pwd = password;
-          setPassword('');
           if (name === '') {
             setNameE('Please enter a name');
             return;
@@ -147,6 +146,7 @@ const CreateAccountScreen = () => {
                   setUnsubscribe(() => unsubscribeFun);
                   navigation.navigate('RootHomeStack');
                   setUsername('');
+                  setPassword('');
                 });
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
@@ -163,6 +163,7 @@ const CreateAccountScreen = () => {
               } else {
                 setSnackE(error.message);
               }
+              setPassword('');
             });
         }}
       >
