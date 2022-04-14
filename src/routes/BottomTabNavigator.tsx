@@ -18,12 +18,17 @@ const BottomTabNavigator = () => {
 
   const badgeCalculation = () => {
     if (user?.competition && Object.keys(user.competition).length > 0) {
-      const momentEnd = moment(user?.competition.endDate.toDate());
-      const today = moment();
-      return (today >= momentEnd) ? '' : undefined;
+      const momentEnd = moment(
+        user?.competition.endDate.toDate(),
+        'YYYY-MM-DD',
+      );
+      const today = moment(new Date(moment().format('LL')));
+      return today > momentEnd ? '' : undefined;
     }
 
-    return (user?.competitionRequests.length === 0) ? undefined : user?.competitionRequests.length;
+    return user?.competitionRequests.length === 0
+      ? undefined
+      : user?.competitionRequests.length;
   };
 
   const competitionColor = (focused: boolean, color: string) => {
@@ -31,7 +36,7 @@ const BottomTabNavigator = () => {
       return color;
     }
 
-    return (focused) ?  '#D6112B' : '#9C5151';
+    return focused ? '#D6112B' : '#9C5151';
   };
 
   return (
@@ -50,8 +55,7 @@ const BottomTabNavigator = () => {
           height: 150,
         },
         headerTitleAlign: 'center',
-      })}
-    >
+      })}>
       <Tab.Screen
         name="Home"
         component={HomeStackNavigator}
@@ -75,7 +79,15 @@ const BottomTabNavigator = () => {
             />
           ),
           headerShown: false,
-          tabBarBadge: badgeCalculation()
+          tabBarBadge: badgeCalculation(),
+          tabBarBadgeStyle: badgeCalculation() === '' && {
+            minWidth: 12,
+            minHeight: 12,
+            maxWidth: 12,
+            maxHeight: 12,
+            borderRadius: 6,
+            marginLeft: 4,
+          },
         })}
       />
       <Tab.Screen
