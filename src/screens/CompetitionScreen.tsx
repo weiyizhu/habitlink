@@ -3,11 +3,12 @@ import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import CompetitorInfo from '../components/CompetitorInfo';
+import CustomText from '../components/CustomText';
 import FloatingBtn from '../components/FloatingBtn';
 import RequestCard from '../components/RequestCard';
 import {DeleteCompetitionRequest, useUserContext} from '../utils/fn';
-import {CompetitionRequest, Habit, User, WLD} from '../utils/models';
-import {CompetitionScreenProp, HabitWithUid} from '../utils/types';
+import {CompetitionRequest, Habit, User} from '../utils/models';
+import {CompetitionScreenProp, fontType, HabitWithUid} from '../utils/types';
 
 const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
   const tailwind = useTailwind();
@@ -103,8 +104,7 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
             <Text
               style={tailwind(
                 'text-4xl pb-2 font-YC_SemiBold text-transparent',
-              )}
-            >
+              )}>
               0
             </Text>
             <Text style={tailwind('text-center text-xl font-YC_SemiBold')}>
@@ -122,8 +122,8 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
           />
         </View>
       ) : (
-        <View style={tailwind('flex-1 px-5')}>
-          {user &&
+        <View style={tailwind('flex-1 px-5 items-center')}>
+          {user && user.competitionRequests.length > 0 ? (
             user.competitionRequests.map(request => (
               <RequestCard
                 key={request.uid}
@@ -131,7 +131,12 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
                 check={() => handleRequestCheck(request)}
                 close={() => handleRequestCross(request.uid)}
               />
-            ))}
+            ))
+          ) : (
+            <CustomText font={fontType.Medium} size={18}>
+              Click the add button to compete against your friends!
+            </CustomText>
+          )}
           <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
         </View>
       )}
