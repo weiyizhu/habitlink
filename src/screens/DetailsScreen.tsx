@@ -130,6 +130,18 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
           competition: newCompetition,
         });
       }
+      // update score on competitor object
+      const score = Math.ceil(
+        (newCompetition.completed / newCompetition.total) * 100,
+      );
+
+      firebase
+        .firestore()
+        .collection('users')
+        .doc(currUser.competition.competitor)
+        .update({
+          'competition.compScore': score,
+        });
     }
   };
 

@@ -98,6 +98,17 @@ const HabitItem = ({
         firestore().collection('users').doc(userId).update({
           competition: newCompetition,
         });
+        // update score on competitor object
+        const score = Math.ceil(
+          (newCompetition.completed / newCompetition.total) * 100,
+        );
+
+        firestore()
+          .collection('users')
+          .doc(user.competition.competitor)
+          .update({
+            'competition.compScore': score,
+          });
       }
     }
   };
