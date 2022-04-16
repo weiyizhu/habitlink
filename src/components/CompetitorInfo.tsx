@@ -13,7 +13,9 @@ const CompetitorInfo = ({wld, name, habits, score}: CompetitorInfoProps) => {
 
   return (
     <View style={tailwind('w-5/12 items-center')}>
-      <Text style={tailwind('text-4xl pb-2 font-YC_SemiBold')}>{score}</Text>
+      <Text style={tailwind('text-4xl pb-2 font-YC_SemiBold')}>
+        {Math.max(0, score)}
+      </Text>
       <Text style={tailwind('text-xl font-YC_SemiBold')}>{name}</Text>
       <Text style={tailwind('text-sm pb-4 font-YC_SemiBold')}>
         ({wins}-{losses}-{draws})

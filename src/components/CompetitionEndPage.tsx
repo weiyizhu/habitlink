@@ -3,26 +3,23 @@ import {Text, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import {useUserContext} from '../utils/fn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import CustomText from '../components/CustomText';
-import {CompetitionEndScreenProp, fontType} from '../utils/types';
+import CustomText from './CustomText';
+import {fontType} from '../utils/types';
 import {User, WLD} from '../utils/models';
 import {firebase} from '@react-native-firebase/firestore';
-import CompetitionDates from '../components/CompetitionDates';
+import CompetitionDates from './CompetitionDates';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-const CompetitionEndScreen = ({
-  route,
-  navigation,
-}: CompetitionEndScreenProp) => {
+const CompetitionEndPage = () => {
   const tailwind = useTailwind();
   const {user, uid} = useUserContext();
   const myScore =
     user && user.competition && Object.keys(user.competition).length > 0
-      ? Math.ceil((user.competition.completed / user.competition.total) * 100)
+      ? Math.max(0, Math.ceil((user.competition.completed / user.competition.total) * 100))
       : 0;
   const compScore =
     user && user.competition && Object.keys(user.competition).length > 0
-      ? user.competition.compScore
+      ? Math.max(0, user.competition.compScore)
       : 0;
   const result =
     myScore > compScore ? 'win' : myScore < compScore ? 'loss' : 'draw';
@@ -106,7 +103,10 @@ const CompetitionEndScreen = ({
         });
       });
     }
-    navigation.navigate('CompetitionStack');
+    // navigation.popToTop();
+    // const popAction = StackActions.pop(1);
+    // navigation.dispatch(popAction);
+    // navigation.navigate('CompetitionStack');
   };
 
   return (
@@ -174,4 +174,4 @@ const CompetitionEndScreen = ({
   );
 };
 
-export default CompetitionEndScreen;
+export default CompetitionEndPage;

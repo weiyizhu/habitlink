@@ -54,7 +54,6 @@ export type CompetitionStackParamList = {
   AcceptCompetition: {
     request: CompetitionRequest;
   };
-  CompetitionEnd: undefined
 };
 
 export type AuthStackParamList = {
@@ -113,11 +112,6 @@ export type CreateCompetitionScreenProp = CompositeScreenProps<
 
 export type AcceptCompetitionScreenProp = CompositeScreenProps<
   NativeStackScreenProps<CompetitionStackParamList, 'AcceptCompetition'>,
-  BottomTabScreenProps<RootTabParamList>
->;
-
-export type CompetitionEndScreenProp = CompositeScreenProps<
-  NativeStackScreenProps<CompetitionStackParamList, 'CompetitionEnd'>,
   BottomTabScreenProps<RootTabParamList>
 >;
 

@@ -1,16 +1,21 @@
 import {firebase} from '@react-native-firebase/firestore';
 import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
-import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {useTailwind} from 'tailwind-rn/dist';
 import CompetitionDates from '../components/CompetitionDates';
 import CompetitorInfo from '../components/CompetitorInfo';
 import CustomText from '../components/CustomText';
 import FloatingBtn from '../components/FloatingBtn';
 import RequestCard from '../components/RequestCard';
-import {DeleteCompetitionRequest, useUserContext} from '../utils/fn';
+import {
+  DeleteCompetitionRequest,
+  isCompetitionFinished,
+  useUserContext,
+} from '../utils/fn';
 import {CompetitionRequest, Habit, User} from '../utils/models';
 import {CompetitionScreenProp, fontType, HabitWithUid} from '../utils/types';
+import CompetitionEndPage from '../components/CompetitionEndPage';
 
 const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
   const tailwind = useTailwind();
@@ -19,13 +24,17 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
   const [compUser, setCompUser] = useState<User>();
   const [compHabits, setCompHabits] = useState<HabitWithUid[]>([]);
 
-  user &&
+  isCompetitionFinished(user) && navigation.setOptions({headerShown: false});
+
+  (user &&
     user.competition &&
     Object.keys(user.competition).length > 0 &&
     compUser &&
     compUser.competition &&
-    Object.keys(compUser.competition).length > 0 &&
-    navigation.setOptions({headerShown: false});
+    Object.keys(compUser.competition).length > 0) ||
+  isCompetitionFinished(user)
+    ? navigation.setOptions({headerShown: false})
+    : navigation.setOptions({headerShown: true});
 
   useEffect(() => {
     if (user && user.competition && Object.keys(user.competition).length > 0) {
@@ -95,12 +104,14 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
 
   return (
     <>
-      {user &&
-      user.competition &&
-      Object.keys(user.competition).length > 0 &&
-      compUser &&
-      compUser.competition &&
-      Object.keys(compUser.competition).length > 0 ? (
+      {isCompetitionFinished(user) ? (
+        <CompetitionEndPage />
+      ) : user &&
+        user.competition &&
+        Object.keys(user.competition).length > 0 &&
+        compUser &&
+        compUser.competition &&
+        Object.keys(compUser.competition).length > 0 ? (
         <SafeAreaView style={tailwind('flex-1 px-5 items-center')}>
           <CustomText
             font={fontType.SemiBold}
