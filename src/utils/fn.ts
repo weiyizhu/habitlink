@@ -4,7 +4,7 @@ import {
 } from '@react-native-firebase/firestore';
 import moment from 'moment';
 import React, {createContext, useContext, useEffect, useRef} from 'react';
-import {CompetitionRequest} from './models';
+import {CompetitionRequest, User} from './models';
 import {HabitWithUid, MarkedDatesType, TimePeriod, UserContext} from './types';
 
 export const useEffectUpdate = (
@@ -166,4 +166,26 @@ export const DeleteCompetitionRequest = (
   firebase.firestore().collection('users').doc(uid).update({
     competitionRequests: newCompetitionRequests,
   });
+};
+
+export const todayMoment = moment(new Date(moment().format('LL')));
+
+export const dateMoment = (date: Date) => {
+  return moment(date, 'YYYY-MM-DD');
+};
+
+export const isCompetitionFinished = (user: User | null) => {
+  if (
+    user?.competition &&
+    Object.keys(user.competition).length > 0 &&
+    todayMoment > dateMoment(user.competition.endDate.toDate())
+  )
+    return true;
+  return false;
+};
+
+export const FirestoreTimestampToMoment = (
+  date: FirebaseFirestoreTypes.Timestamp,
+) => {
+  return moment(date.toDate(), 'YYYY-MM-DD');
 };

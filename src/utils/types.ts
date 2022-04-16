@@ -15,7 +15,6 @@ import {
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Habit, User, WLD, UserWID, CompetitionRequest} from './models';
 import {MarkingProps} from 'react-native-calendars/src/calendar/day/marking';
-import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 
 export type HomeStackParamList = {
   HomeStack: undefined;
@@ -55,6 +54,7 @@ export type CompetitionStackParamList = {
   AcceptCompetition: {
     request: CompetitionRequest;
   };
+  CompetitionEnd: undefined
 };
 
 export type AuthStackParamList = {
@@ -71,7 +71,6 @@ export type SettingsParamList = {
 };
 
 export type RootTabParamList = {
-  // example: Feed: { sort: 'latest' | 'top' } | undefined;
   Home: NavigatorScreenParams<HomeStackParamList>;
   Competition: undefined;
   Friends: undefined;
@@ -117,6 +116,11 @@ export type AcceptCompetitionScreenProp = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList>
 >;
 
+export type CompetitionEndScreenProp = CompositeScreenProps<
+  NativeStackScreenProps<CompetitionStackParamList, 'CompetitionEnd'>,
+  BottomTabScreenProps<RootTabParamList>
+>;
+
 export type DetailsScreenNavigationProp = CompositeScreenProps<
   NativeStackScreenProps<HomeStackParamList, 'Details'>,
   BottomTabScreenProps<RootTabParamList>
@@ -155,6 +159,7 @@ export enum fontType {
   Light = 'YC_Light',
   Medium = 'YC_Medium',
   SemiBold = 'YC_SemiBold',
+  Regular = 'YC_Regular',
 }
 
 export type CustomTextProp = {
@@ -162,6 +167,7 @@ export type CustomTextProp = {
   size: number;
   additionStyle?: string;
   children: React.ReactNode;
+  handlePress?: (() => void) | undefined;
 };
 
 export type UserContext = {

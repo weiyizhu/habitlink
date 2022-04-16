@@ -92,6 +92,7 @@ const AcceptCompetitionScreen = ({
       ),
       total: calcCompetitionTotal(selectedHabits),
       completed: 0,
+      compScore: 0
     };
     firebase.firestore().collection('users').doc(uid).update({
       competition: userCompetition,
@@ -107,6 +108,7 @@ const AcceptCompetitionScreen = ({
       ),
       total: calcCompetitionTotal(validChallengerHabits),
       completed: 0,
+      compScore: 0
     };
     firebase.firestore().collection('users').doc(request.uid).update({
       competition: challengerCompetition,

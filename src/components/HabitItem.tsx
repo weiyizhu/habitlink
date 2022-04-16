@@ -3,7 +3,13 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {useTailwind} from 'tailwind-rn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {HabitItemProps, TimePeriod} from '../utils/types';
-import {findTimestampIndex, sortDates, useUserContext} from '../utils/fn';
+import {
+  findTimestampIndex,
+  FirestoreTimestampToMoment,
+  sortDates,
+  todayMoment,
+  useUserContext,
+} from '../utils/fn';
 import firestore, {firebase} from '@react-native-firebase/firestore';
 import moment from 'moment';
 import {Competition, Habit} from '../utils/models';
@@ -73,16 +79,16 @@ const HabitItem = ({
 
     // update completed field if habit is in competition
     if (user && user.competition && Object.keys(user.competition).length > 0) {
-      const startDate = moment(
-        user.competition.startDate.toDate(),
-        'YYYY-MM-DD',
-      );
-      const endDate = moment(user.competition.endDate.toDate(), 'YYYY-MM-DD');
-      const today = moment();
+      const startDate = FirestoreTimestampToMoment(user.competition.startDate);
+      const endDate = FirestoreTimestampToMoment(user.competition.endDate);
       const habitData = (
         await firestore().collection('habits').doc(uid).get()
       ).data() as Habit;
-      if (today >= startDate && today <= endDate && habitData.inCompetition) {
+      if (
+        todayMoment >= startDate &&
+        todayMoment <= endDate &&
+        habitData.inCompetition
+      ) {
         const newCompetition: Competition = {
           ...user.competition,
           completed: checked
@@ -105,13 +111,13 @@ const HabitItem = ({
         navigation.navigate('Details', {
           uid,
         });
-      }}
-    >
+      }}>
       <View>
         <Text style={tailwind('text-2xl font-YC_SemiBold')}>{name}</Text>
         <Text
-          style={tailwind('text-sm font-YC_Light')}
-        >{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
+          style={tailwind(
+            'text-sm font-YC_Light',
+          )}>{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
       </View>
       <MaterialCommunityIcons
         onPress={handleCheckBoxCheck}

@@ -8,6 +8,7 @@ export default function CustomText({
   size,
   additionStyle,
   children,
+  handlePress,
 }: CustomTextProp) {
   const tailwind = useTailwind();
   return (
@@ -16,7 +17,7 @@ export default function CustomText({
         {fontSize: size},
         tailwind(`font-${font} ${additionStyle ?? ''}`),
       ]}
-    >
+      onPress={handlePress}>
       {children}
     </Text>
   );
