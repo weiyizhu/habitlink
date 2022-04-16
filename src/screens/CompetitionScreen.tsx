@@ -24,17 +24,18 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
   const [compUser, setCompUser] = useState<User>();
   const [compHabits, setCompHabits] = useState<HabitWithUid[]>([]);
 
-  isCompetitionFinished(user) && navigation.setOptions({headerShown: false});
-
-  (user &&
-    user.competition &&
-    Object.keys(user.competition).length > 0 &&
-    compUser &&
-    compUser.competition &&
-    Object.keys(compUser.competition).length > 0) ||
-  isCompetitionFinished(user)
-    ? navigation.setOptions({headerShown: false})
-    : navigation.setOptions({headerShown: true});
+  // https://stackoverflow.com/a/63289170
+  useEffect(() => {
+    (user &&
+      user.competition &&
+      Object.keys(user.competition).length > 0 &&
+      compUser &&
+      compUser.competition &&
+      Object.keys(compUser.competition).length > 0) ||
+    isCompetitionFinished(user)
+      ? navigation.setOptions({headerShown: false})
+      : navigation.setOptions({headerShown: true});
+  }, [compUser, navigation, user]);
 
   useEffect(() => {
     if (user && user.competition && Object.keys(user.competition).length > 0) {
