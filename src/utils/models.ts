@@ -22,6 +22,7 @@ export type Competition = {
   endDate: FirebaseFirestoreTypes.Timestamp;
   total: number;
   completed: number;
+  compScore: number;
 };
 
 export type WLD = {
