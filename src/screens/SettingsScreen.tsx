@@ -1,6 +1,6 @@
 import React from 'react';
 import {firebase, FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {Text, View} from 'react-native';
+import {Linking, Text, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import {useUserContext} from '../utils/fn';
 import {SettingsScreenProp} from '../utils/types';
@@ -28,11 +28,16 @@ const SettingsScreen = () => {
 
   return (
     <View style={tailwind('flex-1 items-start justify-start m-5')}>
-      <Text style={fontFam}>{user?.name}</Text>
-      <Text style={fontFam}>{user?.email}</Text>
+      <Text style={fontFam}>Name: {user?.name}</Text>
+      <Text style={fontFam}>Email: {user?.email}</Text>
       <Text style={fontFam} onPress={() => navigation.navigate('ResetStack')}>
-        Reset Password
+        Change Password
       </Text>
+      <View style={tailwind('py-2')}/>
+      <Text style={fontFam}>About Us</Text>
+      <Text style={fontFam} onPress={() => Linking.openURL('mailto:sferia@icloud.com?subject=Habitlink Feedback')}>Send Us Feedback</Text>
+      <Text style={fontFam}>Rate Us</Text>
+      <View style={tailwind('py-2')}/>
       <Text
         style={fontFam}
         onPress={() =>

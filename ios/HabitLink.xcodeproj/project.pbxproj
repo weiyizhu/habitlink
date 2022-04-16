@@ -44,15 +44,15 @@
 		1D0AE47A65C8663E3B452821 /* Pods-HabitLink-HabitLinkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitLink-HabitLinkTests.release.xcconfig"; path = "Target Support Files/Pods-HabitLink-HabitLinkTests/Pods-HabitLink-HabitLinkTests.release.xcconfig"; sourceTree = "<group>"; };
 		6423831EA8574132BED9D8CC /* libPods-HabitLink.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HabitLink.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-HabitLink-HabitLinkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitLink-HabitLinkTests.debug.xcconfig"; path = "Target Support Files/Pods-HabitLink-HabitLinkTests/Pods-HabitLink-HabitLinkTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7C5E93BF732B4DAC9E2ECB13 /* YaldeviColombo-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-Medium.ttf"; path = "../src/assets/fonts/YaldeviColombo-Medium.ttf"; sourceTree = "<group>"; };
+		7C5E93BF732B4DAC9E2ECB13 /* YaldeviColombo-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-Medium.ttf"; path = "../src/assets/fonts/YaldeviColombo-Medium.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HabitLink/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AADE6878279CDDEF001871D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ABFE59519B596E51CEFDCCC0 /* libPods-HabitLink-HabitLinkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HabitLink-HabitLinkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A881CF5CF3F2B244570E2A /* Pods-HabitLink.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitLink.debug.xcconfig"; path = "Target Support Files/Pods-HabitLink/Pods-HabitLink.debug.xcconfig"; sourceTree = "<group>"; };
-		C868855DE2224DA5B7262A54 /* YaldeviColombo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-Regular.ttf"; path = "../src/assets/fonts/YaldeviColombo-Regular.ttf"; sourceTree = "<group>"; };
+		C868855DE2224DA5B7262A54 /* YaldeviColombo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-Regular.ttf"; path = "../src/assets/fonts/YaldeviColombo-Regular.ttf"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-HabitLink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitLink.release.xcconfig"; path = "Target Support Files/Pods-HabitLink/Pods-HabitLink.release.xcconfig"; sourceTree = "<group>"; };
-		E9B0E17EEC084D1AAFAC24D9 /* YaldeviColombo-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-SemiBold.ttf"; path = "../src/assets/fonts/YaldeviColombo-SemiBold.ttf"; sourceTree = "<group>"; };
-		EC20B58738C448E1B1A6C16B /* YaldeviColombo-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-Light.ttf"; path = "../src/assets/fonts/YaldeviColombo-Light.ttf"; sourceTree = "<group>"; };
+		E9B0E17EEC084D1AAFAC24D9 /* YaldeviColombo-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-SemiBold.ttf"; path = "../src/assets/fonts/YaldeviColombo-SemiBold.ttf"; sourceTree = "<group>"; };
+		EC20B58738C448E1B1A6C16B /* YaldeviColombo-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "YaldeviColombo-Light.ttf"; path = "../src/assets/fonts/YaldeviColombo-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -115,7 +115,6 @@
 				E9B0E17EEC084D1AAFAC24D9 /* YaldeviColombo-SemiBold.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -527,6 +526,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R665YVWUMB;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HabitLink/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -553,6 +553,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R665YVWUMB;
 				INFOPLIST_FILE = HabitLink/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
