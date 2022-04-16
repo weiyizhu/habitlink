@@ -15,7 +15,12 @@ const CompetitionEndPage = () => {
   const {user, uid} = useUserContext();
   const myScore =
     user && user.competition && Object.keys(user.competition).length > 0
-      ? Math.max(0, Math.ceil((user.competition.completed / user.competition.total) * 100))
+      ? Math.max(
+          0,
+          Math.ceil(
+            (user.competition.completed / user.competition.total) * 100,
+          ),
+        )
       : 0;
   const compScore =
     user && user.competition && Object.keys(user.competition).length > 0
@@ -103,10 +108,6 @@ const CompetitionEndPage = () => {
         });
       });
     }
-    // navigation.popToTop();
-    // const popAction = StackActions.pop(1);
-    // navigation.dispatch(popAction);
-    // navigation.navigate('CompetitionStack');
   };
 
   return (
