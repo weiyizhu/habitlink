@@ -132,7 +132,7 @@ const CompetitionEndScreen = ({
             {user?.name ?? 'undefined'}
           </Text>
           <Text style={tailwind('text-sm pb-4 font-YC_SemiBold')}>
-            ({user?.wld.wins}-{user?.wld.losses}-{user?.wld.losses})
+            ({user?.wld.wins}-{user?.wld.losses}-{user?.wld.draws})
           </Text>
         </View>
         <View style={tailwind('w-1/12 items-center')}>
@@ -152,7 +152,7 @@ const CompetitionEndScreen = ({
             {compUser?.name ?? 'undefined'}
           </Text>
           <Text style={tailwind('text-sm pb-4 font-YC_SemiBold')}>
-            ({compUser?.wld.wins}-{compUser?.wld.losses}-{compUser?.wld.losses})
+            ({compUser?.wld.wins}-{compUser?.wld.losses}-{compUser?.wld.draws})
           </Text>
         </View>
       </View>
