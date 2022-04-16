@@ -335,22 +335,10 @@
 			"paddingRight": 20
 		}
 	},
-	"px-10": {
-		"style": {
-			"paddingLeft": 40,
-			"paddingRight": 40
-		}
-	},
 	"py-10": {
 		"style": {
 			"paddingTop": 40,
 			"paddingBottom": 40
-		}
-	},
-	"px-8": {
-		"style": {
-			"paddingLeft": 32,
-			"paddingRight": 32
 		}
 	},
 	"pb-3": {
@@ -396,6 +384,16 @@
 	"pt-20": {
 		"style": {
 			"paddingTop": 80
+		}
+	},
+	"pt-2": {
+		"style": {
+			"paddingTop": 8
+		}
+	},
+	"pt-5": {
+		"style": {
+			"paddingTop": 20
 		}
 	},
 	"text-left": {

@@ -1,7 +1,9 @@
 import {firebase} from '@react-native-firebase/firestore';
 import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {useTailwind} from 'tailwind-rn/dist';
+import CompetitionDates from '../components/CompetitionDates';
 import CompetitorInfo from '../components/CompetitorInfo';
 import CustomText from '../components/CustomText';
 import FloatingBtn from '../components/FloatingBtn';
@@ -16,6 +18,14 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
   const [myHabits, setMyHabits] = useState<HabitWithUid[]>([]);
   const [compUser, setCompUser] = useState<User>();
   const [compHabits, setCompHabits] = useState<HabitWithUid[]>([]);
+
+  user &&
+    user.competition &&
+    Object.keys(user.competition).length > 0 &&
+    compUser &&
+    compUser.competition &&
+    Object.keys(compUser.competition).length > 0 &&
+    navigation.setOptions({headerShown: false});
 
   useEffect(() => {
     if (user && user.competition && Object.keys(user.competition).length > 0) {
@@ -91,36 +101,45 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
       compUser &&
       compUser.competition &&
       Object.keys(compUser.competition).length > 0 ? (
-        <View style={tailwind('flex-1 flex-row px-5 justify-center')}>
-          <CompetitorInfo
-            wld={user.wld}
-            name={user.name}
-            habits={myHabits}
-            score={Math.ceil(
-              (user.competition.completed / user.competition.total) * 100,
-            )}
-          />
-          <View style={tailwind('w-1/12 items-center')}>
-            <Text
-              style={tailwind(
-                'text-4xl pb-2 font-YC_SemiBold text-transparent',
-              )}>
-              0
-            </Text>
-            <Text style={tailwind('text-center text-xl font-YC_SemiBold')}>
-              vs
-            </Text>
+        <SafeAreaView style={tailwind('flex-1 px-5 items-center')}>
+          <CustomText
+            font={fontType.SemiBold}
+            size={48}
+            additionStyle="mt-4 mb-2">
+            Competition
+          </CustomText>
+          <CompetitionDates />
+          <View style={tailwind('flex-1 flex-row px-5 justify-center pt-5')}>
+            <CompetitorInfo
+              wld={user.wld}
+              name={user.name}
+              habits={myHabits}
+              score={Math.ceil(
+                (user.competition.completed / user.competition.total) * 100,
+              )}
+            />
+            <View style={tailwind('w-1/12 items-center')}>
+              <Text
+                style={tailwind(
+                  'text-4xl pb-2 font-YC_SemiBold text-transparent',
+                )}>
+                0
+              </Text>
+              <Text style={tailwind('text-center text-xl font-YC_SemiBold')}>
+                vs
+              </Text>
+            </View>
+            <CompetitorInfo
+              wld={compUser.wld}
+              name={compUser.name}
+              habits={compHabits}
+              score={Math.ceil(
+                (compUser.competition.completed / compUser.competition.total) *
+                  100,
+              )}
+            />
           </View>
-          <CompetitorInfo
-            wld={compUser.wld}
-            name={compUser.name}
-            habits={compHabits}
-            score={Math.ceil(
-              (compUser.competition.completed / compUser.competition.total) *
-                100,
-            )}
-          />
-        </View>
+        </SafeAreaView>
       ) : (
         <View style={tailwind('flex-1 px-7 items-center')}>
           {user && user.competitionRequests.length > 0 ? (
