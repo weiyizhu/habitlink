@@ -6,6 +6,10 @@
   position: absolute
 }
 
+.bottom-2 {
+  bottom: 0.5rem
+}
+
 .top-2\.5 {
   top: 0.625rem
 }
@@ -42,10 +46,6 @@
   right: 2.25rem
 }
 
-.bottom-2 {
-  bottom: 0.5rem
-}
-
 .m-1 {
   margin: 0.25rem
 }
@@ -65,6 +65,10 @@
 
 .mb-3 {
   margin-bottom: 0.75rem
+}
+
+.mr-2 {
+  margin-right: 0.5rem
 }
 
 .mb-4 {
@@ -87,36 +91,20 @@
   margin-right: 1.5rem
 }
 
-.mr-2 {
-  margin-right: 0.5rem
-}
-
 .mb-1 {
   margin-bottom: 0.25rem
 }
 
-.mr-3 {
-  margin-right: 0.75rem
-}
-
-.mt-10 {
-  margin-top: 2.5rem
-}
-
-.mt-20 {
-  margin-top: 5rem
-}
-
-.mt-8 {
-  margin-top: 2rem
+.mt-4 {
+  margin-top: 1rem
 }
 
 .mb-2 {
   margin-bottom: 0.5rem
 }
 
-.mt-4 {
-  margin-top: 1rem
+.mt-10 {
+  margin-top: 2.5rem
 }
 
 .h-8 {
@@ -258,9 +246,19 @@
   padding-right: 1.25rem
 }
 
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem
+}
+
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem
 }
 
 .pb-3 {
@@ -287,16 +285,8 @@
   padding-bottom: 0.25rem
 }
 
-.pb-14 {
-  padding-bottom: 3.5rem
-}
-
-.pt-14 {
-  padding-top: 3.5rem
-}
-
-.pt-7 {
-  padding-top: 1.75rem
+.pt-10 {
+  padding-top: 2.5rem
 }
 
 .pt-3 {
@@ -305,22 +295,6 @@
 
 .pt-20 {
   padding-top: 5rem
-}
-
-.pt-12 {
-  padding-top: 3rem
-}
-
-.pt-5 {
-  padding-top: 1.25rem
-}
-
-.pb-12 {
-  padding-bottom: 3rem
-}
-
-.pt-10 {
-  padding-top: 2.5rem
 }
 
 .text-left {

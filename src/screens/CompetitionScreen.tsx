@@ -122,7 +122,7 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
           />
         </View>
       ) : (
-        <View style={tailwind('flex-1 px-5 items-center')}>
+        <View style={tailwind('flex-1 px-7 items-center')}>
           {user && user.competitionRequests.length > 0 ? (
             user.competitionRequests.map(request => (
               <RequestCard

@@ -19,9 +19,8 @@ const RequestCard = ({check, close, name}: RequestProps) => {
   return (
     <View
       style={tailwind(
-        'px-3 py-2 bg-neutral-200 flex-row justify-between items-center mb-4',
-      )}
-    >
+        'px-3 py-2 bg-neutral-200 flex-row justify-between items-center mb-4 w-full',
+      )}>
       <Text style={tailwind('text-2xl font-YC_SemiBold')}>{name}</Text>
       <View style={tailwind('flex-row')}>
         <MaterialCommunityIcons
