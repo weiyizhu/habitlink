@@ -1,5 +1,5 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import CustomText from '../components/CustomText';
 import {
@@ -152,9 +152,18 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
 
   return (
     <View style={tailwind('flex-1 px-7')}>
-      <CustomText font={fontType.Medium} size={18} additionStyle={'mb-5'}>
-        {description}
-      </CustomText>
+      {description.length > 0 && (
+        <>
+          <Text style={tailwind('mb-5')}>
+            <CustomText font={fontType.SemiBold} size={18}>
+              {'Description: '}
+            </CustomText>
+            <CustomText font={fontType.Regular} size={18}>
+              {description}
+            </CustomText>
+          </Text>
+        </>
+      )}
       <Calendar
         markingType="period"
         markedDates={markedDates}
