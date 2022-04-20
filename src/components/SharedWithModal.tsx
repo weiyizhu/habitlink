@@ -42,16 +42,14 @@ const SharedWithModal = ({
         // hideModalContentWhileAnimating
         onDismiss={handleModalSave}
         animationIn="fadeIn"
-        animationOut="fadeOut"
-      >
+        animationOut="fadeOut">
         <View style={tailwind('bg-white p-7')}>
           {friendsList.length > 0 ? (
             <>
               {friendsList.map(value => (
                 <View
                   key={value.uid}
-                  style={tailwind('flex-row mb-3 items-center')}
-                >
+                  style={tailwind('flex-row mb-3 items-center')}>
                   <MaterialCommunityIcons
                     onPress={() => {
                       setFriendsList(prev => {
@@ -82,7 +80,7 @@ const SharedWithModal = ({
             </>
           ) : (
             <Text style={tailwind('text-xl font-YC_Regular pl-3')}>
-              {'You have no friends lol'}
+              {'Add a friend first'}
             </Text>
           )}
         </View>

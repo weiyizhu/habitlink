@@ -56,8 +56,7 @@ const SelectHabitsModal = ({
         // useNativeDriver
         // hideModalContentWhileAnimating
         animationIn="fadeIn"
-        animationOut="fadeOut"
-      >
+        animationOut="fadeOut">
         <View style={tailwind('bg-white p-7')}>
           {habitsList.length > 0 ? (
             <>
@@ -65,8 +64,7 @@ const SelectHabitsModal = ({
                 return (
                   <View
                     key={habit.uid}
-                    style={tailwind('flex-row mb-3 items-center')}
-                  >
+                    style={tailwind('flex-row mb-3 items-center')}>
                     <MaterialCommunityIcons
                       onPress={() => {
                         setHabitsList(prev => {
@@ -95,7 +93,7 @@ const SelectHabitsModal = ({
             </>
           ) : (
             <Text style={tailwind('text-xl font-YC_Regular pl-3')}>
-              {'You have no habits lol'}
+              {'Add a habit first'}
             </Text>
           )}
         </View>
