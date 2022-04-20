@@ -153,22 +153,26 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
           </View>
         </SafeAreaView>
       ) : (
-        <View style={tailwind('flex-1 px-7 items-center')}>
-          {user && user.competitionRequests.length > 0 ? (
-            user.competitionRequests.map(request => (
-              <RequestCard
-                key={request.uid}
-                name={request.name}
-                check={() => handleRequestCheck(request)}
-                close={() => handleRequestCross(request.uid)}
-              />
-            ))
-          ) : (
-            <CustomText font={fontType.Medium} size={18}>
-              Click the add button to compete against your friends!
-            </CustomText>
-          )}
-          <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
+        <View style={tailwind('flex-1 px-7 justify-between')}>
+          <View>
+            {user && user.competitionRequests.length > 0 ? (
+              user.competitionRequests.map(request => (
+                <RequestCard
+                  key={request.uid}
+                  name={request.name}
+                  check={() => handleRequestCheck(request)}
+                  close={() => handleRequestCross(request.uid)}
+                />
+              ))
+            ) : (
+              <CustomText font={fontType.Medium} size={18}>
+                Click the add button to compete against your friends!
+              </CustomText>
+            )}
+          </View>
+          <View style={tailwind('h-24 justify-center')}>
+            <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
+          </View>
         </View>
       )}
     </>

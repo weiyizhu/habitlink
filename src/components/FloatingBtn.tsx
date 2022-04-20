@@ -7,7 +7,7 @@ import {FloatingBtnProps} from '../utils/types';
 const FloatingBtn = ({handlePlusCirclePress}: FloatingBtnProps) => {
   const tailwind = useTailwind();
   return (
-    <TouchableOpacity style={tailwind('absolute bottom-7 right-7')}>
+    <TouchableOpacity style={tailwind('self-end')}>
       <MaterialCommunityIcons
         onPress={handlePlusCirclePress}
         name="plus-circle"

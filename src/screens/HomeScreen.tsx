@@ -39,7 +39,9 @@ const HomeScreen = ({navigation}: HomeScreenProp) => {
   return (
     <View style={tailwind('flex-1 px-7')}>
       <FlatList data={habits} renderItem={renderItem} extraData={habits} />
-      <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
+      <View style={tailwind('h-24 justify-center')}>
+        <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
+      </View>
     </View>
   );
 };
