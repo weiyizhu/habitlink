@@ -5,7 +5,7 @@ import {useTailwind} from 'tailwind-rn/dist';
 import {FrequencyModalProps, TimePeriod} from '../utils/types';
 import Modal from 'react-native-modal/dist/modal';
 import FrequencyRadioBtn from './FrequencyRadioBtn';
-import {useUserContext} from '../utils/fn';
+import {isNum, useUserContext} from '../utils/fn';
 
 const FrequencyModal = ({
   isFreqModalVisible,
@@ -26,21 +26,23 @@ const FrequencyModal = ({
       setNewFrequency('Every day');
     } else if (TPRadioBtn === TimePeriod.Week) {
       const parsedNum = parseInt(newWeeklyGoal, 10);
+      if (parsedNum > 7 || parsedNum <= 0 || !isNum(newWeeklyGoal)) {
+        setSnackE('Weekly goal has to be between 1 and 7');
+        return;
+      }
       if (parsedNum === 7) {
         setTPRadioBtn(TimePeriod.Day);
         setNewFrequency('Every day');
-      } else if (parsedNum > 7 || parsedNum <= 0) {
-        setSnackE('Weekly goal has to be between 1 and 7');
-        return;
       } else setNewFrequency(newWeeklyGoal + ' times per week');
     } else {
       const parsedNum = parseInt(newMonthlyGoal, 10);
+      if (parsedNum > 31 || parsedNum <= 0 || !isNum(newMonthlyGoal)) {
+        setSnackE('Monthly goal has to be between 1 and 31');
+        return;
+      }
       if (parsedNum === 30 || parsedNum === 31) {
         setTPRadioBtn(TimePeriod.Day);
         setNewFrequency('Every day');
-      } else if (parsedNum > 31 || parsedNum <= 0) {
-        setSnackE('Monthly goal has to be between 1 and 31');
-        return;
       } else setNewFrequency(newMonthlyGoal + ' times per month');
     }
     setIsFreqModalVisible(false);
@@ -55,8 +57,7 @@ const FrequencyModal = ({
         // hideModalContentWhileAnimating
         onDismiss={handleModalSave}
         animationIn="fadeIn"
-        animationOut="fadeOut"
-      >
+        animationOut="fadeOut">
         <View style={tailwind('bg-white p-7')}>
           <RadioButton.Group
             onValueChange={val => {
@@ -64,8 +65,7 @@ const FrequencyModal = ({
               setTPRadioBtn(timePeriod);
               Keyboard.dismiss();
             }}
-            value={TPRadioBtn}
-          >
+            value={TPRadioBtn}>
             <View style={tailwind('flex-row items-center mb-3')}>
               <RadioButton value={TimePeriod.Day} />
               <Text style={tailwind('text-xl font-YC_Regular pl-3')}>

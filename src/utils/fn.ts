@@ -189,3 +189,7 @@ export const FirestoreTimestampToMoment = (
 ) => {
   return moment(date.toDate(), 'YYYY-MM-DD');
 };
+
+export const isNum = (text: string) => {
+  return /^\d+$/.test(text);
+};
