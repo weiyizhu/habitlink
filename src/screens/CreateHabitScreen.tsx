@@ -54,8 +54,12 @@ const CreateHabitScreen = ({
         setSnackE('Habit name cannot be blank');
         return;
       }
-      if (newName.trim().length > 13) {
-        setSnackE('Habit name cannot be longer than 13 characters.');
+      if (newName.trim().length > 12) {
+        setSnackE('Habit name cannot be longer than 12 characters.');
+        return;
+      }
+      if (newDescription.length > 200) {
+        setSnackE('Description cannot be longer than 200 characters.');
         return;
       }
       const newHabit: Habit = {
@@ -84,8 +88,7 @@ const CreateHabitScreen = ({
       headerRight: () => (
         <Text
           style={tailwind('text-xl font-YC_SemiBold right-8')}
-          onPress={handleSave}
-        >
+          onPress={handleSave}>
           Save
         </Text>
       ),

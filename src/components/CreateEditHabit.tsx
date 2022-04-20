@@ -73,18 +73,25 @@ const CreateEditHabit = ({
         <TextInput
           label="Name"
           value={newName}
-          onChangeText={text => setNewName(text)}
+          onChangeText={text => {
+            if (text.length <= 12) setNewName(text);
+          }}
           underlineColor="#A7A7A7"
           activeUnderlineColor="#637081"
           style={tailwind('mb-5 bg-white')}
+          right={<TextInput.Affix text={`${newName.length}/12`} />}
         />
         <TextInput
           label="Description"
           value={newDescription}
-          onChangeText={text => setNewDescription(text)}
+          onChangeText={text => {
+            if (text.length <= 200) setNewDescription(text);
+          }}
           underlineColor="#A7A7A7"
           activeUnderlineColor="#637081"
           style={tailwind('mb-5 bg-white')}
+          right={<TextInput.Affix text={`${newDescription.length}/200`} />}
+          blurOnSubmit={true}
           multiline
         />
         <TextInput
@@ -161,8 +168,7 @@ const CreateEditHabit = ({
                 if (inCompetition) {
                   setSnackE('Cannot delete habits in competition');
                 } else setDeleteDialogVisible(true);
-              }}
-            >
+              }}>
               Delete habit
             </Button>
 
