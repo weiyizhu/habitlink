@@ -154,7 +154,6 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
         </SafeAreaView>
       ) : (
         <View style={tailwind('flex-1 px-7 justify-between')}>
-          <View>
             {user && user.competitionRequests.length > 0 ? (
               <FlatList
                 data={user.competitionRequests}
@@ -173,7 +172,6 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
                 Click the add button to compete against your friends!
               </CustomText>
             )}
-          </View>
           <View style={tailwind('h-24 justify-center')}>
             <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
           </View>
