@@ -82,7 +82,7 @@ const CreateEditHabit = ({
           right={<TextInput.Affix text={`${newName.length}/12`} />}
         />
         <TextInput
-          label="Description"
+          label="Description (optional)"
           value={newDescription}
           onChangeText={text => {
             if (text.length <= 200) setNewDescription(text);
