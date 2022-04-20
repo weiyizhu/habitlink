@@ -532,6 +532,11 @@
 			"paddingTop": 28
 		}
 	},
+	"pb-44": {
+		"style": {
+			"paddingBottom": 176
+		}
+	},
 	"text-left": {
 		"style": {
 			"textAlign": "left"

@@ -1,6 +1,6 @@
 import {firebase} from '@react-native-firebase/firestore';
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useTailwind} from 'tailwind-rn/dist';
 import CompetitionDates from '../components/CompetitionDates';
@@ -156,14 +156,18 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
         <View style={tailwind('flex-1 px-7 justify-between')}>
           <View>
             {user && user.competitionRequests.length > 0 ? (
-              user.competitionRequests.map(request => (
-                <RequestCard
-                  key={request.uid}
-                  name={request.name}
-                  check={() => handleRequestCheck(request)}
-                  close={() => handleRequestCross(request.uid)}
-                />
-              ))
+              <FlatList
+                data={user.competitionRequests}
+                renderItem={({item}) => (
+                  <RequestCard
+                    key={item.uid}
+                    name={item.name}
+                    check={() => handleRequestCheck(item)}
+                    close={() => handleRequestCross(item.uid)}
+                  />
+                )}
+                extraData={user.competitionRequests}
+              />
             ) : (
               <CustomText font={fontType.Medium} size={18}>
                 Click the add button to compete against your friends!
