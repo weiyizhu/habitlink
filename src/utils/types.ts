@@ -61,6 +61,7 @@ export type AuthStackParamList = {
   RootLoginStack: undefined;
   RootCreateStack: undefined;
   RootForgotStack: undefined;
+  RootAppIntroStack: undefined;
 };
 
 export type SettingsParamList = {
@@ -189,6 +190,11 @@ export type AuthScreenProp = StackNavigationProp<
 export type CreateAccountScreenProp = StackNavigationProp<
   AuthStackParamList,
   'RootCreateStack'
+>;
+
+export type AppIntroScreenProp = StackNavigationProp<
+  AuthStackParamList,
+  'RootAppIntroStack'
 >;
 
 export type ForgotPasswordScreenProp = StackNavigationProp<

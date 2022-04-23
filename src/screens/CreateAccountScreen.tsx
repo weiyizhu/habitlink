@@ -21,9 +21,9 @@ const CreateAccountScreen = () => {
   const [nameE, setNameE] = useState('');
 
   useEffect(() => {
-    if (user != null) {
-      navigation.navigate('RootHomeStack');
-    }
+    // if (user != null) {
+    //   navigation.navigate('RootHomeStack');
+    // }
   }, [navigation, user]);
 
   const tailwind = useTailwind();
@@ -144,7 +144,7 @@ const CreateAccountScreen = () => {
                     },
                   );
                   setUnsubscribe(() => unsubscribeFun);
-                  navigation.navigate('RootHomeStack');
+                  navigation.navigate('RootAppIntroStack');
                   setUsername('');
                   setPassword('');
                 });

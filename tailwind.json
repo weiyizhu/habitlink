@@ -189,6 +189,11 @@
 			"marginTop": 64
 		}
 	},
+	"mt-12": {
+		"style": {
+			"marginTop": 48
+		}
+	},
 	"h-8": {
 		"style": {
 			"height": 32
