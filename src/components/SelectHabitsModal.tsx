@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
-import {HabitWithUid, TimePeriod} from '../utils/types';
+import {fontType, HabitWithUid, TimePeriod} from '../utils/types';
 import Modal from 'react-native-modal/dist/modal';
 import {useUserContext} from '../utils/fn';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import CustomText from './CustomText';
+import _ from 'lodash';
 
 export interface SelectHabitsModal {
   isModalVisible: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedHabits: HabitWithUid[];
   setSelectedHabits: React.Dispatch<React.SetStateAction<HabitWithUid[]>>;
 }
 
@@ -19,6 +22,7 @@ export type HabitsCheckBox = HabitWithUid & {
 const SelectHabitsModal = ({
   isModalVisible,
   setModalVisible,
+  selectedHabits,
   setSelectedHabits,
 }: SelectHabitsModal) => {
   const tailwind = useTailwind();
@@ -26,27 +30,22 @@ const SelectHabitsModal = ({
   const [habitsList, setHabitsList] = useState<HabitsCheckBox[]>([]);
 
   useEffect(() => {
-    const newHabitsList: HabitsCheckBox[] = [];
-    habits.forEach(habit => {
-      if (habit.timePeriod !== TimePeriod.Month) {
-        const index = habitsList.findIndex(e => e.uid === habit.uid);
-        if (index > -1) {
-          newHabitsList.push({...habit, checked: habitsList[index].checked});
-        } else {
-          newHabitsList.push({...habit, checked: false});
-        }
-      }
-    });
+    const newHabitsList: HabitsCheckBox[] = habits
+      .filter(habit => habit.timePeriod !== TimePeriod.Month)
+      .map(habit => ({
+        ...habit,
+        checked: _.some(selectedHabits, habit),
+      }));
     setHabitsList(newHabitsList);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [habits]);
+  }, [habits, selectedHabits]);
 
-  useEffect(() => {
-    const getCheckedFriends: HabitWithUid[] = habitsList
+  const handleModalSave = () => {
+    const getCheckedHabits: HabitWithUid[] = habitsList
       .filter(habit => habit.checked)
       .map(({checked, ...properties}) => properties);
-    setSelectedHabits(getCheckedFriends);
-  }, [habitsList, setSelectedHabits]);
+    setSelectedHabits(getCheckedHabits);
+    setModalVisible(false);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -55,9 +54,11 @@ const SelectHabitsModal = ({
         onBackdropPress={() => setModalVisible(false)}
         // useNativeDriver
         // hideModalContentWhileAnimating
+        onDismiss={handleModalSave}
         animationIn="fadeIn"
         animationOut="fadeOut">
         <View style={tailwind('bg-white p-7')}>
+          <Text style={tailwind('text-2xl pb-3 font-YC_SemiBold')}>Habits</Text>
           {habitsList.length > 0 ? (
             <>
               {habitsList.map(habit => {
@@ -96,6 +97,12 @@ const SelectHabitsModal = ({
               {'Add a habit first'}
             </Text>
           )}
+          <CustomText
+            font={fontType.Regular}
+            size={16}
+            additionStyle="text-center pt-2">
+            *Only daily and weekly habits could be chosen
+          </CustomText>
         </View>
       </Modal>
     </TouchableWithoutFeedback>

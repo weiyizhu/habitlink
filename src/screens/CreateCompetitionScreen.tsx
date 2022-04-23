@@ -56,7 +56,10 @@ const CreateCompetitionScreen = ({
       return;
     }
 
-    if (user?.competitionRequests.findIndex(obj => obj.uid === challenger.uid) > -1 ) {
+    if (
+      user?.competitionRequests.findIndex(obj => obj.uid === challenger.uid) >
+      -1
+    ) {
       setSnackE(
         `${challenger.name} has already sent a competition request to you`,
       );
@@ -137,6 +140,7 @@ const CreateCompetitionScreen = ({
         <SelectHabitsModal
           setModalVisible={setIsSelectHabitModalVisible}
           isModalVisible={isSelectHabitModalVisible}
+          selectedHabits={selectedHabits}
           setSelectedHabits={setSelectedHabits}
         />
         <ChallengerModal
@@ -150,8 +154,7 @@ const CreateCompetitionScreen = ({
           mode="contained"
           color="lightgreen"
           style={tailwind('mt-5')}
-          onPress={() => setIsDialogVisible(true)}
-        >
+          onPress={() => setIsDialogVisible(true)}>
           Send Challenge
         </Button>
         <Dialog

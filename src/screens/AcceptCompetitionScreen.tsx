@@ -92,7 +92,7 @@ const AcceptCompetitionScreen = ({
       ),
       total: calcCompetitionTotal(selectedHabits),
       completed: 0,
-      compScore: 0
+      compScore: 0,
     };
     firebase.firestore().collection('users').doc(uid).update({
       competition: userCompetition,
@@ -108,7 +108,7 @@ const AcceptCompetitionScreen = ({
       ),
       total: calcCompetitionTotal(validChallengerHabits),
       completed: 0,
-      compScore: 0
+      compScore: 0,
     };
     firebase.firestore().collection('users').doc(request.uid).update({
       competition: challengerCompetition,
@@ -177,6 +177,7 @@ const AcceptCompetitionScreen = ({
         <SelectHabitsModal
           setModalVisible={setIsSelectHabitModalVisible}
           isModalVisible={isSelectHabitModalVisible}
+          selectedHabits={selectedHabits}
           setSelectedHabits={setSelectedHabits}
         />
         <Button
@@ -184,8 +185,7 @@ const AcceptCompetitionScreen = ({
           mode="contained"
           color="lightgreen"
           style={tailwind('mt-5')}
-          onPress={() => setIsDialogVisible(true)}
-        >
+          onPress={() => setIsDialogVisible(true)}>
           Accept Challenge
         </Button>
         <Dialog
