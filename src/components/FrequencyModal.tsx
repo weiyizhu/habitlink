@@ -59,6 +59,9 @@ const FrequencyModal = ({
         animationIn="fadeIn"
         animationOut="fadeOut">
         <View style={tailwind('bg-white p-7')}>
+          <Text style={tailwind('text-2xl pb-3 font-YC_SemiBold')}>
+            Frequency
+          </Text>
           <RadioButton.Group
             onValueChange={val => {
               const timePeriod = val as TimePeriod;
