@@ -19,11 +19,11 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [passwordE, setPasswordE] = useState('');
 
-  useEffect(() => {
-    if (user != null) {
-      navigation.navigate('RootHomeStack');
-    }
-  }, [navigation, user]);
+  // useEffect(() => {
+  //   if (user != null) {
+  //     navigation.navigate('RootHomeStack');
+  //   }
+  // }, [navigation, user]);
 
   const tailwind = useTailwind();
   return (

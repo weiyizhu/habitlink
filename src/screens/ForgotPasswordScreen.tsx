@@ -16,11 +16,11 @@ const ForgotPasswordScreen = () => {
   const [username, setUsername] = useState('');
   const [usernameE, setUsernameE] = useState('');
 
-  useEffect(() => {
-    if (user != null) {
-      navigation.navigate('RootHomeStack');
-    }
-  }, [navigation, user]);
+  // useEffect(() => {
+  //   if (user != null) {
+  //     navigation.navigate('RootHomeStack');
+  //   }
+  // }, [navigation, user]);
 
   const tailwind = useTailwind();
   return (
