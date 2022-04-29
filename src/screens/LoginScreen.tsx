@@ -19,12 +19,6 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [passwordE, setPasswordE] = useState('');
 
-  // useEffect(() => {
-  //   if (user != null) {
-  //     navigation.navigate('RootHomeStack');
-  //   }
-  // }, [navigation, user]);
-
   const tailwind = useTailwind();
   return (
     <View style={tailwind('flex-1 items-center justify-center')}>
@@ -43,7 +37,7 @@ const LoginScreen = () => {
         )}
         underlineColor="transparent"
         activeUnderlineColor="transparent"
-        placeholder="Username"
+        placeholder="Email"
         value={username}
         error={usernameE !== ''}
         onChangeText={val => setUsername(val)}

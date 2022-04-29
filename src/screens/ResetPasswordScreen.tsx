@@ -22,7 +22,7 @@ const ResetPasswordScreen = ({navigation}: ResetScreenNavigationProp) => {
         )}
         underlineColor="transparent"
         activeUnderlineColor="transparent"
-        placeholder="Username"
+        placeholder="Email"
         value={username}
         error={usernameE !== ''}
         onChangeText={val => setUsername(val)}

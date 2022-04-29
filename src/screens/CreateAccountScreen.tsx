@@ -45,7 +45,7 @@ const CreateAccountScreen = () => {
         )}
         underlineColor="transparent"
         activeUnderlineColor="transparent"
-        placeholder="Email / Username"
+        placeholder="Email"
         value={username}
         error={usernameE !== ''}
         onChangeText={val => setUsername(val)}

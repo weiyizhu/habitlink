@@ -16,12 +16,6 @@ const ForgotPasswordScreen = () => {
   const [username, setUsername] = useState('');
   const [usernameE, setUsernameE] = useState('');
 
-  // useEffect(() => {
-  //   if (user != null) {
-  //     navigation.navigate('RootHomeStack');
-  //   }
-  // }, [navigation, user]);
-
   const tailwind = useTailwind();
   return (
     <View style={tailwind('flex-1 items-center justify-center')}>
