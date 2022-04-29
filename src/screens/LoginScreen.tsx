@@ -119,8 +119,13 @@ const LoginScreen = () => {
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
               if (error.code === 'auth/invalid-email') {
                 setUsernameE('Invalid email');
-              } else if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-                setPasswordE('You entered an invalid email/password combination');
+              } else if (
+                error.code === 'auth/user-not-found' ||
+                error.code === 'auth/wrong-password'
+              ) {
+                setPasswordE(
+                  'You entered an invalid email/password combination',
+                );
               } else if (error.code === 'auth/invalid-password') {
                 setPasswordE('Invalid password');
               } else {

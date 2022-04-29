@@ -88,14 +88,10 @@ const SettingsScreen = () => {
           const friendCompRequests = friendUser.competitionRequests.filter(
             item => item.uid !== uid,
           );
-          firebase
-            .firestore()
-            .collection('users')
-            .doc(element)
-            .update({
-              friends: newfriendUserArray,
-              competitionRequests: friendCompRequests,
-            });
+          firebase.firestore().collection('users').doc(element).update({
+            friends: newfriendUserArray,
+            competitionRequests: friendCompRequests,
+          });
         });
     });
 

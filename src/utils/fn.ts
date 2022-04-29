@@ -34,6 +34,10 @@ export const DefUserContext = createContext<UserContext>({
   setFriends: () => {},
   friendRequests: [],
   setFriendRequests: () => {},
+  friendDialog: false,
+  setFriendDialog: () => {},
+  friendUidDialog: '',
+  setFriendUidDialog: () => {},
   snackE: '',
   setSnackE: () => {},
 });

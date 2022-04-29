@@ -178,6 +178,10 @@ export type UserContext = {
   setFriends: (friends: UserWID[]) => void;
   friendRequests: UserWID[];
   setFriendRequests: (friendRequests: UserWID[]) => void;
+  friendDialog: boolean;
+  setFriendDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  friendUidDialog: string;
+  setFriendUidDialog: (uid: string) => void;
   snackE: string;
   setSnackE: (msg: string) => void;
 };

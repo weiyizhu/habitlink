@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {FlatList} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import {View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
-import FriendCard from '../components/FriendCard';
+import FriendCard, {deleteFunction} from '../components/FriendCard';
 import {useUserContext} from '../utils/fn';
-import {UserWID} from '../utils/models';
+import {User, UserWID} from '../utils/models';
 import FriendRequestCard from '../components/RequestCard';
 import FloatingBtn from '../components/FloatingBtn';
 import {fontType, FriendScreenProp} from '../utils/types';
@@ -14,7 +14,15 @@ import Dialog from '../components/Dialog';
 
 const FriendsScreen = ({navigation}: FriendScreenProp) => {
   const tailwind = useTailwind();
-  const {uid, friends, friendRequests} = useUserContext();
+  const {
+    uid,
+    user: curr,
+    friends,
+    friendRequests,
+    friendDialog,
+    friendUidDialog,
+    setFriendDialog,
+  } = useUserContext();
 
   const check = (ouser: UserWID) => {
     const friendsArr = [...ouser.friends];
@@ -69,6 +77,22 @@ const FriendsScreen = ({navigation}: FriendScreenProp) => {
           extraData={friendRequests.concat(friends)}
         />
       )}
+      {(friendRequests.length !== 0 || friends.length !== 0) && friendDialog && (
+        <Dialog
+          isDialogVisible={friendDialog}
+          setIsDialogVisible={setFriendDialog}
+          title="Warning"
+          message={
+            'You are about to unfriend this user, are you sure you want to do this?'
+          }
+          handleYes={() => {
+            deleteFunction(curr as User, friendUidDialog, uid as string);
+          }}
+          yesLabel="Proceed"
+          noLabel="Cancel"
+        />
+      )}
+
       {friendRequests.length === 0 && friends.length === 0 && (
         <CustomText font={fontType.Medium} size={18} additionStyle={'mb-5'}>
           Click the add button to add some friends!

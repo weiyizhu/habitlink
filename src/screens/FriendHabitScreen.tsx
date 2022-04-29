@@ -38,10 +38,14 @@ const FriendHabitScreen = ({route, navigation}: ShowHomeNavigationProp) => {
 
   return (
     <View style={tailwind('flex-1 px-7')}>
-      {habits.length > 0 && <FlatList data={habits} renderItem={renderItem} extraData={habits} /> }
-      {habits.length === 0 && <CustomText font={fontType.Medium} size={18} additionStyle={'mb-5'}>
+      {habits.length > 0 && (
+        <FlatList data={habits} renderItem={renderItem} extraData={habits} />
+      )}
+      {habits.length === 0 && (
+        <CustomText font={fontType.Medium} size={18} additionStyle={'mb-5'}>
           This friend has not shared any habits with you
-        </CustomText>}
+        </CustomText>
+      )}
     </View>
   );
 };

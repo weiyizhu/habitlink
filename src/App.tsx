@@ -27,8 +27,8 @@ const App = () => {
   const [friendRequests, setFriendRequests] = useState<UserWID[]>([]);
   const [snackE, setSnackE] = useState('');
   const [unsubscribe, setUnsubscribe] = useState<any>(() => {});
-  const [friendDeleteDialog, setFriendDeleteDialog] = useState<boolean>(false);
-
+  const [friendDialog, setFriendDialog] = useState<boolean>(false);
+  const [friendUidDialog, setFriendUidDialog] = useState('');
   const userContextInitVal: UserContext = {
     user,
     setUser,
@@ -42,8 +42,10 @@ const App = () => {
     setFriends,
     friendRequests,
     setFriendRequests,
-    friendDeleteDialog,
-    setFriendDeleteDialog,
+    friendDialog,
+    setFriendDialog,
+    friendUidDialog,
+    setFriendUidDialog,
     snackE,
     setSnackE,
   };
