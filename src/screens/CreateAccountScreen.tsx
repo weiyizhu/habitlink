@@ -20,12 +20,6 @@ const CreateAccountScreen = () => {
   const [name, setName] = useState('');
   const [nameE, setNameE] = useState('');
 
-  useEffect(() => {
-    // if (user != null) {
-    //   navigation.navigate('RootHomeStack');
-    // }
-  }, [navigation, user]);
-
   const tailwind = useTailwind();
   return (
     <View style={tailwind('flex-1 items-center justify-center')}>
@@ -106,9 +100,28 @@ const CreateAccountScreen = () => {
           setUsernameE('');
           setPasswordE('');
           setNameE('');
+
           const pwd = password;
-          if (name === '') {
+
+          setPassword('');
+
+          if (name.trim() === '') {
             setNameE('Please enter a name');
+          }
+
+          if (username.trim() === '') {
+            setUsernameE('Please enter an email');
+          }
+
+          if (pwd.trim() === '') {
+            setPasswordE('Please enter a password');
+          }
+          if (username === '' || name === '' || password === '') {
+            return;
+          }
+
+          if (name.trim().length > 14) {
+            setNameE('Your name can not be longer then 14 characters');
             return;
           }
 
@@ -146,7 +159,7 @@ const CreateAccountScreen = () => {
                   setUnsubscribe(() => unsubscribeFun);
                   navigation.navigate('RootAppIntroStack');
                   setUsername('');
-                  setPassword('');
+                  setName('');
                 });
             })
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
@@ -159,11 +172,10 @@ const CreateAccountScreen = () => {
               } else if (error.code === 'auth/invalid-password') {
                 setPasswordE('Invalid password');
               } else if (error.code === 'auth/weak-password') {
-                setPasswordE('Weak password, try making it longer');
+                setPasswordE('The password must at least be 6 characters');
               } else {
                 setSnackE(error.message);
               }
-              setPassword('');
             });
         }}
       >

@@ -117,7 +117,8 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
           <CustomText
             font={fontType.SemiBold}
             size={48}
-            additionStyle="mt-4 mb-2">
+            additionStyle="mt-4 mb-2"
+          >
             Competition
           </CustomText>
           <CompetitionDates />
@@ -134,7 +135,8 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
               <Text
                 style={tailwind(
                   'text-4xl pb-2 font-YC_SemiBold text-transparent',
-                )}>
+                )}
+              >
                 0
               </Text>
               <Text style={tailwind('text-center text-xl font-YC_SemiBold')}>
@@ -154,24 +156,24 @@ const CompetitionScreen = ({route, navigation}: CompetitionScreenProp) => {
         </SafeAreaView>
       ) : (
         <View style={tailwind('flex-1 px-7 justify-between')}>
-            {user && user.competitionRequests.length > 0 ? (
-              <FlatList
-                data={user.competitionRequests}
-                renderItem={({item}) => (
-                  <RequestCard
-                    key={item.uid}
-                    name={item.name}
-                    check={() => handleRequestCheck(item)}
-                    close={() => handleRequestCross(item.uid)}
-                  />
-                )}
-                extraData={user.competitionRequests}
-              />
-            ) : (
-              <CustomText font={fontType.Medium} size={18}>
-                Click the add button to compete against your friends!
-              </CustomText>
-            )}
+          {user && user.competitionRequests.length > 0 ? (
+            <FlatList
+              data={user.competitionRequests}
+              renderItem={({item}) => (
+                <RequestCard
+                  key={item.uid}
+                  name={item.name}
+                  check={() => handleRequestCheck(item)}
+                  close={() => handleRequestCross(item.uid)}
+                />
+              )}
+              extraData={user.competitionRequests}
+            />
+          ) : (
+            <CustomText font={fontType.Medium} size={18}>
+              Click the add button to compete against your friends!
+            </CustomText>
+          )}
           <View style={tailwind('h-24 justify-center')}>
             <FloatingBtn handlePlusCirclePress={handlePlusCirclePress} />
           </View>

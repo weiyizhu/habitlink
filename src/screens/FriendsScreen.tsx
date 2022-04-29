@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {FlatList} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import {View} from 'react-native';
@@ -10,6 +10,7 @@ import FriendRequestCard from '../components/RequestCard';
 import FloatingBtn from '../components/FloatingBtn';
 import {fontType, FriendScreenProp} from '../utils/types';
 import CustomText from '../components/CustomText';
+import Dialog from '../components/Dialog';
 
 const FriendsScreen = ({navigation}: FriendScreenProp) => {
   const tailwind = useTailwind();

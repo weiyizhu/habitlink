@@ -40,7 +40,8 @@ const CompetitorInfo = ({wld, name, habits, score}: CompetitorInfoProps) => {
             key={habit.uid}
             style={tailwind(
               `px-3 py-2 bg-neutral-200 mb-4 w-full items-center ${bgColor}`,
-            )}>
+            )}
+          >
             <Text style={tailwind('text-xl font-YC_SemiBold')}>
               {habit.name}
             </Text>

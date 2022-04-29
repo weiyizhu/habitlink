@@ -122,13 +122,13 @@ const HabitItem = ({
         navigation.navigate('Details', {
           uid,
         });
-      }}>
+      }}
+    >
       <View>
         <Text style={tailwind('text-2xl font-YC_SemiBold')}>{name}</Text>
         <Text
-          style={tailwind(
-            'text-sm font-YC_Light',
-          )}>{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
+          style={tailwind('text-sm font-YC_Light')}
+        >{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
       </View>
       <MaterialCommunityIcons
         onPress={handleCheckBoxCheck}

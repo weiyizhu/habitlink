@@ -17,7 +17,8 @@ export default function CustomText({
         {fontSize: size},
         tailwind(`font-${font} ${additionStyle ?? ''}`),
       ]}
-      onPress={handlePress}>
+      onPress={handlePress}
+    >
       {children}
     </Text>
   );

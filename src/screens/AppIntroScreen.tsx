@@ -63,11 +63,13 @@ const AppIntroScreen = () => {
         <SafeAreaView
           style={tailwind(
             'flex-1 px-10 py-10 items-center justify-evenly bg-white',
-          )}>
+          )}
+        >
           <CustomText
             font={fontType.SemiBold}
             size={45}
-            additionStyle="text-center">
+            additionStyle="text-center"
+          >
             {item.title}
           </CustomText>
           <Image
@@ -83,7 +85,8 @@ const AppIntroScreen = () => {
           <CustomText
             font={fontType.Regular}
             size={18}
-            additionStyle="text-center">
+            additionStyle="text-center"
+          >
             {item.text}
           </CustomText>
         </SafeAreaView>

@@ -168,7 +168,8 @@ const CreateEditHabit = ({
                 if (inCompetition) {
                   setSnackE('Cannot delete habits in competition');
                 } else setDeleteDialogVisible(true);
-              }}>
+              }}
+            >
               Delete habit
             </Button>
 

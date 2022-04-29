@@ -28,7 +28,8 @@ const LoginScreen = () => {
           fontFamily: 'YaldeviColombo-SemiBold',
           height: 120,
           textAlign: 'center',
-        }}>
+        }}
+      >
         Habitlink
       </Text>
       <TextInput
@@ -46,7 +47,8 @@ const LoginScreen = () => {
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={usernameE !== ''}>
+          visible={usernameE !== ''}
+        >
           {usernameE}
         </HelperText>
       </View>
@@ -66,13 +68,15 @@ const LoginScreen = () => {
         <HelperText
           style={tailwind('text-left')}
           type="error"
-          visible={passwordE !== ''}>
+          visible={passwordE !== ''}
+        >
           {passwordE}
         </HelperText>
       </View>
       <Text
         onPress={() => navigation.navigate('RootForgotStack')}
-        style={tailwind('text-right w-10/12 pb-4 text-blue-500')}>
+        style={tailwind('text-right w-10/12 pb-4 text-blue-500')}
+      >
         {' '}
         Forgot password?
       </Text>
@@ -82,6 +86,19 @@ const LoginScreen = () => {
           const temp = password;
           setUsernameE('');
           setPasswordE('');
+          setPassword('');
+
+          if (username.trim() === '') {
+            setUsernameE('Please enter an email');
+          }
+
+          if (temp.trim() === '') {
+            setPasswordE('Please enter a password');
+          }
+
+          if (username === '' || temp === '') {
+            return;
+          }
           signIn(username, temp)
             .then((authUser: FirebaseAuthTypes.UserCredential) => {
               const userRef = firestore()
@@ -102,18 +119,17 @@ const LoginScreen = () => {
             .catch((error: FirebaseAuthTypes.NativeFirebaseAuthError) => {
               if (error.code === 'auth/invalid-email') {
                 setUsernameE('Invalid email');
-              } else if (error.code === 'auth/user-not-found') {
-                setUsernameE('A user with this email was not found');
+              } else if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                setPasswordE('You entered an invalid email/password combination');
               } else if (error.code === 'auth/invalid-password') {
                 setPasswordE('Invalid password');
-              } else if (error.code === 'auth/wrong-password') {
-                setPasswordE('Wrong password');
               } else {
                 setSnackE(error.message);
               }
               setPassword('');
             });
-        }}>
+        }}
+      >
         <Text style={tailwind('text-white text-center')}> Log In</Text>
       </TouchableOpacity>
       <View style={tailwind('absolute bottom-0 w-full')}>
@@ -129,7 +145,8 @@ const LoginScreen = () => {
             Don't have an account?{' '}
             <Text
               onPress={() => navigation.navigate('RootCreateStack')}
-              style={tailwind('text-blue-500')}>
+              style={tailwind('text-blue-500')}
+            >
               Sign Up
             </Text>
           </Text>

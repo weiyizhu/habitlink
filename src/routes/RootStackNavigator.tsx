@@ -13,7 +13,8 @@ const RootStackNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="RootLoginStack">
+      initialRouteName="RootLoginStack"
+    >
       <Stack.Screen name="RootLoginStack" component={LoginScreen} />
       <Stack.Screen name="RootHomeStack" component={BottomTabNavigator} />
       <Stack.Screen name="RootCreateStack" component={CreateAccountScreen} />

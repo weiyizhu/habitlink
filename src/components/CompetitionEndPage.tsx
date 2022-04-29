@@ -138,7 +138,8 @@ const CompetitionEndPage = () => {
         </View>
         <View style={tailwind('w-1/12 items-center')}>
           <Text
-            style={tailwind('text-4xl pb-2 font-YC_SemiBold text-transparent')}>
+            style={tailwind('text-4xl pb-2 font-YC_SemiBold text-transparent')}
+          >
             0
           </Text>
           <Text style={tailwind('text-center text-xl font-YC_SemiBold')}>
@@ -168,7 +169,8 @@ const CompetitionEndPage = () => {
         font={fontType.SemiBold}
         size={24}
         additionStyle="pt-20"
-        handlePress={handleContinue}>
+        handlePress={handleContinue}
+      >
         Continue
       </CustomText>
     </SafeAreaView>

@@ -25,7 +25,8 @@ const FriendCard = ({user, navigation}: FriendCardProps) => {
           friendUid: friendUid,
           friendName: user.name,
         });
-      }}>
+      }}
+    >
       <View>
         <Text style={tailwind('text-2xl font-YC_SemiBold')}>{user.name}</Text>
       </View>

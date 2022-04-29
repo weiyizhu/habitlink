@@ -35,7 +35,7 @@ const ForgotPasswordScreen = () => {
         )}
         underlineColor="transparent"
         activeUnderlineColor="transparent"
-        placeholder="Username"
+        placeholder="Email"
         value={username}
         error={usernameE !== ''}
         onChangeText={val => setUsername(val)}
@@ -55,6 +55,12 @@ const ForgotPasswordScreen = () => {
           const temp = username.toLowerCase();
           setUsername('');
           setUsernameE('');
+
+          if (temp.trim() === '') {
+            setUsernameE('Please enter an email');
+            return;
+          }
+
           sendPasswordReset(temp)
             .then(() => {
               setSnackE('If this user exits, a reset password email was sent');

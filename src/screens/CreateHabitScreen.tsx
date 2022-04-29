@@ -88,7 +88,8 @@ const CreateHabitScreen = ({
       headerRight: () => (
         <Text
           style={tailwind('text-xl font-YC_SemiBold right-8')}
-          onPress={handleSave}>
+          onPress={handleSave}
+        >
           Save
         </Text>
       ),

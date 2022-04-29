@@ -91,7 +91,8 @@ const EditHabitScreen = ({
       headerRight: () => (
         <Text
           style={tailwind('text-xl font-YC_SemiBold right-9')}
-          onPress={handleSave}>
+          onPress={handleSave}
+        >
           Save
         </Text>
       ),

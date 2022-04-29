@@ -45,6 +45,12 @@ const ResetPasswordScreen = ({navigation}: ResetScreenNavigationProp) => {
           const temp = username.toLowerCase();
           setUsername('');
           setUsernameE('');
+
+          if (temp.trim() === '') {
+            setUsernameE('Please enter an email');
+            return;
+          }
+
           sendPasswordReset(temp)
             .then(() => {
               setSnackE('If this user exits, a reset password email was sent');

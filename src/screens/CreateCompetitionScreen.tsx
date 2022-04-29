@@ -154,7 +154,8 @@ const CreateCompetitionScreen = ({
           mode="contained"
           color="lightgreen"
           style={tailwind('mt-5')}
-          onPress={() => setIsDialogVisible(true)}>
+          onPress={() => setIsDialogVisible(true)}
+        >
           Send Challenge
         </Button>
         <Dialog

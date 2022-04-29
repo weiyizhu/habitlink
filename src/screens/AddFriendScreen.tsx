@@ -47,8 +47,8 @@ const AddFriendsScreen = ({navigation}: AddFriendNavigationProp) => {
           setFriendRequest('');
           setFriendRequestE('');
 
-          const re = /^(.+)@(.+)$/;
-          if (temp === '') {
+          const re = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+          if (temp.trim() === '') {
             setFriendRequestE('Please enter a value');
             return;
           } else if (!re.test(temp)) {

@@ -185,7 +185,8 @@ const AcceptCompetitionScreen = ({
           mode="contained"
           color="lightgreen"
           style={tailwind('mt-5')}
-          onPress={() => setIsDialogVisible(true)}>
+          onPress={() => setIsDialogVisible(true)}
+        >
           Accept Challenge
         </Button>
         <Dialog
