@@ -77,7 +77,7 @@ const HomeStackNavigator = () => {
         name="HomeStack"
         component={HomeScreen}
         options={() => ({
-          title: 'Habitlink',
+          title: 'Hablink',
         })}
       />
       <Stack.Screen name="Details" component={DetailsScreen} />
