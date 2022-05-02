@@ -15,12 +15,7 @@ export type AppIntroSlides = {
   image: ImageSourcePropType;
 };
 
-// 'hl-blue': '#cee5f2',
-// 'hl-dark-grey': '#637081',
-// 'hl-light-grey': '#A7A7A7',
-// #00000033
-
-const s1 = require('../assets/images/s1.jpeg');
+const s1 = require('../assets/images/s1.png');
 const s2 = require('../assets/images/s2.png');
 const s3 = require('../assets/images/s3.png');
 const s4 = require('../assets/images/s4.png');
@@ -63,13 +58,11 @@ const AppIntroScreen = () => {
         <SafeAreaView
           style={tailwind(
             'flex-1 px-10 py-10 items-center justify-evenly bg-white',
-          )}
-        >
+          )}>
           <CustomText
             font={fontType.SemiBold}
             size={45}
-            additionStyle="text-center"
-          >
+            additionStyle="text-center">
             {item.title}
           </CustomText>
           <Image
@@ -85,17 +78,15 @@ const AppIntroScreen = () => {
           <CustomText
             font={fontType.Regular}
             size={18}
-            additionStyle="text-center"
-          >
+            additionStyle="text-center">
             {item.text}
           </CustomText>
+          <View />
+          <View />
         </SafeAreaView>
       )}
       onDone={() => navigation.navigate('RootHomeStack')}
       renderNextButton={() => (
-        // <CustomText font={fontType.SemiBold} size={20} additionStyle="mr-7 mt-3">
-        //   Next
-        // </CustomText>
         <View style={tailwind('mr-10 mt-2')}>
           <MaterialCommunityIcons
             name="chevron-right"
