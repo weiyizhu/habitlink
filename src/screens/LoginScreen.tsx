@@ -30,7 +30,7 @@ const LoginScreen = () => {
           textAlign: 'center',
         }}
       >
-        Habitlink
+        Hablink
       </Text>
       <TextInput
         style={tailwind(

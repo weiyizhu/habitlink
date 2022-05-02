@@ -158,11 +158,10 @@ const SettingsScreen = () => {
         Change Password
       </Text>
       <View style={tailwind('py-2')} />
-      <Text style={fontFam}>About Us</Text>
       <Text
         style={fontFam}
         onPress={() =>
-          Linking.openURL('mailto:sferia@icloud.com?subject=Habitlink Feedback')
+          Linking.openURL('mailto:watermelonincor@gmail.com?subject=Hablink Feedback')
         }
       >
         Send Us Feedback

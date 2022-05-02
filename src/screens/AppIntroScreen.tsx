@@ -23,8 +23,8 @@ const s4 = require('../assets/images/s4.png');
 const slides: AppIntroSlides[] = [
   {
     key: 's1',
-    title: 'Welcome to Habitlink',
-    text: 'Habitlink lets you build and share habits with your friends',
+    title: 'Welcome to Hablink',
+    text: 'Hablink lets you build and share habits with your friends',
     image: s1,
   },
   {

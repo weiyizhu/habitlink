@@ -27,7 +27,7 @@ const ForgotPasswordScreen = () => {
           textAlign: 'center',
         }}
       >
-        Habitlink
+        Hablink
       </Text>
       <TextInput
         style={tailwind(
