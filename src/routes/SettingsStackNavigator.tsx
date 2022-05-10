@@ -24,9 +24,9 @@ const SettingsStackNavigator = () => {
         headerStyle: {
           height: 150,
         },
-        headerRightContainerStyle: {
-          paddingLeft: 15,
-        },
+        // headerRightContainerStyle: {
+        //   paddingLeft: 15,
+        // },
         headerTitleAlign: 'center',
       }}
     >

@@ -151,7 +151,7 @@ const SettingsScreen = () => {
   };
 
   return (
-    <View style={tailwind('flex-1 items-start justify-start m-5')}>
+    <View style={tailwind('flex-1 items-start justify-start px-7')}>
       <Text style={fontFam}>Name: {user?.name}</Text>
       <Text style={fontFam}>Email: {user?.email}</Text>
       <Text style={fontFam} onPress={() => navigation.navigate('ResetStack')}>
