@@ -167,7 +167,6 @@ const SettingsScreen = () => {
       >
         Send Us Feedback
       </Text>
-      <Text style={fontFam}>Rate Us</Text>
       <Text style={fontFam} onPress={() => navigation.navigate('RootAppIntroStack')}>Tutorial</Text>
       <View style={tailwind('py-2')} />
       <Text
