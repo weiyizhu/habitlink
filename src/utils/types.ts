@@ -68,6 +68,8 @@ export type SettingsParamList = {
   SettingsStack: undefined;
   ResetStack: undefined;
   RootLoginStack: undefined;
+  AboutUsStack: undefined;
+  RootAppIntroStack: undefined;
 };
 
 export type RootTabParamList = {

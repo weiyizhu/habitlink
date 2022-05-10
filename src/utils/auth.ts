@@ -1,5 +1,8 @@
-import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {Context, createContext, useState} from 'react';
+import auth from '@react-native-firebase/auth';
+
+const getCurrentUser = () => {
+  return auth().currentUser;
+};
 
 const createAccount = (email: string, password: string) => {
   return auth().createUserWithEmailAndPassword(email, password);
@@ -21,4 +24,4 @@ const deleteAccount = () => {
   return auth().currentUser?.delete();
 };
 
-export {createAccount, signIn, signOut, sendPasswordReset, deleteAccount};
+export {createAccount, signIn, signOut, sendPasswordReset, deleteAccount, getCurrentUser};

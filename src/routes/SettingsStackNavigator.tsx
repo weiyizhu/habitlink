@@ -1,9 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
-
 import React from 'react';
-import LoginScreen from '../screens/LoginScreen';
-import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import AboutUsScreen from '../screens/AboutUsScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 
 const SettingsStackNavigator = () => {
@@ -39,6 +37,11 @@ const SettingsStackNavigator = () => {
           title: 'Settings',
         })}
       />
+      <Stack.Screen
+        name="AboutUsStack"
+        component={AboutUsScreen}
+        options={() => ({title: 'Settings'})}
+        />
       <Stack.Screen
         name="ResetStack"
         component={ResetPasswordScreen}

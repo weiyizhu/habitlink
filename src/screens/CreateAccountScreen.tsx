@@ -31,7 +31,7 @@ const CreateAccountScreen = () => {
           textAlign: 'center',
         }}
       >
-        Habitlink
+        Hablink
       </Text>
       <TextInput
         style={tailwind(

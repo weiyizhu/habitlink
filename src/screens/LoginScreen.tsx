@@ -5,7 +5,7 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {useTailwind} from 'tailwind-rn/dist';
 import {useNavigation} from '@react-navigation/native';
 import {AuthScreenProp} from '../utils/types';
-import {signIn} from '../utils/auth';
+import {signIn, getCurrentUser} from '../utils/auth';
 import firestore from '@react-native-firebase/firestore';
 import {User} from '../utils/models';
 import {useUserContext} from '../utils/fn';
@@ -18,6 +18,26 @@ const LoginScreen = () => {
   const [usernameE, setUsernameE] = useState('');
   const [password, setPassword] = useState('');
   const [passwordE, setPasswordE] = useState('');
+
+  useEffect(() => {
+    const temp = getCurrentUser();
+    if (temp != null) {
+      const userRef = firestore()
+      .collection('users')
+      .doc(temp.uid);
+      setUid(temp.uid);
+      const unsubscribeFun = userRef.onSnapshot(documentSnapshot => {
+      const currentUser = documentSnapshot.data() as User | null;
+      if (currentUser) {
+        setUser(currentUser);
+      }
+    });
+    setUnsubscribe(() => unsubscribeFun);
+    navigation.navigate('RootHomeStack');
+    setUsername('');
+    setPassword('');
+    }
+  }, [navigation, setUid, setUnsubscribe, setUser]);
 
   const tailwind = useTailwind();
   return (
