@@ -1,7 +1,20 @@
 # Hablink
+![Hablink (1) (1)](https://user-images.githubusercontent.com/59520253/167726798-41142506-a6cb-4a07-9f82-c6a4aad7c9bd.png)
 
-Hablink is an application that allows users to create and share habits with friends. A user may create a habit, adjust its details, and share it with friends of their choice. Users may also compete with friends to instill the habit in their daily routine.
+Hablink is a mobile application that allows users to create and share habits with friends
 
-# Technologies
+## Features
+- Create, edit, and track habits
+- Set daily, weekly, and monthly goal
+- Share habits with friends of your choice
+- Compete with friends to instill the habits in your routine
 
-Hablink was created using React Native as a front-end framework; it was styled using TailwindCSS. We utilized firebase as a back-end to store user data as well as handle authentication.
+## Technologies
+
+- React Native (front-end framework)
+- Tailwind CSS (styling)
+- Firebase (back-end database and authentication)
+
+## Developers
+- Weiyi Zhu (wzhu1@swarthmore.edu)
+- Stephen Feria (sferia003@gmail.com)
