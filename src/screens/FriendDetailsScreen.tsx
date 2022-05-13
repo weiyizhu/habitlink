@@ -40,7 +40,7 @@ const FriendDetailsScreen = ({
 
   useEffect(() => {
     navigation.setOptions({
-      title: habit ? habit.name : 'Error',
+      title: habit ? habit.name : '',
     });
     if (habit) {
       const [newMarkedDates, currStreak, maxStreak] =
