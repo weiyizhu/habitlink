@@ -6,7 +6,6 @@ import {ChallengerModalProps} from '../utils/types';
 import Modal from 'react-native-modal/dist/modal';
 import {useUserContext} from '../utils/fn';
 
-// test
 const ChallengerModal = ({
   isModalVisible,
   setIsModalVisible,

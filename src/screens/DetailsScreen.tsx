@@ -90,7 +90,14 @@ const DetailsScreen = ({navigation, route}: DetailsScreenNavigationProp) => {
   const toggleDayCompleted = (day: DateData) => {
     const newDates = [...habit.dates];
     const pressedDay = firebase.firestore.Timestamp.fromDate(
-      new Date(moment(day.dateString).hours(12).format('LLL')),
+      new Date(
+        moment(day.dateString)
+          .hours(12)
+          .minutes(0)
+          .seconds(0)
+          .milliseconds(0)
+          .format('LLL'),
+      ),
     );
     const index = findTimestampIndex(newDates, pressedDay);
     if (index > -1) {

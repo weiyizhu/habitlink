@@ -85,10 +85,24 @@ const AcceptCompetitionScreen = ({
     const userCompetition: Competition = {
       competitor: request.uid,
       startDate: firebase.firestore.Timestamp.fromDate(
-        new Date(moment(startDate).hours(12).format('LLL')),
+        new Date(
+          moment(startDate)
+            .hours(12)
+            .minutes(0)
+            .seconds(0)
+            .milliseconds(0)
+            .format('LLL'),
+        ),
       ),
       endDate: firebase.firestore.Timestamp.fromDate(
-        new Date(moment(endDate.toDate()).hours(12).format('LLL')),
+        new Date(
+          moment(endDate.toDate())
+            .hours(12)
+            .minutes(0)
+            .seconds(0)
+            .milliseconds(0)
+            .format('LLL'),
+        ),
       ),
       total: calcCompetitionTotal(selectedHabits),
       completed: 0,
@@ -101,10 +115,24 @@ const AcceptCompetitionScreen = ({
     const challengerCompetition: Competition = {
       competitor: uid,
       startDate: firebase.firestore.Timestamp.fromDate(
-        new Date(moment(startDate).hours(12).format('LL')),
+        new Date(
+          moment(startDate)
+            .hours(12)
+            .minutes(0)
+            .seconds(0)
+            .milliseconds(0)
+            .format('LL'),
+        ),
       ),
       endDate: firebase.firestore.Timestamp.fromDate(
-        new Date(moment(endDate.toDate()).hours(12).format('LL')),
+        new Date(
+          moment(endDate.toDate())
+            .hours(12)
+            .minutes(0)
+            .seconds(0)
+            .milliseconds(0)
+            .format('LL'),
+        ),
       ),
       total: calcCompetitionTotal(validChallengerHabits),
       completed: 0,
