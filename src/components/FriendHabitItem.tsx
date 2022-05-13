@@ -20,14 +20,26 @@ const FriendHabitItem = ({
       moment().hours(12).minutes(0).seconds(0).milliseconds(0).format('LLL'),
     ),
   );
-  const checked = findTimestampIndex(dates, todayTimestamp) > -1;
+  // const checked = findTimestampIndex(dates, todayTimestamp) > -1;
 
   let completed = 0;
+  const today = moment().day();
   const currWeek = moment().week();
   const currMonth = moment().month();
   const currYear = moment().year();
+
   if (timePeriod === TimePeriod.Day) {
-    if (checked) completed = 1;
+    const sortedDates = sortDates(dates, false);
+    if (sortedDates.length > 0) {
+      const latestDay = moment(sortedDates[0]);
+      if (
+        latestDay.year() === currYear &&
+        latestDay.week() === currWeek &&
+        latestDay.day() === today
+      ) {
+        completed = 1;
+      }
+    }
   } else if (timePeriod === TimePeriod.Week) {
     const sortedDates = sortDates(dates, false);
     for (const date of sortedDates) {
