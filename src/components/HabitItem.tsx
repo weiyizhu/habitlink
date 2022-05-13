@@ -87,7 +87,7 @@ const HabitItem = ({
         await firestore().collection('habits').doc(uid).get()
       ).data() as Habit;
       if (
-        todayMoment >= startDate &&
+        // todayMoment >= startDate &&
         todayMoment <= endDate &&
         habitData.inCompetition
       ) {
