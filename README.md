@@ -18,3 +18,7 @@ Hablink is a mobile application that allows users to create and share habits wit
 ## Developers
 - Weiyi Zhu (wzhu1@swarthmore.edu)
 - Stephen Feria (sferia003@gmail.com)
+
+## Support
+
+Contact the developers if you need any assistance in using the app
