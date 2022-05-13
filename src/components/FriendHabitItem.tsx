@@ -16,7 +16,9 @@ const FriendHabitItem = ({
 }: HabitItemProps) => {
   const tailwind = useTailwind();
   const todayTimestamp = firebase.firestore.Timestamp.fromDate(
-    new Date(moment().format('LL')),
+    new Date(
+      moment().hours(12).minutes(0).seconds(0).milliseconds(0).format('LLL'),
+    ),
   );
   const checked = findTimestampIndex(dates, todayTimestamp) > -1;
 
@@ -55,13 +57,13 @@ const FriendHabitItem = ({
         navigation.navigate('ShowDetails', {
           uid,
         });
-      }}
-    >
+      }}>
       <View>
         <Text style={tailwind('text-2xl font-YC_SemiBold')}>{name}</Text>
         <Text
-          style={tailwind('text-sm font-YC_Light')}
-        >{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
+          style={tailwind(
+            'text-sm font-YC_Light',
+          )}>{`${completed}/${goalPerTP} x ${timePeriod}`}</Text>
       </View>
     </TouchableOpacity>
   );
