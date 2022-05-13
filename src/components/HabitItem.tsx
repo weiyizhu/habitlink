@@ -27,7 +27,7 @@ const HabitItem = ({
   const tailwind = useTailwind();
   const {user} = useUserContext();
   const todayTimestamp = firebase.firestore.Timestamp.fromDate(
-    new Date(moment().format('LL')),
+    new Date(moment().hours(12).format('LLL')),
   );
   const checked = findTimestampIndex(dates, todayTimestamp) > -1;
 
