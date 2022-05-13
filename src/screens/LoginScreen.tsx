@@ -19,26 +19,6 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [passwordE, setPasswordE] = useState('');
 
-  useEffect(() => {
-    const temp = getCurrentUser();
-    if (temp != null) {
-      const userRef = firestore()
-      .collection('users')
-      .doc(temp.uid);
-      setUid(temp.uid);
-      const unsubscribeFun = userRef.onSnapshot(documentSnapshot => {
-      const currentUser = documentSnapshot.data() as User | null;
-      if (currentUser) {
-        setUser(currentUser);
-      }
-    });
-    setUnsubscribe(() => unsubscribeFun);
-    navigation.navigate('RootHomeStack');
-    setUsername('');
-    setPassword('');
-    }
-  }, [navigation, setUid, setUnsubscribe, setUser]);
-
   const tailwind = useTailwind();
   return (
     <View style={tailwind('flex-1 items-center justify-center')}>
