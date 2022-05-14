@@ -1,9 +1,11 @@
 # Hablink
+
 ![Hablink (1) (1)](https://user-images.githubusercontent.com/59520253/167726798-41142506-a6cb-4a07-9f82-c6a4aad7c9bd.png)
 
 Hablink is a mobile application that allows users to create and share habits with friends
 
 ## Features
+
 - Create, edit, and track habits
 - Set daily, weekly, and monthly goal
 - Share habits with friends of your choice
@@ -17,10 +19,11 @@ Hablink is a mobile application that allows users to create and share habits wit
 
 ## Deployment
 
-- iOS 
-  - https://apps.apple.com/us/app/hablink/id1623658227
+- iOS
+  - <https://apps.apple.com/us/app/hablink/id1623658227>
 
 ## Developers
+
 - Weiyi Zhu (wzhu1@swarthmore.edu)
 - Stephen Feria (sferia003@gmail.com)
 
