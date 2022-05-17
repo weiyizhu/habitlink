@@ -21,7 +21,8 @@ Hablink is a mobile application that allows users to create and share habits wit
 
 - iOS
   - <https://apps.apple.com/us/app/hablink/id1623658227>
-
+- Android
+  - <https://play.google.com/store/apps/details?id=com.habitlink>
 ## Developers
 
 - Weiyi Zhu (wzhu1@swarthmore.edu)
