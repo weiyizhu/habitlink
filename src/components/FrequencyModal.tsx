@@ -52,13 +52,15 @@ const FrequencyModal = ({
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <Modal
         isVisible={isFreqModalVisible}
-        onBackdropPress={() => setIsFreqModalVisible(false)}
+        onBackdropPress={() => {
+          handleModalSave();
+          setIsFreqModalVisible(false);
+        }}
         // useNativeDriver
         // hideModalContentWhileAnimating
-        onDismiss={handleModalSave}
+        // onDismiss={handleModalSave}
         animationIn="fadeIn"
-        animationOut="fadeOut"
-      >
+        animationOut="fadeOut">
         <View style={tailwind('bg-white p-7')}>
           <Text style={tailwind('text-2xl pb-3 font-YC_SemiBold')}>
             Frequency
@@ -69,8 +71,7 @@ const FrequencyModal = ({
               setTPRadioBtn(timePeriod);
               Keyboard.dismiss();
             }}
-            value={TPRadioBtn}
-          >
+            value={TPRadioBtn}>
             <View style={tailwind('flex-row items-center mb-3')}>
               <RadioButton value={TimePeriod.Day} />
               <Text style={tailwind('text-xl font-YC_Regular pl-3')}>

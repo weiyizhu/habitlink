@@ -51,13 +51,15 @@ const SelectHabitsModal = ({
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <Modal
         isVisible={isModalVisible}
-        onBackdropPress={() => setModalVisible(false)}
+        onBackdropPress={() => {
+          handleModalSave();
+          setModalVisible(false);
+        }}
         // useNativeDriver
         // hideModalContentWhileAnimating
-        onDismiss={handleModalSave}
+        // onDismiss={handleModalSave}
         animationIn="fadeIn"
-        animationOut="fadeOut"
-      >
+        animationOut="fadeOut">
         <View style={tailwind('bg-white p-7')}>
           <Text style={tailwind('text-2xl pb-3 font-YC_SemiBold')}>Habits</Text>
           {habitsList.length > 0 ? (
@@ -66,8 +68,7 @@ const SelectHabitsModal = ({
                 return (
                   <View
                     key={habit.uid}
-                    style={tailwind('flex-row mb-3 items-center')}
-                  >
+                    style={tailwind('flex-row mb-3 items-center')}>
                     <MaterialCommunityIcons
                       onPress={() => {
                         setHabitsList(prev => {
@@ -102,8 +103,7 @@ const SelectHabitsModal = ({
           <CustomText
             font={fontType.Regular}
             size={16}
-            additionStyle="text-center pt-2"
-          >
+            additionStyle="text-center pt-2">
             *Only daily and weekly habits could be chosen
           </CustomText>
         </View>
