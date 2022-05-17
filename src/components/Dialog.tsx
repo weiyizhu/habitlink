@@ -29,13 +29,13 @@ const Dialog = ({
         <Text style={tailwind('text-lg font-YC_Medium pb-3')}>{message}</Text>
         <View style={tailwind('flex-row justify-end')}>
           <Text
-            style={tailwind('text-xl font-YC_Medium mr-6 font-bold')}
+            style={tailwind('text-xl font-YC_SemiBold mr-6')}
             onPress={() => setIsDialogVisible(false)}
           >
             {noLabel}
           </Text>
           <Text
-            style={tailwind('text-xl font-YC_Medium mr-2 font-bold')}
+            style={tailwind('text-xl font-YC_SemiBold mr-2')}
             onPress={() => {
               setIsDialogVisible(false);
               handleYes();
