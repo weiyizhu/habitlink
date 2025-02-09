@@ -17,11 +17,6 @@ Hablink is a mobile application that allows users to create and share habits wit
 - Tailwind CSS (styling)
 - Firebase (back-end database and authentication)
 
-## Deployment
-
-- [Android](<https://play.google.com/store/apps/details?id=com.habitlink>)
-- iOS (Unavailable on the App store as our Apple Developer Program membership has expired)
-
 ## Developers
 
 - Weiyi Zhu (zhuwy99@gmail.com)
